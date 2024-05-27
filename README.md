@@ -24,7 +24,7 @@ Adds the following to auto pull:
 
 ### What if I want to pick-and-choose what I install
 The maintainer of Obtainium also hosts a collection of Crowdsourced app configurations.
-[apps.obtainium.imranr.dev](apps.obtainium.imranr.dev)
+[apps.obtainium.imranr.dev](https://apps.obtainium.imranr.dev)
 
 ### Why do some applications say TRACK ONLY?
 As the name implies, these application versions are only tracked, not pulled. This was done because we _can't_ pull these resources, but you may still care to know when these resources have updates so you can pull them manually. For example: NetherSX2 can't provide an APK for legal reasons, but you'll get update notifications so you don't have to manually check or be stuck with outdated resources.
