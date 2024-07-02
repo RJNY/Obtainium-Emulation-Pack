@@ -5,34 +5,13 @@
    "url": "https://github.com/ImranR98/Obtainium",
    "author": "ImranR98",
    "name": "Obtainium",
-   "latestVersion": "v1.1.3",
-   "apkUrls": "[[\"app-arm64-v8a-fdroid-release.apk\",\"https://api.github.com/repos/ImranR98/Obtainium/releases/assets/161880218\"],[\"app-arm64-v8a-release.apk\",\"https://api.github.com/repos/ImranR98/Obtainium/releases/assets/161880209\"]]",
-   "otherAssetUrls": "[]",
+   "latestVersion": "v1.1.13",
+   "apkUrls": "[[\"app-arm64-v8a-fdroid-release.apk\",\"https://api.github.com/repos/ImranR98/Obtainium/releases/assets/176648087\"],[\"app-arm64-v8a-release.apk\",\"https://api.github.com/repos/ImranR98/Obtainium/releases/assets/176648082\"]]",
    "preferredApkIndex": 1,
    "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
    "categories": [
     "Utilities"
    ],
-   "releaseDate": 1712992671000000,
-   "overrideSource": null,
-   "allowIdChange": false
-  },
-  {
-   "id": "me.magnum.melonds.nightly",
-   "url": "https://github.com/rafaelvcaetano/melonDS-android",
-   "author": "rafaelvcaetano",
-   "name": "MelonDS Nightly",
-   "latestVersion": "nightly-release",
-   "apkUrls": "[[\"app-gitHub-nightly-release.apk\",\"https://api.github.com/repos/rafaelvcaetano/melonDS-android/releases/assets/156753386\"]]",
-   "otherAssetUrls": "[[\"nightly-release.tar.gz\",\"https://api.github.com/repos/rafaelvcaetano/melonDS-android/tarball/nightly-release\"],[\"nightly-release.zip\",\"https://api.github.com/repos/rafaelvcaetano/melonDS-android/zipball/nightly-release\"]]",
-   "preferredApkIndex": 0,
-   "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":false,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":true,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"MelonDS (Nightly)\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
-   "categories": [
-    "Emulator"
-   ],
-   "releaseDate": 1710458899000000,
    "overrideSource": null,
    "allowIdChange": false
   },
@@ -41,16 +20,13 @@
    "url": "https://github.com/Vita3K/Vita3K-Android",
    "author": "Vita3K",
    "name": "Vita3K",
-   "latestVersion": "v11",
-   "apkUrls": "[[\"vita3k-android-release-11.apk\",\"https://api.github.com/repos/Vita3K/Vita3K-Android/releases/assets/151380304\"]]",
-   "otherAssetUrls": "[[\"v11.tar.gz\",\"https://api.github.com/repos/Vita3K/Vita3K-Android/tarball/v11\"],[\"v11.zip\",\"https://api.github.com/repos/Vita3K/Vita3K-Android/zipball/v11\"]]",
+   "latestVersion": "v12",
+   "apkUrls": "[[\"vita3k-android-release-12.apk\",\"https://api.github.com/repos/Vita3K/Vita3K-Android/releases/assets/172343968\"]]",
    "preferredApkIndex": 0,
    "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
    "categories": [
     "Emulator"
    ],
-   "releaseDate": 1707859674000000,
    "overrideSource": null,
    "allowIdChange": false
   },
@@ -59,16 +35,13 @@
    "url": "https://dolphin-emu.org/download/?ref=btn",
    "author": "dolphin-emu.org",
    "name": "Dolphin Emulator",
-   "latestVersion": "5.0-21379.apk",
-   "apkUrls": "[[\"https://dl.dolphin-emu.org/builds/91/5b/dolphin-master-5.0-21379.apk\",\"https://dl.dolphin-emu.org/builds/91/5b/dolphin-master-5.0-21379.apk\"]]",
-   "otherAssetUrls": "[]",
+   "latestVersion": "5.0-21804.apk",
+   "apkUrls": "[[\"https://dl.dolphin-emu.org/builds/26/53/dolphin-master-5.0-21804.apk\",\"https://dl.dolphin-emu.org/builds/26/53/dolphin-master-5.0-21804.apk\"]]",
    "preferredApkIndex": 0,
    "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"https:\\\\/\\\\/dl.dolphin-emu.org\\\\/builds.+dolphin-master-.+.apk\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":true,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"\\\\d.\\\\d-\\\\d+.apk\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"supportFixedAPKURL\":true,\"sortByFileNamesNotLinks\":true,\"intermediateLinkRegex\":\"\"}",
-   "pinned": false,
    "categories": [
     "Emulator"
    ],
-   "releaseDate": null,
    "overrideSource": "HTML",
    "allowIdChange": false
   },
@@ -77,16 +50,13 @@
    "url": "https://buildbot.libretro.com/stable",
    "author": "buildbot.libretro.com",
    "name": "RetroArch AArch64 (Stable)",
-   "latestVersion": "1.17.0",
-   "apkUrls": "[[\"https://buildbot.libretro.com/stable/1.17.0/android/RetroArch_aarch64.apk\",\"https://buildbot.libretro.com/stable/1.17.0/android/RetroArch_aarch64.apk\"]]",
-   "otherAssetUrls": "[]",
+   "latestVersion": "1.19.1",
+   "apkUrls": "[[\"https://buildbot.libretro.com/stable/1.19.1/android/RetroArch_aarch64.apk\",\"https://buildbot.libretro.com/stable/1.19.1/android/RetroArch_aarch64.apk\"]]",
    "preferredApkIndex": 0,
    "additionalSettings": "{\"intermediateLink\":[{\"customLinkFilterRegex\":\"/stable/\\\\d+.\\\\d+.\\\\d+/\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false},{\"customLinkFilterRegex\":\"/stable/\\\\d+.\\\\d+.\\\\d+/android/\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false}],\"customLinkFilterRegex\":\"/stable/\\\\d+.\\\\d+.\\\\d+/android/RetroArch_aarch64.apk\",\"filterByLinkText\":false,\"skipSort\":true,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"APKLinkHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"\\\\d+.\\\\d+.\\\\d+\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"RetroArch AArch64 (Stable)\",\"exemptFromBackgroundUpdates\":true,\"skipUpdateNotifications\":true,\"about\":\"Released less frequently. Better stability. \",\"supportFixedAPKURL\":false}",
-   "pinned": false,
    "categories": [
     "Emulator"
    ],
-   "releaseDate": null,
    "overrideSource": "HTML",
    "allowIdChange": true
   },
@@ -95,16 +65,13 @@
    "url": "https://buildbot.libretro.com/nightly/android",
    "author": "buildbot.libretro.com",
    "name": "RetroArch AArch64 (Nightly)",
-   "latestVersion": "2024-04-14",
-   "apkUrls": "[[\"https://buildbot.libretro.com/nightly/android/2024-04-14-RetroArch_aarch64.apk\",\"https://buildbot.libretro.com/nightly/android/2024-04-14-RetroArch_aarch64.apk\"]]",
-   "otherAssetUrls": "[]",
+   "latestVersion": "2024-07-01",
+   "apkUrls": "[[\"https://buildbot.libretro.com/nightly/android/2024-07-01-RetroArch_aarch64.apk\",\"https://buildbot.libretro.com/nightly/android/2024-07-01-RetroArch_aarch64.apk\"]]",
    "preferredApkIndex": 0,
    "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"\\\\d{4}-\\\\d{2}-\\\\d{2}-RetroArch_aarch64.apk\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":true,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"APKLinkHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"\\\\d{4}-\\\\d{2}-\\\\d{2}\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\\\\d{4}-\\\\d{2}-\\\\d{2}-RetroArch_aarch64.apk\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"RetroArch AArch64 (Nightly)\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"Nightly releases. cutting edge features but may contain bugs\",\"supportFixedAPKURL\":false}",
-   "pinned": false,
    "categories": [
     "Emulator"
    ],
-   "releaseDate": null,
    "overrideSource": "HTML",
    "allowIdChange": false
   },
@@ -113,16 +80,13 @@
    "url": "https://github.com/langerhans/OdinTools",
    "author": "langerhans",
    "name": "OdinTools",
-   "latestVersion": "1.2.1",
-   "apkUrls": "[[\"OdinTools-1.2.1.apk\",\"https://api.github.com/repos/langerhans/OdinTools/releases/assets/151000356\"]]",
-   "otherAssetUrls": "[]",
+   "latestVersion": "1.3.1",
+   "apkUrls": "[[\"OdinTools-1.3.1.apk\",\"https://api.github.com/repos/langerhans/OdinTools/releases/assets/170074726\"]]",
    "preferredApkIndex": 0,
    "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
    "categories": [
     "Utilities"
    ],
-   "releaseDate": 1707669595000000,
    "overrideSource": null,
    "allowIdChange": false
   },
@@ -131,16 +95,13 @@
    "url": "https://GitHub.com/lime3ds/lime3ds",
    "author": "lime3ds",
    "name": "Lime3DS",
-   "latestVersion": "2108",
-   "apkUrls": "[[\"lime3ds-2108-android-universal.apk\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631343\"]]",
-   "otherAssetUrls": "[[\"lime3ds-2108-android-universal.aab\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631348\"],[\"lime3ds-2108-linux-appimage.7z\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631309\"],[\"lime3ds-2108-linux-appimage.tar.gz\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631289\"],[\"lime3ds-2108-macos-universal.7z\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631314\"],[\"lime3ds-2108-macos-universal.tar.gz\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631295\"],[\"lime3ds-2108-windows-msvc.7z\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631318\"],[\"lime3ds-2108-windows-msvc.zip\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631326\"],[\"lime3ds-2108-windows-msys2.7z\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631322\"],[\"lime3ds-2108-windows-msys2.zip\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631338\"],[\"lime3ds-unified-source-20240411-337ce6e.tar.xz\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631300\"],[\"lime3ds-unified-source-20240411-337ce6e.tar.xz.sha256sum\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/161631308\"],[\"2108.tar.gz\",\"https://api.github.com/repos/Lime3DS/Lime3DS/tarball/2108\"],[\"2108.zip\",\"https://api.github.com/repos/Lime3DS/Lime3DS/zipball/2108\"]]",
+   "latestVersion": "2115",
+   "apkUrls": "[[\"lime3ds-2115-android-universal.apk\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/176707919\"]]",
    "preferredApkIndex": 0,
    "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Lime3DS\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
    "categories": [
     "Emulator"
    ],
-   "releaseDate": 1712876112000000,
    "overrideSource": null,
    "allowIdChange": false
   },
@@ -149,16 +110,13 @@
    "url": "https://GitHub.com/sudachi-emu/sudachi",
    "author": "sudachi-emu",
    "name": "Sudachi",
-   "latestVersion": "vedd7896",
-   "apkUrls": "[[\"sudachi-ea-release.apk\",\"https://api.github.com/repos/sudachi-emu/sudachi/releases/assets/161598623\"]]",
-   "otherAssetUrls": "[[\"edd7896-linux.7z\",\"https://api.github.com/repos/sudachi-emu/sudachi/releases/assets/161599568\"],[\"edd7896-linux.zip\",\"https://api.github.com/repos/sudachi-emu/sudachi/releases/assets/161599623\"],[\"edd7896-windows.7z\",\"https://api.github.com/repos/sudachi-emu/sudachi/releases/assets/161598286\"],[\"edd7896-windows.zip\",\"https://api.github.com/repos/sudachi-emu/sudachi/releases/assets/161598417\"],[\"vedd7896.tar.gz\",\"https://api.github.com/repos/sudachi-emu/sudachi/tarball/vedd7896\"],[\"vedd7896.zip\",\"https://api.github.com/repos/sudachi-emu/sudachi/zipball/vedd7896\"]]",
+   "latestVersion": "v1.0.2",
+   "apkUrls": "[[\"sudachi-ea-release.apk\",\"https://api.github.com/repos/sudachi-emu/sudachi/releases/assets/170482803\"]]",
    "preferredApkIndex": 0,
    "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Sudachi\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
    "categories": [
     "Emulator"
    ],
-   "releaseDate": 1712863143000000,
    "overrideSource": null,
    "allowIdChange": false
   },
@@ -167,16 +125,13 @@
    "url": "https://GitHub.com/trixarian/nethersx2-patch",
    "author": "trixarian",
    "name": "NetherSX2 Patch",
-   "latestVersion": "1.8",
+   "latestVersion": "1.9-dev",
    "apkUrls": "[]",
-   "otherAssetUrls": "[[\"NetherSX2-builder.zip\",\"https://api.github.com/repos/Trixarian/NetherSX2-patch/releases/assets/151920576\"],[\"nethersx2-oldui.xdelta\",\"https://api.github.com/repos/Trixarian/NetherSX2-patch/releases/assets/151921123\"],[\"NetherSX2-patch.zip\",\"https://api.github.com/repos/Trixarian/NetherSX2-patch/releases/assets/151920562\"],[\"nethersx2.xdelta\",\"https://api.github.com/repos/Trixarian/NetherSX2-patch/releases/assets/151920542\"],[\"1.8.tar.gz\",\"https://api.github.com/repos/Trixarian/NetherSX2-patch/tarball/1.8\"],[\"1.8.zip\",\"https://api.github.com/repos/Trixarian/NetherSX2-patch/zipball/1.8\"]]",
    "preferredApkIndex": 0,
    "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":true,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"NetherSX2 Patch\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
    "categories": [
     "Track Only"
    ],
-   "releaseDate": 1708094545000000,
    "overrideSource": null,
    "allowIdChange": true
   },
@@ -185,16 +140,13 @@
    "url": "https://github.com/K11MCH1/AdrenoToolsDrivers",
    "author": "K11MCH1",
    "name": "Turnip Drivers",
-   "latestVersion": "v24.2.0",
+   "latestVersion": "v24.2.0_r19",
    "apkUrls": "[]",
-   "otherAssetUrls": "[[\"Turnip-24.1.0.adpkg_R18.a6xx.zip\",\"https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases/assets/157790429\"],[\"Turnip-24.1.0.adpkg_R18.zip\",\"https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases/assets/157790332\"],[\"v24.1.0_R18.tar.gz\",\"https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/tarball/v24.1.0_R18\"],[\"v24.1.0_R18.zip\",\"https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/zipball/v24.1.0_R18\"]]",
    "preferredApkIndex": 0,
-   "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"Turnip\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":true,\"versionExtractionRegEx\":\"v\\\\d+\\\\.\\\\d+\\\\.\\\\d+.*\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Turnip Drivers\",\"shizukuPretendToBeGooglePlay\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
+   "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"Turnip\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":true,\"versionExtractionRegEx\":\"v\\\\d+\\\\.\\\\d+\\\\.\\\\d+.*\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Turnip Drivers\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"shizukuPretendToBeGooglePlay\":false}",
    "categories": [
     "Track Only"
    ],
-   "releaseDate": 1710845026000000,
    "overrideSource": null,
    "allowIdChange": true
   },
@@ -202,17 +154,14 @@
    "id": "904332840",
    "url": "https://github.com/RJNY/Obtainium-Emulation-Pack",
    "author": "RJNY",
-   "name": "Obtainium-Emulation-Pack",
-   "latestVersion": "v2.1.0",
+   "name": "Obtainium Emulation Pack",
+   "latestVersion": "v3.0.2",
    "apkUrls": "[]",
-   "otherAssetUrls": "[[\"obtainium-emulation-pack-v1.0.0.json\",\"https://api.github.com/repos/RJNY/Obtainium-Emulation-Pack/releases/assets/162335880\"],[\"v1.0.0.tar.gz\",\"https://api.github.com/repos/RJNY/Obtainium-Emulation-Pack/tarball/v1.0.0\"],[\"v1.0.0.zip\",\"https://api.github.com/repos/RJNY/Obtainium-Emulation-Pack/zipball/v1.0.0\"]]",
    "preferredApkIndex": 0,
    "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":true,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Obtainium Emulation Pack\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
    "categories": [
     "Track Only"
    ],
-   "releaseDate": 1713245711000000,
    "overrideSource": null,
    "allowIdChange": true
   },
@@ -221,18 +170,60 @@
    "url": "https://github.com/brunodev85/winlator",
    "author": "brunodev85",
    "name": "Winlator",
-   "latestVersion": "v6.1.0",
-   "apkUrls": "[[\"Winlator_6.1.apk\",\"https://api.github.com/repos/brunodev85/winlator/releases/assets/160526359\"]]",
-   "otherAssetUrls": "[[\"v6.1.0.tar.gz\",\"https://api.github.com/repos/brunodev85/winlator/tarball/v6.1.0\"],[\"v6.1.0.zip\",\"https://api.github.com/repos/brunodev85/winlator/zipball/v6.1.0\"]]",
+   "latestVersion": "v7.1.0",
+   "apkUrls": "[[\"Winlator_7.1.apk\",\"https://api.github.com/repos/brunodev85/winlator/releases/assets/176702021\"]]",
    "preferredApkIndex": 0,
-   "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "pinned": false,
+   "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"shizukuPretendToBeGooglePlay\":false}",
    "categories": [
     "Emulator"
    ],
-   "releaseDate": 1712261141000000,
    "overrideSource": null,
    "allowIdChange": true
+  },
+  {
+   "id": "org.ppsspp.ppsspp",
+   "url": "https://www.ppsspp.org/download",
+   "author": "www.ppsspp.org",
+   "name": "PPSSPP",
+   "latestVersion": "1.17.1",
+   "apkUrls": "[[\"https://www.ppsspp.org/files/1_17_1/ppsspp.apk\",\"https://www.ppsspp.org/files/1_17_1/ppsspp.apk\"]]",
+   "preferredApkIndex": 0,
+   "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"\\\\/[0-9]+(?:_[0-9]+){1,2}\\\\/ppsspp\\\\.apk$\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"APKLinkHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"\\\\/(?:(?:([0-9]+)_([0-9]+)\\\\/ppsspp\\\\.)|(?:([0-9]+)_([0-9]+)_([0-9]+)\\\\/ppsspp(\\\\.)))apk$\",\"matchGroupToUse\":\"$1$3.$2$4$6$5\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"PPSSPP\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"PPSSPP is an open source, fast and portable PSP emulator\",\"supportFixedAPKURL\":false}",
+   "categories": [
+    "Emulator"
+   ],
+   "overrideSource": "HTML",
+   "allowIdChange": false
+  },
+  {
+   "id": "me.magnum.melonds.nightly",
+   "url": "https://github.com/rafaelvcaetano/melonDS-android",
+   "author": "rafaelvcaetano",
+   "name": "melonDS Nightly",
+   "latestVersion": "nightly-release",
+   "apkUrls": "[[\"app-gitHub-nightly-release.apk\",\"https://api.github.com/repos/rafaelvcaetano/melonDS-android/releases/assets/176333399\"]]",
+   "preferredApkIndex": 0,
+   "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":true,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
+   "categories": [
+    "Emulator"
+   ],
+   "overrideSource": null,
+   "allowIdChange": false
+  },
+  {
+   "id": "me.magnum.melonds",
+   "url": "https://github.com/rafaelvcaetano/melonDS-android",
+   "author": "rafaelvcaetano",
+   "name": "melonDS",
+   "latestVersion": "beta-1.9.3",
+   "apkUrls": "[[\"app-gitHub-prod-release.apk\",\"https://api.github.com/repos/rafaelvcaetano/melonDS-android/releases/assets/141991518\"]]",
+   "preferredApkIndex": 0,
+   "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"MelonDS\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
+   "categories": [
+    "Emulator"
+   ],
+   "overrideSource": null,
+   "allowIdChange": false
   }
  ]
 }
