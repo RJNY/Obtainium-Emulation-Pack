@@ -99,20 +99,6 @@
    "allowIdChange": false
   },
   {
-   "id": "org.sudachi.sudachi_emu.ea",
-   "url": "https://GitHub.com/sudachi-emu/sudachi",
-   "author": "sudachi-emu",
-   "name": "Sudachi",
-   "apkUrls": "[[\"sudachi-ea-release.apk\",\"https://api.github.com/repos/sudachi-emu/sudachi/releases/assets/170482803\"]]",
-   "preferredApkIndex": 0,
-   "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Sudachi\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "categories": [
-    "Emulator"
-   ],
-   "overrideSource": null,
-   "allowIdChange": false
-  },
-  {
    "id": "nethersx2-patch",
    "url": "https://GitHub.com/trixarian/nethersx2-patch",
    "author": "trixarian",
