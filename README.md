@@ -19,6 +19,7 @@ Adds the following to auto pull:
 - PPSSPP
 - RetroArch (AArch64) (nightly)
 - RetroArch (AArch64) (stable)
+- ScummVM
 - Turnip Drivers [TRACK ONLY]
 - Vita3K
 - Winlator
