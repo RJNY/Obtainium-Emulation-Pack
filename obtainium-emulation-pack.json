@@ -69,19 +69,6 @@
    "allowIdChange": false
   },
   {
-   "id": "de.langerhans.odintools",
-   "url": "https://github.com/langerhans/OdinTools",
-   "author": "langerhans",
-   "name": "OdinTools",
-   "apkUrls": "[[\"OdinTools-1.3.1.apk\",\"https://api.github.com/repos/langerhans/OdinTools/releases/assets/170074726\"]]",
-   "preferredApkIndex": 0,
-   "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-   "categories": [
-    "Utilities"
-   ],
-   "allowIdChange": false
-  },
-  {
    "id": "io.github.lime3ds.android",
    "url": "https://github.com/Lime3DS/lime3ds-archive",
    "author": "lime3ds",
@@ -93,6 +80,20 @@
     "Emulator"
    ],
    "allowIdChange": false
+  },
+  {
+    "id": "info.cemu.Cemu",
+    "url": "https://github.com/SSimco/Cemu",
+    "author": "SSimco",
+    "name": "Cemu",
+    "apkUrls": "[[\"Cemu-356b1ff.apk\",\"https://api.github.com/repos/SSimco/Cemu/releases/assets/199799548\"]]",
+    "preferredApkIndex": 0,
+    "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
+    "categories": [
+      "Emulator"
+    ],
+    "overrideSource": null,
+    "allowIdChange": false
   },
   {
    "id": "nethersx2-patch",
