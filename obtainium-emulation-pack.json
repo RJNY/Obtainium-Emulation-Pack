@@ -82,18 +82,18 @@
    "allowIdChange": false
   },
   {
-    "id": "info.cemu.Cemu",
-    "url": "https://github.com/SSimco/Cemu",
-    "author": "SSimco",
-    "name": "Cemu",
-    "apkUrls": "[[\"Cemu-356b1ff.apk\",\"https://api.github.com/repos/SSimco/Cemu/releases/assets/199799548\"]]",
-    "preferredApkIndex": 0,
-    "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-    "categories": [
-      "Emulator"
-    ],
-    "overrideSource": null,
-    "allowIdChange": false
+   "id": "info.cemu.Cemu",
+   "url": "https://github.com/SSimco/Cemu",
+   "author": "SSimco",
+   "name": "Cemu",
+   "apkUrls": "[[\"Cemu-356b1ff.apk\",\"https://api.github.com/repos/SSimco/Cemu/releases/assets/199799548\"]]",
+   "preferredApkIndex": 0,
+   "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
+   "categories": [
+    "Emulator"
+   ],
+   "overrideSource": null,
+   "allowIdChange": false
   },
   {
    "id": "nethersx2-patch",
@@ -199,6 +199,15 @@
     "Emulator"
    ],
    "overrideSource": "HTML"
+  },
+  {
+   "id": "com.github.stenzek.duckstation",
+   "url": "https://www.duckstation.org/android/duckstation-android.apk",
+   "author": "www.duckstation.org",
+   "name": "DuckStation",
+   "preferredApkIndex": 0,
+   "additionalSettings": "{\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"trackOnly\":false,\"invertAPKFilter\":false,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"Fast PlayStation 1 emulator for x86-64/AArch32/AArch64/RV64\",\"versionDetection\":false,\"autoApkFilterByArch\":false}",
+   "overrideSource": "DirectAPKLink"
   }
  ]
 }
