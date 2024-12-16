@@ -1,7 +1,5 @@
 # Obtainium Emulation Pack
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K5WHKR0)
-
 An [Obtainium](https://github.com/ImranR98/Obtainium) import file that adds popular Android
 emulation applications to Obtainium.
 
@@ -10,7 +8,10 @@ Finally; import file with Obtainium.
 
 Adds the following to auto pull:
 
+- Cemu
 - Dolphin (Development Versions)
+- Duckstation (stable)
+- Duckstation (nightly)
 - MelonDS (stable)
 - MelonDS (nightly)
 - Lime3DS
@@ -23,14 +24,19 @@ Adds the following to auto pull:
 - Turnip Drivers [TRACK ONLY]
 - Vita3K
 - Winlator
-... and Obtainium of course
 
-### What if I want to pick-and-choose what I install
+## FAQ
+
+### What if I want to pick-and-choose what I install?
 The maintainer of Obtainium also hosts a collection of Crowdsourced app configurations.
 [apps.obtainium.imranr.dev](https://apps.obtainium.imranr.dev)
 
 ### Why do some applications say TRACK ONLY?
-As the name implies, these application versions are only tracked, not pulled. This was done because we _can't_ pull these resources, but you may still care to know when these resources have updates so you can pull them manually. For example: NetherSX2 can't provide an APK for legal reasons, but you'll get update notifications so you don't have to manually check or be stuck with outdated resources.
+As the name implies, these application versions are only tracked, not pulled. 
+This was done because we _can't_ pull these resources, but you may still care to know when these
+resources have updates so you can pull them manually. For example: NetherSX2 can't provide an APK
+for legal reasons, but you'll get update notifications so you don't have to manually check or be
+stuck with outdated resources.
 
 ### How do I use TRACK ONLY resources?
 When you get notified of an update to your track only resource:
@@ -43,6 +49,9 @@ No problem. Keep what you like, remove the rest!
 
 ### What happened to Citra / Yuzu?
 These repositories [no longer exist](https://twitter.com/yuzuemu/status/1764733659444064671) due to a [lawsuit](https://storage.courtlistener.com/recap/gov.uscourts.rid.56980/gov.uscourts.rid.56980.10.0.pdf) by Nintendo against Tropic Haze LLC (former maintainers of Citra & Yuzu). Links to broken repositories cause errors in obtainium; and so, they were removed from this export script.
+
+### A new switch emulator has released! Can you add it?
+No.
 
 ### A note about stable, nightly and canary versions of the same app
 You cannot install more than one version of the same app. For example: You must choose between RetroArch (stable) or RetroArch (nightly). You cannot have both.
