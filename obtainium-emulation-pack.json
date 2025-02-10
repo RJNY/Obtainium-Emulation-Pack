@@ -201,22 +201,16 @@
    "overrideSource": "HTML"
   },
   {
-   "id": "com.github.stenzek.duckstation",
-   "url": "https://www.duckstation.org/android/duckstation-android.apk",
-   "author": "www.duckstation.org",
-   "name": "DuckStation",
-   "preferredApkIndex": 0,
-   "additionalSettings": "{\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"trackOnly\":false,\"invertAPKFilter\":false,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"Fast PlayStation 1 emulator for x86-64/AArch32/AArch64/RV64\",\"versionDetection\":false,\"autoApkFilterByArch\":false}",
-   "overrideSource": "DirectAPKLink"
-  },
-  {
-   "id": "com.github.stenzek.duckstation",
-   "url": "https://www.duckstation.org/android/duckstation-beta.apk",
-   "author": "www.duckstation.org",
-   "name": "DuckStation",
-   "preferredApkIndex": 0,
-   "additionalSettings": "{\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"trackOnly\":false,\"invertAPKFilter\":false,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"DuckStationDuckStation is a PS1 Emulator aiming for the best accuracy and game support.\",\"versionDetection\":false,\"autoApkFilterByArch\":false}",
-   "overrideSource": "DirectAPKLink"
+    "id": "com.github.stenzek.duckstation",
+    "url": "https://downloads.duckstation.org/android/",
+    "author": "downloads.duckstation.org",
+    "name": "DuckStation Beta",
+    "preferredApkIndex": 0,
+    "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"https://www.duckstation.org/android/duckstation-beta.apk\",\"filterByLinkText\":true,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":true,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"<ul>[\\\\s\\\\S]*?<li>\\\\d{4}/\\\\d{2}/\\\\d{2} \\\\((\\\\d+\\\\.\\\\d+-\\\\d+)\\\\)\",\"matchGroupToUse\":\"1\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+    "categories": [
+      "Emulator"
+    ],
+    "overrideSource": "HTML"
   }
  ]
 }
