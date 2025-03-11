@@ -1,5 +1,7 @@
+all: links minify
+
 links:
-	python scripts/generate-obtainium-urls.py obtainium-emulation-pack.json >> scripts/links.md
+	python scripts/generate-obtainium-urls.py obtainium-emulation-pack.json > scripts/links.md
 
 minify:
 	python scripts/minify-json.py obtainium-emulation-pack.json obtainium-emulation-pack.min.json
