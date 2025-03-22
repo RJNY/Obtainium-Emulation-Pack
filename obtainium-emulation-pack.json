@@ -1,6 +1,19 @@
 {
   "apps": [
     {
+      "id": "io.github.lime3ds.android",
+      "url": "https://github.com/azahar-emu/azahar",
+      "author": "azahar-emu",
+      "name": "Azahar",
+      "apkUrls": "[[\"azahar-2120-android-universal.apk\",\"https://api.github.com/repos/azahar-emu/azahar/releases/assets/239683655\"]]",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "categories": [
+        "Emulator"
+      ],
+      "overrideSource": "GitHub"
+    },
+    {
       "id": "info.cemu.cemu",
       "url": "https://github.com/SSimco/Cemu",
       "author": "SSimco",
@@ -31,9 +44,9 @@
       "id": "com.github.stenzek.duckstation",
       "url": "https://downloads.duckstation.org/android/",
       "author": "downloads.duckstation.org",
-      "name": "DuckStation Beta",
+      "name": "DuckStation",
       "preferredApkIndex": 0,
-      "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"https://www.duckstation.org/android/duckstation-beta.apk\",\"filterByLinkText\":true,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":true,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"<ul>[\\\\s\\\\S]*?<li>\\\\d{4}/\\\\d{2}/\\\\d{2} \\\\((\\\\d+\\\\.\\\\d+-\\\\d+)\\\\)\",\"matchGroupToUse\":\"1\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"https://www.duckstation.org/android/duckstation-android.apk\",\"filterByLinkText\":true,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":true,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"<ul>[\\\\s\\\\S]*?<li>\\\\d{4}/\\\\d{2}/\\\\d{2} \\\\((\\\\d+\\\\.\\\\d+-\\\\d+)\\\\)\",\"matchGroupToUse\":\"1\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
       "categories": [
         "Emulator"
       ],
@@ -59,18 +72,6 @@
       "apkUrls": "[[\"app-gitHub-nightly-release.apk\",\"https://api.github.com/repos/rafaelvcaetano/melonDS-android/releases/assets/176333399\"]]",
       "preferredApkIndex": 0,
       "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"Nightly Build\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":true,\"trackOnly\":false,\"versionExtractionRegEx\":\"nightly\\\\-release\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":true,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
-      "categories": [
-        "Emulator"
-      ]
-    },
-    {
-      "id": "io.github.lime3ds.android",
-      "url": "https://github.com/Lime3DS/lime3ds-archive",
-      "author": "lime3ds",
-      "name": "Lime3DS",
-      "apkUrls": "[[\"lime3ds-2115-android-universal.apk\",\"https://api.github.com/repos/Lime3DS/Lime3DS/releases/assets/176707919\"]]",
-      "preferredApkIndex": 0,
-      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Lime3DS\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
       "categories": [
         "Emulator"
       ]
@@ -115,6 +116,19 @@
       "overrideSource": "HTML"
     },
     {
+      "id": "net.rpcs3",
+      "url": "https://github.com/RPCS3-Android/rpcs3-android",
+      "author": "RPCS3-Android",
+      "name": "RPCS3",
+      "apkUrls": "[[\"rpcs3-release.apk\",\"https://api.github.com/repos/RPCS3-Android/rpcs3-android/releases/assets/239082376\"]]",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":true,\"releaseTitleAsVersion\":true,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":true,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":false,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":true}",
+      "categories": [
+        "Emulator"
+      ],
+      "overrideSource": "GitHub"
+    },
+    {
       "id": "org.scummvm.scummvm",
       "url": "https://downloads.scummvm.org/frs/scummvm",
       "author": "ScummVM",
@@ -149,6 +163,19 @@
       "categories": [
         "Emulator"
       ]
+    },
+    {
+      "id": "org.vita3k.emulator.ikhoeyZX",
+      "url": "https://github.com/ikhoeyZX/Vita3K-Android",
+      "author": "ikhoeyZX",
+      "name": "Vita3K ZX",
+      "apkUrls": "[[\"vita3k-12.5_build13.apk\",\"https://api.github.com/repos/ikhoeyZX/Vita3K-Android/releases/assets/238922579\"]]",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "categories": [
+        "Emulator"
+      ],
+      "overrideSource": "GitHub"
     },
     {
       "id": "nethersx2-patch",
