@@ -188,22 +188,7 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub",
-      "allowIdChange": false
-    },
-    {
-      "id": "xyz.aethersx2.android",
-      "url": "https://github.com/Trixarian/NetherSX2-classic",
-      "author": "Trixarian",
-      "name": "NetherSX2 Classic (Pre-Release)",
-      "apkUrls": "[[\"15210-v2.0-3668-OL.apk\",\"https://api.github.com/repos/Trixarian/NetherSX2-classic/releases/assets/246617205\"],[\"15210-v2.0-3668-signed.apk\",\"https://api.github.com/repos/Trixarian/NetherSX2-classic/releases/assets/244589241\"]]",
-      "preferredApkIndex": 1,
-      "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
-      "categories": [
-        "Emulator"
-      ],
-      "overrideSource": "GitHub",
-      "allowIdChange": false
+      "overrideSource": "GitHub"
     },
     {
       "id": "620290289",
