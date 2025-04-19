@@ -44,9 +44,9 @@
       "id": "com.github.stenzek.duckstation",
       "url": "https://downloads.duckstation.org/android/",
       "author": "downloads.duckstation.org",
-      "name": "DuckStation",
+      "name": "DuckStation (Beta)",
       "preferredApkIndex": 0,
-      "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"https://www.duckstation.org/android/duckstation-android.apk\",\"filterByLinkText\":true,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":true,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"<ul>[\\\\s\\\\S]*?<li>\\\\d{4}/\\\\d{2}/\\\\d{2} \\\\((\\\\d+\\\\.\\\\d+-\\\\d+)\\\\)\",\"matchGroupToUse\":\"1\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"https://www.duckstation.org/android/duckstation-beta.apk\",\"filterByLinkText\":true,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":true,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"<ul>[\\\\s\\\\S]*?<li>\\\\d{4}/\\\\d{2}/\\\\d{2} \\\\((\\\\d+\\\\.\\\\d+-\\\\d+)\\\\)\",\"matchGroupToUse\":\"1\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
       "categories": [
         "Emulator"
       ],
@@ -116,13 +116,13 @@
       "overrideSource": "HTML"
     },
     {
-      "id": "net.rpcs3",
-      "url": "https://github.com/RPCS3-Android/rpcs3-android",
-      "author": "RPCS3-Android",
-      "name": "RPCS3",
-      "apkUrls": "[[\"rpcs3-release.apk\",\"https://api.github.com/repos/RPCS3-Android/rpcs3-android/releases/assets/239082376\"]]",
+      "id": "net.rpcsx",
+      "url": "https://github.com/RPCSX/rpcsx-ui-android",
+      "author": "RPCSX",
+      "name": "RPCSX",
+      "apkUrls": "[[\"rpcsx-release.apk\",\"https://api.github.com/repos/RPCSX/rpcsx-ui-android/releases/assets/247111202\"]]",
       "preferredApkIndex": 0,
-      "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":true,\"releaseTitleAsVersion\":true,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":true,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":false,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":true}",
+      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
       "categories": [
         "Emulator"
       ],
@@ -178,16 +178,32 @@
       "overrideSource": "GitHub"
     },
     {
-      "id": "nethersx2-patch",
-      "url": "https://GitHub.com/trixarian/nethersx2-patch",
-      "author": "trixarian",
-      "name": "NetherSX2 Patch",
-      "apkUrls": "[]",
-      "preferredApkIndex": 0,
-      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":true,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"NetherSX2 Patch\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
+      "id": "xyz.aethersx2.android",
+      "url": "https://github.com/Trixarian/NetherSX2-classic",
+      "author": "Trixarian",
+      "name": "NetherSX2 Classic",
+      "apkUrls": "[[\"15210-v2.0-3668-OL.apk\",\"https://api.github.com/repos/Trixarian/NetherSX2-classic/releases/assets/246617205\"],[\"15210-v2.0-3668-signed.apk\",\"https://api.github.com/repos/Trixarian/NetherSX2-classic/releases/assets/244589241\"]]",
+      "preferredApkIndex": 1,
+      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
       "categories": [
-        "Track Only"
-      ]
+        "Emulator"
+      ],
+      "overrideSource": "GitHub",
+      "allowIdChange": false
+    },
+    {
+      "id": "xyz.aethersx2.android",
+      "url": "https://github.com/Trixarian/NetherSX2-classic",
+      "author": "Trixarian",
+      "name": "NetherSX2 Classic (Pre-Release)",
+      "apkUrls": "[[\"15210-v2.0-3668-OL.apk\",\"https://api.github.com/repos/Trixarian/NetherSX2-classic/releases/assets/246617205\"],[\"15210-v2.0-3668-signed.apk\",\"https://api.github.com/repos/Trixarian/NetherSX2-classic/releases/assets/244589241\"]]",
+      "preferredApkIndex": 1,
+      "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "categories": [
+        "Emulator"
+      ],
+      "overrideSource": "GitHub",
+      "allowIdChange": false
     },
     {
       "id": "620290289",
