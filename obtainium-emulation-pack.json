@@ -31,10 +31,23 @@
       "id": "org.dolphinemu.dolphinemu",
       "url": "https://dolphin-emu.org/download/?ref=btn",
       "author": "dolphin-emu.org",
-      "name": "Dolphin Emulator",
+      "name": "Dolphin Emulator (Dev build)",
       "apkUrls": "[[\"182947822-dolphin-master-2503a-280.apk\",\"https://dl.dolphin-emu.org/builds/b7/5c/dolphin-master-2503a-280.apk\"]]",
       "preferredApkIndex": 0,
-      "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"https:\\\\/\\\\/dl.dolphin-emu.org\\\\/builds.+dolphin-master-.+.apk\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":true,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"dolphin-master-(.+).apk\",\"matchGroupToUse\":\"$1\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Dolphin Emulator (Development)\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"https:\\\\/\\\\/dl.dolphin-emu.org\\\\/builds.+dolphin-master-.+.apk\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":true,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"dolphin-master-(.+).apk\",\"matchGroupToUse\":\"$1\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Dolphin Emulator (Dev build)\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "categories": [
+        "Emulator"
+      ],
+      "overrideSource": "HTML"
+    },
+    {
+      "id": "org.dolphinemu.dolphinemu",
+      "url": "https://dolphin-emu.org/download/?ref=btn",
+      "author": "dolphin-emu.org",
+      "name": "Dolphin Emulator",
+      "apkUrls": "[[\"202199666-dolphin-2503a.apk\",\"https://dl.dolphin-emu.org/releases/2503a/dolphin-2503a.apk\"]]",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"https:\\\\/\\\\/dl.dolphin-emu.org\\\\/releases.+dolphin.+.apk\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":true,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"/releases/.+/dolphin-(.+).apk\",\"matchGroupToUse\":\"$1\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Dolphin Emulator (Stable)\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
       "categories": [
         "Emulator"
       ],
