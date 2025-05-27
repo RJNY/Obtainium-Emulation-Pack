@@ -50,7 +50,10 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "HTML"
+      "overrideSource": "HTML",
+      "meta": {
+        "excludeFromExport": true
+      }
     },
     {
       "id": "org.dolphinemu.dolphinemu",
@@ -155,7 +158,7 @@
     },
     {
       "id": "org.scummvm.scummvm",
-      "url": "https://downloads.scummvm.org/frs/scummvm",
+      "url": "https://downloads.scummvm.org/frs/scummvm/",
       "author": "ScummVM",
       "name": "ScummVM",
       "preferredApkIndex": 0,

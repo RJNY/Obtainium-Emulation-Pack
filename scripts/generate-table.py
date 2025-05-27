@@ -24,6 +24,10 @@ def generate_markdown_table(apps):
     rows.append(divider)
 
     for app in apps:
+        meta = app.get("meta", {})
+        if meta.get("excludeFromTable", False):
+            continue
+
         name = app.get("name", "")
         category = ", ".join(app.get("categories", []))
         obtainium_link = make_obtainium_link(app)
