@@ -11,6 +11,8 @@ def make_obtainium_link(app):
         "name": app["name"],
         "preferredApkIndex": app.get("preferredApkIndex", 0),
         "additionalSettings": app.get("additionalSettings", ""),
+        "categories": app.get("categories", []),
+        "overrideSource": app.get("overrideSource", ""),
     }
     encoded = urllib.parse.quote(json.dumps(payload), safe="")
     return f"http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/{encoded}"
