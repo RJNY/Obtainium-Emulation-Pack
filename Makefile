@@ -1,4 +1,4 @@
-release: readme minify
+all: readme minify
 
 links:
 	python scripts/generate-obtainium-urls.py obtainium-emulation-pack.json > scripts/links.md
