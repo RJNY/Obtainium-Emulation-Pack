@@ -1,21 +1,3 @@
-# Obtainium Emulation Pack
-
-An [Obtainium](https://github.com/ImranR98/Obtainium) import file that adds popular Android
-emulation applications to Obtainium.
-
-The maintainer of Obtainium also hosts a collection of Crowdsourced app configurations.
-[apps.obtainium.imranr.dev](https://apps.obtainium.imranr.dev)
-
-## How to install
-
-### Option 1. Import Method
-
-1. Download the latest obtainium-emulation-pack.json release json to your device
-2. Open Obtainium on your device
-3. Navigate to Import/Export
-4. Select `Obtainium Import` and select the obtainium-emulation-pack.json
-5. Profit. You should see packages added to your obtainium
-
 | Application Name | Category | Add to Obtainium |
 |------------------|----------|-------------------|
 | Artemis | Streaming | <a href="http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/%7B%22id%22%3A%20%22com.limelight.noir%22%2C%20%22url%22%3A%20%22https%3A%2F%2Fgithub.com%2FClassicOldSong%2Fmoonlight-android%22%2C%20%22author%22%3A%20%22ClassicOldSong%22%2C%20%22name%22%3A%20%22Artemis%22%2C%20%22preferredApkIndex%22%3A%200%2C%20%22additionalSettings%22%3A%20%22%7B%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Atrue%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22sortMethodChoice%5C%22%3A%5C%22date%5C%22%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22releaseTitleAsVersion%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Afalse%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22matchGroupToUse%5C%22%3A%5C%22%5C%22%2C%5C%22versionDetection%5C%22%3Afalse%2C%5C%22releaseDateAsVersion%5C%22%3Afalse%2C%5C%22useVersionCodeAsOSVersion%5C%22%3Afalse%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22invertAPKFilter%5C%22%3Afalse%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22appName%5C%22%3A%5C%22%5C%22%2C%5C%22appAuthor%5C%22%3A%5C%22%5C%22%2C%5C%22shizukuPretendToBeGooglePlay%5C%22%3Afalse%2C%5C%22allowInsecure%5C%22%3Afalse%2C%5C%22exemptFromBackgroundUpdates%5C%22%3Afalse%2C%5C%22skipUpdateNotifications%5C%22%3Afalse%2C%5C%22about%5C%22%3A%5C%22%5C%22%2C%5C%22refreshBeforeDownload%5C%22%3Afalse%7D%22%7D"><img src="./assets/badge_obtainium.png" alt="Click me to add the repository to Obtainium!" width="128"></a> | |
@@ -38,46 +20,3 @@ The maintainer of Obtainium also hosts a collection of Crowdsourced app configur
 | Syncthing-Fork | Utilities | <a href="http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/%7B%22id%22%3A%20%22com.github.catfriend1.syncthingandroid%22%2C%20%22url%22%3A%20%22https%3A%2F%2Fgithub.com%2FCatfriend1%2Fsyncthing-android%22%2C%20%22author%22%3A%20%22Catfriend1%22%2C%20%22name%22%3A%20%22Syncthing-Fork%22%2C%20%22preferredApkIndex%22%3A%200%2C%20%22additionalSettings%22%3A%20%22%7B%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Atrue%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22sortMethodChoice%5C%22%3A%5C%22date%5C%22%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22releaseTitleAsVersion%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Afalse%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22matchGroupToUse%5C%22%3A%5C%22%5C%22%2C%5C%22versionDetection%5C%22%3Atrue%2C%5C%22releaseDateAsVersion%5C%22%3Afalse%2C%5C%22useVersionCodeAsOSVersion%5C%22%3Afalse%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22.%2Arelease.%2A%5C%22%2C%5C%22invertAPKFilter%5C%22%3Afalse%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22appName%5C%22%3A%5C%22%5C%22%2C%5C%22appAuthor%5C%22%3A%5C%22%5C%22%2C%5C%22shizukuPretendToBeGooglePlay%5C%22%3Afalse%2C%5C%22allowInsecure%5C%22%3Afalse%2C%5C%22exemptFromBackgroundUpdates%5C%22%3Afalse%2C%5C%22skipUpdateNotifications%5C%22%3Afalse%2C%5C%22about%5C%22%3A%5C%22%5C%22%2C%5C%22refreshBeforeDownload%5C%22%3Afalse%7D%22%7D"><img src="./assets/badge_obtainium.png" alt="Click me to add the repository to Obtainium!" width="128"></a> | |
 | AdrenoToolsDrivers | Track Only | <a href="http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/%7B%22id%22%3A%20%22476086958%22%2C%20%22url%22%3A%20%22https%3A%2F%2Fgithub.com%2FK11MCH1%2FAdrenoToolsDrivers%22%2C%20%22author%22%3A%20%22K11MCH1%22%2C%20%22name%22%3A%20%22AdrenoToolsDrivers%22%2C%20%22preferredApkIndex%22%3A%200%2C%20%22additionalSettings%22%3A%20%22%7B%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Atrue%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22Turnip%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22sortMethodChoice%5C%22%3A%5C%22date%5C%22%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22releaseTitleAsVersion%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Atrue%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22matchGroupToUse%5C%22%3A%5C%22%5C%22%2C%5C%22versionDetection%5C%22%3Afalse%2C%5C%22releaseDateAsVersion%5C%22%3Afalse%2C%5C%22useVersionCodeAsOSVersion%5C%22%3Afalse%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22invertAPKFilter%5C%22%3Afalse%2C%5C%22autoApkFilterByArch%5C%22%3Afalse%2C%5C%22appName%5C%22%3A%5C%22Turnip%5C%22%2C%5C%22appAuthor%5C%22%3A%5C%22%5C%22%2C%5C%22shizukuPretendToBeGooglePlay%5C%22%3Afalse%2C%5C%22allowInsecure%5C%22%3Afalse%2C%5C%22exemptFromBackgroundUpdates%5C%22%3Afalse%2C%5C%22skipUpdateNotifications%5C%22%3Afalse%2C%5C%22about%5C%22%3A%5C%22%5C%22%2C%5C%22refreshBeforeDownload%5C%22%3Afalse%2C%5C%22github-creds%5C%22%3A%5C%22%5C%22%7D%22%7D"><img src="./assets/badge_obtainium.png" alt="Click me to add the repository to Obtainium!" width="128"></a> | |
 | Obtainium Emulation Pack | Track Only | <a href="http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/%7B%22id%22%3A%20%22904332840%22%2C%20%22url%22%3A%20%22https%3A%2F%2Fgithub.com%2FRJNY%2FObtainium-Emulation-Pack%22%2C%20%22author%22%3A%20%22RJNY%22%2C%20%22name%22%3A%20%22Obtainium%20Emulation%20Pack%22%2C%20%22preferredApkIndex%22%3A%200%2C%20%22additionalSettings%22%3A%20%22%7B%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Atrue%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22dontSortReleasesList%5C%22%3Afalse%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Atrue%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22matchGroupToUse%5C%22%3A%5C%22%5C%22%2C%5C%22versionDetection%5C%22%3Atrue%2C%5C%22releaseDateAsVersion%5C%22%3Afalse%2C%5C%22useVersionCodeAsOSVersion%5C%22%3Afalse%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22invertAPKFilter%5C%22%3Afalse%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22appName%5C%22%3A%5C%22Obtainium%20Emulation%20Pack%5C%22%2C%5C%22exemptFromBackgroundUpdates%5C%22%3Afalse%2C%5C%22skipUpdateNotifications%5C%22%3Afalse%2C%5C%22about%5C%22%3A%5C%22%5C%22%7D%22%7D"><img src="./assets/badge_obtainium.png" alt="Click me to add the repository to Obtainium!" width="128"></a> | |
-
-## FAQ
-
-### Why do some applications say TRACK ONLY?
-
-As the name implies, these application versions are only tracked, not pulled.
-This was done because we _can't_ pull these resources, but you may still care to know when these
-resources have updates so you can pull them manually. For example: NetherSX2 can't provide an APK
-for legal reasons, but you'll get update notifications so you don't have to manually check or be
-stuck with outdated resources.
-
-### How do I use TRACK ONLY resources?
-
-When you get notified of an update to your track only resource:
-
-- visit the link to your resource
-- download it manually
-- in obtainium > click resource > click "Mark Updated"
-
-### How do I updated Obtainium Emulation Pack?
-
-Same as install method. It'll update existing resources.
-It will not remove any other resources you've added.
-
-### A new switch emulator has released! Can you add it?
-
-No.
-
-### A note about stable, beta, nightly and canary versions of the same app
-
-You cannot install more than one version of the same app. For example: You must choose between RetroArch (stable) or RetroArch (nightly). You cannot have both.
-
-### How does this work?
-
-Obtainium allows you to filter for links on a page using regular expression (regex)
-It also allows you to follow multiple links using regex.
-see <https://regexr.com/7rmf7> for a basic example of how this works.
-
-### Can this break?
-
-Yes. Absolutely it can.
-Any of the scrapers that use regex can break if the maintainer changes their page.
-The applications pulling from GitHub are more stable and less likely to break.
