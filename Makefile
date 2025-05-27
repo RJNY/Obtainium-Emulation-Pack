@@ -1,13 +1,20 @@
-all: readme minify
+.PHONY: help all readme
+default: help
 
-links:
-	python scripts/generate-obtainium-urls.py obtainium-emulation-pack.json > scripts/links.md
+help: # Show help for each of the makefile recipes.
+	@grep -E '^[a-zA-Z0-9 -]+:.*#'  Makefile | sort | while read -r l; \
+		do printf "\033[1;32m$$(echo $$l | cut -f 1 -d':')\033[00m:$$(echo $$l | cut -f 2- -d'#')\n"; done
 
-minify:
-	python scripts/minify-json.py obtainium-emulation-pack.json obtainium-emulation-pack.min.json
+release: readme minify # Run all Make targets related to cutting a release.
 
-table:
-	python scripts/generate-table.py obtainium-emulation-pack.json ./readme/table.md
+links: # Generate links for all obtainium packages
+	@python scripts/generate-obtainium-urls.py obtainium-emulation-pack.json > scripts/links.md
 
-read-me: table
-	python scripts/generate-readme.py ./readme/init.md ./readme/table.md ./readme/faq.md
+minify: # Obtainium historically expects a minified json. This allows humans to edit the readable and easily update the minified one.
+	@python scripts/minify-json.py obtainium-emulation-pack.json obtainium-emulation-pack.min.json
+
+table: # Generate a table of obtainium links for the README.
+	@python scripts/generate-table.py obtainium-emulation-pack.json ./pages/table.md
+
+readme: table # Generate the readme file. Why? Because editing that table every change is tedious.
+	@python scripts/generate-readme.py ./pages/init.md ./pages/table.md ./pages/faq.md
