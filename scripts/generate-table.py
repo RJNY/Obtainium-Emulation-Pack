@@ -27,8 +27,8 @@ def generate_markdown_table(apps):
         name = app.get("name", "")
         category = ", ".join(app.get("categories", []))
         obtainium_link = make_obtainium_link(app)
-        badge_md = f'<a href="{obtainium_link}"><img src="./assets/badge_obtainium.png" alt="Click me to add the repository to Obtainium!" width="128"></a>'
-        rows.append(f"| {name} | {category} | {badge_md} | |")
+        badge_md = f'<a href="{obtainium_link}">Add to Obtainium!</a>'
+        rows.append(f"| {name} | {category} | {badge_md} |")
 
     return "\n".join(rows)
 
