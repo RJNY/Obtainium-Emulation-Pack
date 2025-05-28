@@ -18,10 +18,15 @@ def make_obtainium_link(app):
     return f"http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/{encoded}"
 
 
+# ❌
 def generate_markdown_table(apps):
     rows = []
-    header = "| Application Name | Category | Add to Obtainium |"
-    divider = "|------------------|----------|-------------------|"
+    header = (
+        "| Application Name | Category | Add to Obtainium | Included in export json? |"
+    )
+    divider = (
+        "|------------------|----------|------------------|--------------------------|"
+    )
     rows.append(header)
     rows.append(divider)
 
@@ -30,11 +35,12 @@ def generate_markdown_table(apps):
         if meta.get("excludeFromTable", False):
             continue
 
-        name = app.get("name", "")
+        name = meta.get("nameOverride", app.get("name", ""))
         category = ", ".join(app.get("categories", []))
         obtainium_link = make_obtainium_link(app)
         badge_md = f'<a href="{obtainium_link}">Add to Obtainium!</a>'
-        rows.append(f"| {name} | {category} | {badge_md} |")
+        isIncludedInJson = "❌" if meta.get("excludeFromExport") else "✅"
+        rows.append(f"| {name} | {category} | {badge_md} | {isIncludedInJson} |")
 
     return "\n".join(rows)
 

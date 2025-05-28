@@ -23,11 +23,23 @@ It will not remove any other resources you've added.
 
 ### A new switch emulator has released! Can you add it?
 
-No.
+> [!NOTE]
+> Context: I have a full time job, a family. I do this for fun.
+> With that in mind...
+
+I want to be very selective about which switch emulators I add to this pack. The switch emulation space can be very volatile, and I don't want to be in a position where I have to chase a moving target and update the pack every day.
+
+The switch emulators I've added have proven to be somewhat stable in where they are and how they're
+tracked.
 
 ### A note about stable, beta, nightly and canary versions of the same app
 
 You cannot install more than one version of the same app. For example: You must choose between RetroArch (stable) or RetroArch (nightly). You cannot have both.
+
+To make things easier for beginners, I've omitted nightly, beta and canary versions where a stable
+one exists.
+
+You can manually add beta/nightly applications by using the links in the README
 
 ### How does this work?
 

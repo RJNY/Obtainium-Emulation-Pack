@@ -20,5 +20,5 @@ readme: table # Generate the readme file. Why? Because editing that table every 
 	@python scripts/generate-readme.py \
 		./pages/init.md \
 		./pages/table.md \
-		./pages/development.md \
-		./pages/faq.md
+		./pages/faq.md \
+		./pages/development.md
