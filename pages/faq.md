@@ -24,8 +24,7 @@ It will not remove any other resources you've added.
 ### A new switch emulator has released! Can you add it?
 
 > [!NOTE]
-> Context: I have a full time job, a family. I do this for fun.
-> With that in mind...
+> For context, I have a full time job and a family. I do this for fun. With that in mind...
 
 I want to be very selective about which switch emulators I add to this pack. The switch emulation space can be very volatile, and I don't want to be in a position where I have to chase a moving target and update the pack every day.
 
