@@ -49,7 +49,10 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitLab"
+      "overrideSource": "GitLab",
+      "meta": {
+        "urlOverride": "https://citron-emu.org"
+      }
     },
     {
       "id": "org.dolphinemu.dolphinemu",
@@ -64,6 +67,9 @@
       "overrideSource": "HTML",
       "meta": {
         "excludeFromExport": true
+      },
+      "meta": {
+        "urlOverride": "https://dolphin-emu.org"
       }
     },
     {
@@ -76,7 +82,10 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "HTML"
+      "overrideSource": "HTML",
+      "meta": {
+        "urlOverride": "https://dolphin-emu.org"
+      }
     },
     {
       "id": "com.github.stenzek.duckstation",
@@ -90,7 +99,7 @@
       ],
       "overrideSource": "HTML",
       "meta": {
-        "urlOverride": "https://duckstation.org"
+        "urlOverride": "https://www.duckstation.org"
       }
     },
     {
@@ -105,7 +114,8 @@
       ],
       "overrideSource": "GitHub",
       "meta": {
-        "nameOverride": "Eden"
+        "nameOverride": "Eden",
+        "urlOverride": "https://eden-emulator.github.io"
       }
     },
     {
@@ -150,19 +160,23 @@
       "id": "487343354",
       "url": "https://buildbot.libretro.com/stable",
       "author": "buildbot.libretro.com",
-      "name": "RetroArch AArch64 (Stable)",
+      "name": "RetroArch (AArch64)",
       "preferredApkIndex": 0,
-      "additionalSettings": "{\"intermediateLink\":[{\"customLinkFilterRegex\":\"/stable/\\\\d+.\\\\d+.\\\\d+/\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false},{\"customLinkFilterRegex\":\"/stable/\\\\d+.\\\\d+.\\\\d+/android/\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false}],\"customLinkFilterRegex\":\"/stable/\\\\d+.\\\\d+.\\\\d+/android/RetroArch_aarch64.apk\",\"filterByLinkText\":false,\"skipSort\":true,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"APKLinkHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"\\\\d+.\\\\d+.\\\\d+\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"RetroArch AArch64 (Stable)\",\"exemptFromBackgroundUpdates\":true,\"skipUpdateNotifications\":true,\"about\":\"Released less frequently. Better stability. \",\"supportFixedAPKURL\":false}",
+      "additionalSettings": "{\"intermediateLink\":[{\"customLinkFilterRegex\":\"/stable/\\\\d+.\\\\d+.\\\\d+/\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false},{\"customLinkFilterRegex\":\"/stable/\\\\d+.\\\\d+.\\\\d+/android/\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false}],\"customLinkFilterRegex\":\"/stable/\\\\d+.\\\\d+.\\\\d+/android/RetroArch_aarch64.apk\",\"filterByLinkText\":false,\"skipSort\":true,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"APKLinkHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"\\\\d+.\\\\d+.\\\\d+\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"RetroArch AArch64\",\"exemptFromBackgroundUpdates\":true,\"skipUpdateNotifications\":true,\"about\":\"Released less frequently. Better stability. \",\"supportFixedAPKURL\":false}",
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "HTML"
+      "overrideSource": "HTML",
+      "meta": {
+        "nameOverride": "RetroArch (AArch64)",
+        "urlOverride": "https://www.retroarch.com"
+      }
     },
     {
       "id": "487343355",
       "url": "https://buildbot.libretro.com/nightly/android",
       "author": "buildbot.libretro.com",
-      "name": "RetroArch AArch64 (Nightly)",
+      "name": "RetroArch (AArch64)",
       "preferredApkIndex": 0,
       "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"\\\\d{4}-\\\\d{2}-\\\\d{2}-RetroArch_aarch64.apk\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":true,\"versionExtractWholePage\":false,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"APKLinkHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"\\\\d{4}-\\\\d{2}-\\\\d{2}\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\\\\d{4}-\\\\d{2}-\\\\d{2}-RetroArch_aarch64.apk\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"RetroArch AArch64 (Nightly)\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"Nightly releases. cutting edge features but may contain bugs\",\"supportFixedAPKURL\":false}",
       "categories": [
@@ -170,7 +184,9 @@
       ],
       "overrideSource": "HTML",
       "meta": {
-        "excludeFromExport": true
+        "nameOverride": "RetroArch Nightly (AArch64)",
+        "excludeFromExport": true,
+        "urlOverride": "https://www.retroarch.com"
       }
     },
     {
@@ -195,7 +211,10 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "HTML"
+      "overrideSource": "HTML",
+      "meta": {
+        "urlOverride": "https://www.scummvm.org"
+      }
     },
     {
       "id": "com.winlator",

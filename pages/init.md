@@ -6,7 +6,11 @@ emulation applications to Obtainium.
 The maintainer of Obtainium also hosts a collection of Crowdsourced app configurations.
 [apps.obtainium.imranr.dev](https://apps.obtainium.imranr.dev)
 
-## How to install
+## Prerequisite
+
+Download and Install the [latest release of Obtainium](https://github.com/ImranR98/Obtainium/releases/latest)
+
+## Setup
 
 ### Option 1. Import Method
 
