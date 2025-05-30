@@ -88,7 +88,10 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "HTML"
+      "overrideSource": "HTML",
+      "meta": {
+        "urlOverride": "https://duckstation.org"
+      }
     },
     {
       "id": "dev.eden.eden_emulator",

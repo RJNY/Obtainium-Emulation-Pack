@@ -17,12 +17,12 @@ def make_obtainium_link(app):
     return f"http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/{encoded}"
 
 
-def get_sort_name(app):
-    return app.get("meta", {}).get("nameOverride") or app.get("name", "")
-
-
 def get_display_name(app):
     return app.get("meta", {}).get("nameOverride") or app.get("name", "")
+
+
+def get_application_url(app):
+    return app.get("meta", {}).get("urlOverride") or app.get("url", "")
 
 
 def generate_category_tables(apps):
@@ -33,7 +33,7 @@ def generate_category_tables(apps):
         for category in categories:
             categorized[category].append(app)
 
-    markdown_sections = ["## Applications"]
+    markdown_sections = ["## Applications\n"]
 
     for category in sorted(categorized.keys()):
         markdown_sections.append(f"### {category}\n")
@@ -44,14 +44,16 @@ def generate_category_tables(apps):
             "|------------------|------------------|---------------------------|"
         )
 
-        apps_in_category = sorted(categorized[category], key=get_sort_name)
+        apps_in_category = sorted(categorized[category], key=get_display_name)
 
         for app in apps_in_category:
             meta = app.get("meta", {})
             if meta.get("excludeFromTable", False):
                 continue
 
-            display_name = get_display_name(app)
+            display_name = (
+                f'<a href="{get_application_url(app)}">{get_display_name(app)}</a>'
+            )
             obtainium_link = make_obtainium_link(app)
             badge_md = f'<a href="{obtainium_link}">Add to Obtainium!</a>'
             include_json = (

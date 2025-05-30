@@ -11,7 +11,7 @@ links: # Generate links for all obtainium packages
 	@python scripts/generate-obtainium-urls.py src/applications.json > scripts/links.md
 
 minify: # Obtainium historically expects a minified json. This allows humans to edit the readable and easily update the minified one.
-	@python scripts/minify-json.py src/applications.json obtainium-emulation-pack.json
+	@python scripts/minify-json.py src/applications.json obtainium-emulation-pack-latest.json
 
 table: # Generate a table of obtainium links for the README.
 	@python scripts/generate-table.py src/applications.json ./pages/table.md
