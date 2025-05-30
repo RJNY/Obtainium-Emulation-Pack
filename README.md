@@ -8,6 +8,10 @@ The maintainer of Obtainium also hosts a collection of Crowdsourced app configur
 
 ## Prerequisite
 
+> [!NOTE]
+> Which APK you need to download will depend on your device.
+> If you're unsure, you can download `app-release.apk``
+
 Download and Install the [latest release of Obtainium](https://github.com/ImranR98/Obtainium/releases/latest)
 
 ## Setup
