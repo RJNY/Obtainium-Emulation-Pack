@@ -51,7 +51,9 @@ def generate_category_tables(apps):
             if meta.get("excludeFromTable", False):
                 continue
 
-            display_name = f'<a target="_blank" rel="noopener noreferrer" href="{get_application_url(app)}">{get_display_name(app)}</a>'
+            display_name = (
+                f'<a href="{get_application_url(app)}">{get_display_name(app)}</a>'
+            )
             obtainium_link = make_obtainium_link(app)
             badge_md = f'<a href="{obtainium_link}">Add to Obtainium!</a>'
             include_json = (
