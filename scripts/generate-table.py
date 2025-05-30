@@ -10,6 +10,7 @@ def make_obtainium_link(app):
         "url": app["url"],
         "author": app["author"],
         "name": app["name"],
+        "categories": app["categories"],
         "preferredApkIndex": app.get("preferredApkIndex", 0),
         "additionalSettings": app.get("additionalSettings", ""),
     }
