@@ -85,7 +85,7 @@ def main(input_file, output_file):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python json_to_markdown_by_category.py input.json output.md")
+        print("Usage: python generate-table.py input.json output.md")
         sys.exit(1)
 
     main(sys.argv[1], sys.argv[2])

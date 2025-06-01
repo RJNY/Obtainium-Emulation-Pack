@@ -22,7 +22,7 @@ def stitch_markdown_files(markdown_files, output_file="README.md"):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python stitch_markdown.py file1.md file2.md ... [fileN.md]")
+        print("Usage: python generate-readme.py file1.md file2.md ... [fileN.md]")
         sys.exit(1)
 
     input_files = sys.argv[1:]
