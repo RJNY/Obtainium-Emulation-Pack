@@ -154,7 +154,10 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub"
+      "overrideSource": "GitHub",
+      "meta": {
+        "urlOverride": "https://git.ryujinx.app/kenji-nx/ryujinx/-/tree/libryujinx_bionic"
+      }
     },
     {
       "id": "org.ppsspp.ppsspp",
