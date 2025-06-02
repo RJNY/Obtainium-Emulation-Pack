@@ -14,6 +14,7 @@ def minify_json(input_file, output_file):
             for app in data["apps"]:
                 meta = app.get("meta", {})
                 if not meta.get("excludeFromExport", False):
+                    app.pop("meta", None)  # Exclude the 'meta' key from the export json
                     filtered_apps.append(app)
             data["apps"] = filtered_apps
 
