@@ -356,7 +356,7 @@
       "overrideSource": "GitHub"
     },
     {
-      "id": "com.github.catfriend1.syncthingandroid",
+      "id": "com.github.catfriend1.syncthingfork",
       "url": "https://github.com/Catfriend1/syncthing-android",
       "author": "Catfriend1",
       "name": "Syncthing-Fork",
@@ -366,7 +366,7 @@
         "Utilities"
       ],
       "overrideSource": "GitHub",
-      "allowIdChange": false
+      "allowIdChange": true
     },
     {
       "id": "com.quantumsoul.esde_android",
