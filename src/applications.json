@@ -470,22 +470,6 @@
       "meta": {
         "excludeFromExport": true
       }
-    },
-    {
-      "id": "io.github.lime3ds.android.debug",
-      "url": "https://github.com/SapphireRhodonite/azahar",
-      "author": "SapphireRhodonite",
-      "name": "azahar",
-      "preferredApkIndex": 0,
-      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Azahar (DS)\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false,\"github-creds\":\"\"}",
-      "categories": [
-        "Dual Screen"
-      ],
-      "overrideSource": "GitHub",
-      "allowIdChange": false,
-      "meta": {
-        "excludeFromExport": true
-      }
     }
   ],
   "settings": {
