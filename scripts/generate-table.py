@@ -10,9 +10,13 @@ def make_obtainium_link(app):
         "url": app["url"],
         "author": app["author"],
         "name": app["name"],
-        "categories": app["categories"],
-        "preferredApkIndex": app.get("preferredApkIndex", 0),
-        "additionalSettings": app.get("additionalSettings", ""),
+        "otherAssetUrls": app.get("otherAssetUrls"),
+        "apkUrls": app.get("apkUrls"),
+        "preferredApkIndex": app.get("preferredApkIndex"),
+        "additionalSettings": app.get("additionalSettings"),
+        "categories": app.get("categories"),
+        "overrideSource": app.get("overrideSource"),
+        "allowIdChange": app.get("allowIdChange"),
     }
     encoded = urllib.parse.quote(json.dumps(payload), safe="")
     return f"http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/{encoded}"
