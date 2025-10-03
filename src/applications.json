@@ -274,7 +274,10 @@
         "PC Emulation"
       ],
       "overrideSource": "GitHub",
-      "allowIdChange": true
+      "allowIdChange": true,
+      "meta": {
+        "nameOverride": "Winlator CMod"
+      }
     },
     {
       "id": "com.miHoYo.GenshinImpact",
