@@ -54,6 +54,22 @@
       "allowIdChange": false
     },
     {
+      "id": "org.citron.citron_emu",
+      "url": "https://github.com/Zephyron-Dev/Citron-CI",
+      "author": "Zephyron-Dev",
+      "name": "Citron Nightly",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"app-mainline-release\\\\.apk$\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "categories": [
+        "Emulator"
+      ],
+      "overrideSource": "GitHub",
+      "allowIdChange": false,
+      "meta": {
+        "excludeFromExport": true
+      }
+    },
+    {
       "id": "org.dolphinemu.dolphinemu",
       "url": "https://dolphin-emu.org/download/?ref=btn",
       "author": "dolphin-emu.org",
