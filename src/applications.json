@@ -445,6 +445,19 @@
       "overrideSource": "GitHub"
     },
     {
+      "id": "com.github.catfriend1.syncthingfork",
+      "url": "https://github.com/researchxxl/syncthing-android",
+      "author": "researchxxl",
+      "name": "Syncthing-Fork",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false,\"includeZips\":false,\"zippedApkFilterRegEx\":\"\"}",
+      "categories": [
+        "Utilities"
+      ],
+      "overrideSource": "GitHub",
+      "allowIdChange": false
+    },
+    {
       "id": "com.quantumsoul.esde_android",
       "url": "https://github.com/BinaryQuantumSoul/esde_android_apps",
       "author": "BinaryQuantumSoul",
@@ -578,6 +591,7 @@
   ],
   "settings": {
     "categories": "{\"Emulator\":4292386421,\"Streaming\":4292056539,\"Utilities\":4292449237,\"Track Only\":4293103815,\"Frontend\":4291470692,\"PC Emulation\":4285381755,\"Dual Screen\":4290947422}",
-    "groupByCategory": true
+    "groupByCategory": true,
+    "onlyCheckInstalledOrTrackOnlyApps": true
   }
 }
