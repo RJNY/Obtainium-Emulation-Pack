@@ -30,6 +30,25 @@ def get_application_url(app):
     return app.get("meta", {}).get("urlOverride") or app.get("url", "")
 
 
+def should_include_app(app, variant):
+    """Determine if an app should be included based on variant and meta fields."""
+    meta = app.get("meta", {})
+
+    # HIGHEST PRIORITY: Global exclusion overrides everything
+    if meta.get("excludeFromExport", False):
+        return False
+
+    # SECOND PRIORITY: Variant-specific inclusion/exclusion
+    if variant == "standard":
+        # Default: include in standard
+        return meta.get("includeInStandard", True)
+    elif variant == "dual-screen":
+        # Default: include in dual screen
+        return meta.get("includeInDualScreen", True)
+
+    return True
+
+
 def generate_category_tables(apps):
     # Categorize apps
     categorized = defaultdict(list)
@@ -43,10 +62,10 @@ def generate_category_tables(apps):
     for category in sorted(categorized.keys()):
         markdown_sections.append(f"### {category}\n")
         markdown_sections.append(
-            "| Application Name | Add to Obtainium | Included in export json? |"
+            "| Application Name | Add to Obtainium | Included in export json? | Included in DS json? |"
         )
         markdown_sections.append(
-            "|------------------|------------------|---------------------------|"
+            "|------------------|------------------|---------------------------|----------------------|"
         )
 
         apps_in_category = sorted(categorized[category], key=get_display_name)
@@ -61,12 +80,13 @@ def generate_category_tables(apps):
             )
             obtainium_link = make_obtainium_link(app)
             badge_md = f'<a href="{obtainium_link}">Add to Obtainium!</a>'
-            include_json = (
-                "❌" if app.get("meta", {}).get("excludeFromExport") else "✅"
+            include_standard = "✅" if should_include_app(app, "standard") else "❌"
+            include_dual_screen = (
+                "✅" if should_include_app(app, "dual-screen") else "❌"
             )
 
             markdown_sections.append(
-                f"| {display_name} | {badge_md} | {include_json} |"
+                f"| {display_name} | {badge_md} | {include_standard} | {include_dual_screen} |"
             )
 
         markdown_sections.append("")  # blank line between sections

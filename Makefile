@@ -5,13 +5,16 @@ help: # Show help for each of the makefile recipes.
 	@grep -E '^[a-zA-Z0-9 -]+:.*#'  Makefile | sort | while read -r l; \
 		do printf "\033[1;32m$$(echo $$l | cut -f 1 -d':')\033[00m:$$(echo $$l | cut -f 2- -d'#')\n"; done
 
-release: readme minify # Run all Make targets related to cutting a release.
+release: readme minify minify-dual-screen # Run all Make targets related to cutting a release.
 
 links: # Generate links for all obtainium packages
 	@python scripts/generate-obtainium-urls.py src/applications.json > scripts/links.md
 
-minify: # Obtainium historically expects a minified json. This allows humans to edit the readable and easily update the minified one.
-	@python scripts/minify-json.py src/applications.json obtainium-emulation-pack-latest.json
+minify: # Generate standard release JSON
+	@python scripts/minify-json.py src/applications.json obtainium-emulation-pack-latest.json --variant standard
+
+minify-dual-screen: # Generate dual screen release JSON
+	@python scripts/minify-json.py src/applications.json obtainium-emulation-pack-dual-screen-latest.json --variant dual-screen
 
 table: # Generate a table of obtainium links for the README.
 	@python scripts/generate-table.py src/applications.json ./pages/table.md
