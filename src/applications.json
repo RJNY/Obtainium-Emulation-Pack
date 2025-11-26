@@ -35,7 +35,10 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub"
+      "overrideSource": "GitHub",
+      "meta": {
+        "includeInDualScreen": false
+      }
     },
     {
       "id": "org.citra.emu",
@@ -196,7 +199,11 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub"
+      "overrideSource": "GitHub",
+      "meta": {
+        "includeInStandard": true,
+        "includeInDualScreen": false
+      }
     },
     {
       "id": "me.magnum.melonds.nightly",
@@ -529,21 +536,6 @@
       "overrideSource": "GitHub"
     },
     {
-      "id": "io.github.lime3ds.android.debug",
-      "url": "https://github.com/SapphireRhodonite/azahar",
-      "author": "SapphireRhodonite",
-      "name": "Azahar",
-      "preferredApkIndex": 0,
-      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Azahar (DS)\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false,\"github-creds\":\"\"}",
-      "categories": [
-        "Dual Screen"
-      ],
-      "overrideSource": "GitHub",
-      "meta": {
-        "excludeFromExport": true
-      }
-    },
-    {
       "id": "me.magnum.melonds",
       "url": "https://github.com/SapphireRhodonite/melonDS-android",
       "author": "SapphireRhodonite",
@@ -556,7 +548,8 @@
       "overrideSource": "GitHub",
       "allowIdChange": false,
       "meta": {
-        "excludeFromExport": true
+        "includeInStandard": false,
+        "includeInDualScreen": true
       }
     },
     {
@@ -572,7 +565,8 @@
       "overrideSource": "GitHub",
       "allowIdChange": false,
       "meta": {
-        "excludeFromExport": true
+        "includeInStandard": false,
+        "includeInDualScreen": true
       }
     },
     {
