@@ -132,6 +132,19 @@
       }
     },
     {
+      "id": "com.github.stenzek.duckstation",
+      "url": "https://duckstation-mirror.rmacias.workers.dev",
+      "author": "duckstation-mirror.rmacias.workers.dev",
+      "name": "DuckStation",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"intermediateLink\":[],\"customLinkFilterRegex\":\"\",\"filterByLinkText\":false,\"matchLinksOutsideATags\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":true,\"requestHeader\":[{\"requestHeader\":\"User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36\"}],\"defaultPseudoVersioningMethod\":\"partialAPKHash\",\"trackOnly\":false,\"versionExtractionRegEx\":\"Version:.*?([\\\\d.-]+)\",\"matchGroupToUse\":\"1\",\"versionDetection\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Duckstation \",\"appAuthor\":\"stenzek \",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "categories": [
+        "Emulator"
+      ],
+      "overrideSource": "HTML",
+      "allowIdChange": false
+    },
+    {
       "id": "dev.eden.eden_emulator",
       "url": "https://github.com/eden-emulator/Releases",
       "author": "eden-emulator",
