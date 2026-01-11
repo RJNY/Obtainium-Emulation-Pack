@@ -1,4 +1,4 @@
-.PHONY: help all readme validate
+.PHONY: help all readme validate add-app
 default: help
 
 help: # Show help for each of the makefile recipes.
@@ -9,6 +9,9 @@ release: validate readme minify minify-dual-screen # Run all Make targets relate
 
 validate: # Validate applications.json for errors
 	@python scripts/validate-json.py src/applications.json
+
+add-app: # Interactive CLI to add a new app
+	@python scripts/add-app.py
 
 links: # Generate links for all obtainium packages
 	@python scripts/generate-obtainium-urls.py src/applications.json > scripts/links.md

@@ -39,7 +39,29 @@ obtainium-emulation-pack-dual-screen-latest.json # Dual-screen release
 
 ### Adding a New Application
 
-#### Step 1: Export the app config from Obtainium
+#### Option A: Quick Add (Recommended for GitHub apps)
+
+Use the interactive CLI to quickly add a new app:
+
+```bash
+make add-app
+```
+
+This will:
+
+- Prompt you for the GitHub URL
+- Auto-detect the source, author, and app name
+- Ask for the Android package ID and category
+- Generate proper Obtainium settings
+- Add the app to `applications.json`
+
+> **Tip:** To find the package ID, open the app in Obtainium - the package ID is displayed directly below the source URL (e.g., `com.example.android`).
+
+After running, execute `make release` to regenerate all files.
+
+#### Option B: Manual Add (For complex configs or non-GitHub sources)
+
+##### Step 1: Export the app config from Obtainium
 
 1. Open Obtainium on your device
 2. Add the app you want to include (configure it how you want)
@@ -47,7 +69,7 @@ obtainium-emulation-pack-dual-screen-latest.json # Dual-screen release
 4. Choose "Obtainium Export" format
 5. Transfer the JSON to your computer
 
-#### Step 2: Add the app to applications.json
+##### Step 2: Add the app to applications.json
 
 Open `src/applications.json` and add your app to the `apps` array:
 
@@ -113,6 +135,7 @@ Before committing, run `make release` and verify:
 | Command                   | Description                                                 |
 | ------------------------- | ----------------------------------------------------------- |
 | `make help`               | Show all available commands                                 |
+| `make add-app`            | Interactive CLI to add a new app                            |
 | `make release`            | Run validation, generate table, README, and both JSON files |
 | `make validate`           | Validate applications.json for errors                       |
 | `make table`              | Generate the README table only                              |
