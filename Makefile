@@ -1,11 +1,17 @@
-.PHONY: help all readme
+.PHONY: help all readme validate add-app
 default: help
 
 help: # Show help for each of the makefile recipes.
 	@grep -E '^[a-zA-Z0-9 -]+:.*#'  Makefile | sort | while read -r l; \
 		do printf "\033[1;32m$$(echo $$l | cut -f 1 -d':')\033[00m:$$(echo $$l | cut -f 2- -d'#')\n"; done
 
-release: readme minify minify-dual-screen # Run all Make targets related to cutting a release.
+release: validate readme minify minify-dual-screen # Run all Make targets related to cutting a release.
+
+validate: # Validate applications.json for errors
+	@python scripts/validate-json.py src/applications.json
+
+add-app: # Interactive CLI to add a new app
+	@python scripts/add-app.py
 
 links: # Generate links for all obtainium packages
 	@python scripts/generate-obtainium-urls.py src/applications.json > scripts/links.md

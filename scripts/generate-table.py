@@ -1,10 +1,16 @@
+"""Generate markdown tables for Obtainium Emulation Pack README."""
+
 import json
-import urllib.parse
 import sys
+import urllib.parse
 from collections import defaultdict
+from typing import Any
+
+from utils import get_application_url, get_display_name, should_include_app
 
 
-def make_obtainium_link(app):
+def make_obtainium_link(app: dict[str, Any]) -> str:
+    """Generate an Obtainium deep-link URL for an app."""
     payload = {
         "id": app["id"],
         "url": app["url"],
@@ -18,40 +24,14 @@ def make_obtainium_link(app):
         "overrideSource": app.get("overrideSource"),
         "allowIdChange": app.get("allowIdChange"),
     }
-    encoded = urllib.parse.quote(json.dumps(payload), safe="")
+    encoded = urllib.parse.quote(json.dumps(payload, separators=(",", ":")), safe="")
     return f"http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/{encoded}"
 
 
-def get_display_name(app):
-    return app.get("meta", {}).get("nameOverride") or app.get("name", "")
-
-
-def get_application_url(app):
-    return app.get("meta", {}).get("urlOverride") or app.get("url", "")
-
-
-def should_include_app(app, variant):
-    """Determine if an app should be included based on variant and meta fields."""
-    meta = app.get("meta", {})
-
-    # HIGHEST PRIORITY: Global exclusion overrides everything
-    if meta.get("excludeFromExport", False):
-        return False
-
-    # SECOND PRIORITY: Variant-specific inclusion/exclusion
-    if variant == "standard":
-        # Default: include in standard
-        return meta.get("includeInStandard", True)
-    elif variant == "dual-screen":
-        # Default: include in dual screen
-        return meta.get("includeInDualScreen", True)
-
-    return True
-
-
-def generate_category_tables(apps):
+def generate_category_tables(apps: list[dict[str, Any]]) -> str:
+    """Generate markdown tables grouped by category."""
     # Categorize apps
-    categorized = defaultdict(list)
+    categorized: defaultdict[str, list[dict[str, Any]]] = defaultdict(list)
     for app in apps:
         categories = app.get("categories", [])
         for category in categories:
@@ -94,7 +74,8 @@ def generate_category_tables(apps):
     return "\n".join(markdown_sections)
 
 
-def main(input_file, output_file):
+def main(input_file: str, output_file: str) -> None:
+    """Generate category-based markdown table from applications.json."""
     with open(input_file, "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -104,7 +85,7 @@ def main(input_file, output_file):
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(markdown)
 
-    print(f"✅ Category-based markdown table written to {output_file}")
+    print(f"Category-based markdown table written to {output_file}")
 
 
 if __name__ == "__main__":

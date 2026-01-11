@@ -1,32 +1,25 @@
+"""Minify and filter Obtainium JSON based on variant."""
+
+import argparse
 import json
 import sys
-import argparse
+from typing import Any
+
+from utils import should_include_app
 
 
-def should_include_app(app, variant):
-    """Determine if an app should be included based on variant and meta fields."""
-    meta = app.get("meta", {})
+def minify_json(input_file: str, output_file: str, variant: str = "standard") -> None:
+    """Filter apps by variant, remove meta fields, and output minified JSON.
 
-    # HIGHEST PRIORITY: Global exclusion overrides everything
-    if meta.get("excludeFromExport", False):
-        return False
-
-    # SECOND PRIORITY: Variant-specific inclusion/exclusion
-    if variant == "standard":
-        # Default: include in standard
-        return meta.get("includeInStandard", True)
-    elif variant == "dual-screen":
-        # Default: include in dual screen
-        return meta.get("includeInDualScreen", True)
-
-    return True
-
-
-def minify_json(input_file, output_file, variant="standard"):
+    Args:
+        input_file: Path to source applications.json
+        output_file: Path to write minified JSON
+        variant: One of 'standard' or 'dual-screen'
+    """
     try:
         # Read JSON data from input file
         with open(input_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
+            data: dict[str, Any] = json.load(f)
 
         # Filter apps based on variant
         if "apps" in data:
