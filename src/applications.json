@@ -199,7 +199,6 @@
       ],
       "overrideSource": "GitHub",
       "meta": {
-        "includeInStandard": true,
         "includeInDualScreen": false
       }
     },
@@ -546,8 +545,7 @@
       "overrideSource": "GitHub",
       "allowIdChange": false,
       "meta": {
-        "includeInStandard": false,
-        "includeInDualScreen": true
+        "includeInStandard": false
       }
     },
     {
@@ -563,8 +561,7 @@
       "overrideSource": "GitHub",
       "allowIdChange": false,
       "meta": {
-        "includeInStandard": false,
-        "includeInDualScreen": true
+        "includeInStandard": false
       }
     },
     {
