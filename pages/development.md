@@ -165,7 +165,7 @@ Apps are organized into categories that appear as sections in the README table:
 | -------------- | ---------------------------------------------------------------- |
 | `Emulator`     | Console/handheld emulators (Dolphin, RetroArch, PPSSPP, etc.)    |
 | `Frontend`     | Emulator launchers and game library managers (Daijisho, Pegasus) |
-| `Utility`      | Helper apps (Syncthing, OdinTools, LED controllers, etc.)        |
+| `Utilities`    | Helper apps (Syncthing, OdinTools, LED controllers, etc.)        |
 | `Dual Screen`  | Apps specifically for dual-screen devices                        |
 | `PC Emulation` | Windows/PC game layers (Winlator, etc.)                          |
 | `Streaming`    | Game streaming clients (Moonlight, etc.)                         |
