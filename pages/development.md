@@ -36,9 +36,11 @@ After running `make release`, please check for the following:
 My scripts will do specific actions if specific application keys are present in the
 `application.json`
 
-| key                   | type   | default | description                                                                                                               |
-| --------------------- | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------- |
-| meta.exludeFromExport | bool   | false   | Excludes the app from the release export json.                                                                            |
-| meta.exludeFromTable  | bool   | false   | Excludes the app from the README table.                                                                                   |
-| meta.nameOverride     | string | null    | Overwrite emulator name, useful if the default name is not human friendly                                                 |
-| meta.urlOverride      | string | null    | Overwrite the application preview link. If empty, the readme table will use the application scraper link as the homepage. |
+| key                     | type   | default | description                                                                                                               |
+| ----------------------- | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------- |
+| meta.excludeFromExport  | bool   | false   | Excludes the app from both release JSON files (standard and dual-screen).                                                 |
+| meta.excludeFromTable   | bool   | false   | Excludes the app from the README table.                                                                                   |
+| meta.includeInStandard  | bool   | true    | Include app in the standard release JSON. Set to `false` to exclude from standard variant only.                           |
+| meta.includeInDualScreen| bool   | true    | Include app in the dual-screen release JSON. Set to `false` to exclude from dual-screen variant only.                     |
+| meta.nameOverride       | string | null    | Overwrite emulator name, useful if the default name is not human friendly.                                                |
+| meta.urlOverride        | string | null    | Overwrite the application preview link. If empty, the table will use the application scraper link as the homepage.        |

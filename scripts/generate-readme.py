@@ -1,23 +1,30 @@
+"""Stitch multiple markdown files into a single README."""
+
 import sys
-import os
+from pathlib import Path
 
 
-def stitch_markdown_files(markdown_files, output_file="README.md"):
+def stitch_markdown_files(markdown_files: list[str], output_file: str = "README.md") -> None:
+    """Concatenate markdown files with double newlines between sections.
+
+    Args:
+        markdown_files: List of paths to markdown files to combine
+        output_file: Path to write the combined output
+    """
     combined_content = []
 
     for file in markdown_files:
-        if not os.path.exists(file):
-            print(f"❌ File not found: {file}")
+        path = Path(file)
+        if not path.exists():
+            print(f"File not found: {file}")
             sys.exit(1)
 
-        with open(file, "r", encoding="utf-8") as f:
-            content = f.read().strip()
-            combined_content.append(content)
+        content = path.read_text(encoding="utf-8").strip()
+        combined_content.append(content)
 
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write("\n\n".join(combined_content) + "\n")
+    Path(output_file).write_text("\n\n".join(combined_content) + "\n", encoding="utf-8")
 
-    print(f"✅ {output_file} successfully created with {len(markdown_files)} sections.")
+    print(f"{output_file} successfully created with {len(markdown_files)} sections.")
 
 
 if __name__ == "__main__":
