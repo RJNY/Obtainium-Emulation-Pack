@@ -177,13 +177,15 @@ def generate_app_entry(
     source: str,
     variant: str,
     include_prereleases: bool = False,
-    name_override: str | None = None,
+    app_name_override: str | None = None,
     url_override: str | None = None,
 ) -> dict:
     """Generate a complete app entry."""
     settings = DEFAULT_ADDITIONAL_SETTINGS.copy()
     if include_prereleases:
         settings["includePrereleases"] = True
+    if app_name_override:
+        settings["appName"] = app_name_override
 
     app = {
         "id": app_id,
@@ -206,8 +208,8 @@ def generate_app_entry(
         meta["excludeFromExport"] = True
     # "Both" = no meta needed (default behavior)
 
-    if name_override:
-        meta["nameOverride"] = name_override
+    if app_name_override:
+        meta["nameOverride"] = app_name_override
     if url_override:
         meta["urlOverride"] = url_override
 
@@ -271,13 +273,13 @@ def main() -> int:
 
     # Optional overrides
     print("")
-    name_override = ""
-    if prompt_yes_no("Override display name in README table?", False):
-        name_override = prompt("Display name override")
+    app_name_override = input(
+        "App name override - leave blank to skip (sets display name in both Obtainium & README): "
+    ).strip()
+    if app_name_override:
+        print(f"  Will set additionalSettings.appName and meta.nameOverride")
 
-    url_override = ""
-    if prompt_yes_no("Override homepage URL in README table?", False):
-        url_override = prompt("Homepage URL override")
+    url_override = input("Homepage URL override - leave blank to skip: ").strip()
 
     # Generate the entry
     app_entry = generate_app_entry(
@@ -289,7 +291,7 @@ def main() -> int:
         source=source,
         variant=variant,
         include_prereleases=include_prereleases,
-        name_override=name_override or None,
+        app_name_override=app_name_override or None,
         url_override=url_override or None,
     )
 
