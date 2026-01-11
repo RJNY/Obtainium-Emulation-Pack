@@ -177,6 +177,7 @@ def generate_app_entry(
     source: str,
     variant: str,
     include_prereleases: bool = False,
+    verify_latest_tag: bool = False,
     app_name_override: str | None = None,
     url_override: str | None = None,
 ) -> dict:
@@ -184,6 +185,8 @@ def generate_app_entry(
     settings = DEFAULT_ADDITIONAL_SETTINGS.copy()
     if include_prereleases:
         settings["includePrereleases"] = True
+    if verify_latest_tag:
+        settings["verifyLatestTag"] = True
     if app_name_override:
         settings["appName"] = app_name_override
 
@@ -271,6 +274,10 @@ def main() -> int:
     include_prereleases = prompt_yes_no("Include pre-releases?", False)
     print(f"  Include pre-releases: {'Yes' if include_prereleases else 'No'}")
 
+    # Verify latest tag
+    verify_latest_tag = prompt_yes_no("Verify latest tag?", False)
+    print(f"  Verify latest tag: {'Yes' if verify_latest_tag else 'No'}")
+
     # Optional overrides
     print("")
     app_name_override = input(
@@ -291,6 +298,7 @@ def main() -> int:
         source=source,
         variant=variant,
         include_prereleases=include_prereleases,
+        verify_latest_tag=verify_latest_tag,
         app_name_override=app_name_override or None,
         url_override=url_override or None,
     )
