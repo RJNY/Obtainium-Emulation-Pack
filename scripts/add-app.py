@@ -39,17 +39,17 @@ DEFAULT_ADDITIONAL_SETTINGS = {
 CATEGORIES = [
     "Emulator",
     "Frontend",
-    "Utility",
+    "Utilities",
     "Dual Screen",
     "PC Emulation",
     "Streaming",
 ]
 
 VARIANT_OPTIONS = [
-    "Both",           # Include in both standard and dual-screen
+    "Both",  # Include in both standard and dual-screen
     "Standard only",  # Include in standard only
     "Dual-screen only",  # Include in dual-screen only
-    "README only",    # Exclude from export, show in table only
+    "README only",  # Exclude from export, show in table only
 ]
 
 SOURCE_DETECTION = {
@@ -100,9 +100,10 @@ def select_menu(title: str, choices: list[str], default: int = 0) -> str:
     # Only use curses if we have a real terminal
     if not sys.stdin.isatty():
         return _select_menu_fallback(title, choices, default)
-    
+
     try:
         import curses
+
         return _select_menu_curses(title, choices, default)
     except Exception:
         # Fallback to simple input if curses fails
@@ -111,15 +112,16 @@ def select_menu(title: str, choices: list[str], default: int = 0) -> str:
 
 def _select_menu_curses(title: str, choices: list[str], default: int = 0) -> str:
     """Curses-based interactive menu."""
+
     def menu(stdscr):
         curses.curs_set(0)  # Hide cursor
         current = default
-        
+
         while True:
             stdscr.clear()
             stdscr.addstr(0, 0, title)
             stdscr.addstr(1, 0, "(Use arrow keys, Enter to select)")
-            
+
             for i, choice in enumerate(choices):
                 y = i + 3
                 if i == current:
@@ -128,10 +130,10 @@ def _select_menu_curses(title: str, choices: list[str], default: int = 0) -> str
                     stdscr.attroff(curses.A_REVERSE)
                 else:
                     stdscr.addstr(y, 2, f" {choice} ")
-            
+
             stdscr.refresh()
             key = stdscr.getch()
-            
+
             if key == curses.KEY_UP and current > 0:
                 current -= 1
             elif key == curses.KEY_DOWN and current < len(choices) - 1:
@@ -140,8 +142,9 @@ def _select_menu_curses(title: str, choices: list[str], default: int = 0) -> str
                 return choices[current]
             elif key == 27:  # ESC
                 return choices[default]
-    
+
     import curses
+
     return curses.wrapper(menu)
 
 
@@ -151,7 +154,7 @@ def _select_menu_fallback(title: str, choices: list[str], default: int = 0) -> s
     for i, choice in enumerate(choices):
         marker = ">" if i == default else " "
         print(f"  {marker} {i + 1}. {choice}")
-    
+
     while True:
         result = input(f"Enter number [{default + 1}]: ").strip()
         if not result:
@@ -173,19 +176,27 @@ def generate_app_entry(
     categories: list[str],
     source: str,
     variant: str,
-    name_override: str | None = None,
+    include_prereleases: bool = False,
+    verify_latest_tag: bool = False,
+    app_name_override: str | None = None,
     url_override: str | None = None,
 ) -> dict:
     """Generate a complete app entry."""
+    settings = DEFAULT_ADDITIONAL_SETTINGS.copy()
+    if include_prereleases:
+        settings["includePrereleases"] = True
+    if verify_latest_tag:
+        settings["verifyLatestTag"] = True
+    if app_name_override:
+        settings["appName"] = app_name_override
+
     app = {
         "id": app_id,
         "url": url,
         "author": author,
         "name": name,
         "preferredApkIndex": 0,
-        "additionalSettings": json.dumps(
-            DEFAULT_ADDITIONAL_SETTINGS, separators=(",", ":")
-        ),
+        "additionalSettings": json.dumps(settings, separators=(",", ":")),
         "categories": categories,
         "overrideSource": source,
     }
@@ -200,8 +211,8 @@ def generate_app_entry(
         meta["excludeFromExport"] = True
     # "Both" = no meta needed (default behavior)
 
-    if name_override:
-        meta["nameOverride"] = name_override
+    if app_name_override:
+        meta["nameOverride"] = app_name_override
     if url_override:
         meta["urlOverride"] = url_override
 
@@ -259,15 +270,23 @@ def main() -> int:
     variant = select_menu("Include in which release(s):", VARIANT_OPTIONS)
     print(f"  Selected: {variant}")
 
+    # Pre-releases
+    include_prereleases = prompt_yes_no("Include pre-releases?", False)
+    print(f"  Include pre-releases: {'Yes' if include_prereleases else 'No'}")
+
+    # Verify latest tag
+    verify_latest_tag = prompt_yes_no("Verify latest tag?", False)
+    print(f"  Verify latest tag: {'Yes' if verify_latest_tag else 'No'}")
+
     # Optional overrides
     print("")
-    name_override = ""
-    if prompt_yes_no("Override display name in README table?", False):
-        name_override = prompt("Display name override")
+    app_name_override = input(
+        "App name override - leave blank to skip (sets display name in both Obtainium & README): "
+    ).strip()
+    if app_name_override:
+        print(f"  Will set additionalSettings.appName and meta.nameOverride")
 
-    url_override = ""
-    if prompt_yes_no("Override homepage URL in README table?", False):
-        url_override = prompt("Homepage URL override")
+    url_override = input("Homepage URL override - leave blank to skip: ").strip()
 
     # Generate the entry
     app_entry = generate_app_entry(
@@ -278,7 +297,9 @@ def main() -> int:
         categories=[category],
         source=source,
         variant=variant,
-        name_override=name_override or None,
+        include_prereleases=include_prereleases,
+        verify_latest_tag=verify_latest_tag,
+        app_name_override=app_name_override or None,
         url_override=url_override or None,
     )
 
