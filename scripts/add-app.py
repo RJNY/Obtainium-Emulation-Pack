@@ -40,7 +40,6 @@ CATEGORIES = [
     "Emulator",
     "Frontend",
     "Utilities",
-    "Dual Screen",
     "PC Emulation",
     "Streaming",
 ]
@@ -60,7 +59,7 @@ SOURCE_DETECTION = {
 }
 
 
-def detect_source(url: str) -> str | None:
+def detect_source(url: str):
     """Detect the source type from URL."""
     parsed = urlparse(url)
     host = parsed.netloc.lower()
