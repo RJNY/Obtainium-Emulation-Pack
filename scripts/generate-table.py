@@ -48,7 +48,9 @@ def generate_category_tables(apps: list[dict[str, Any]]) -> str:
             "|------------------|------------------|---------------------------|----------------------|"
         )
 
-        apps_in_category = sorted(categorized[category], key=get_display_name)
+        apps_in_category = sorted(
+            categorized[category], key=lambda app: get_display_name(app).lower()
+        )
 
         for app in apps_in_category:
             meta = app.get("meta", {})
