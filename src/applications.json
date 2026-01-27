@@ -67,7 +67,7 @@
         "Emulator"
       ],
       "overrideSource": "Codeberg",
-      "allowIdChange": false
+      "allowIdChange": true
     },
     {
       "id": "org.citron.citron_emu",
@@ -80,7 +80,7 @@
         "Emulator"
       ],
       "overrideSource": "GitHub",
-      "allowIdChange": false,
+      "allowIdChange": true,
       "meta": {
         "excludeFromExport": true
       }
@@ -155,6 +155,7 @@
         "Emulator"
       ],
       "overrideSource": "GitHub",
+      "allowIdChange": true,
       "meta": {
         "nameOverride": "Eden",
         "urlOverride": "https://eden-emulator.github.io"
@@ -171,7 +172,7 @@
         "Emulator"
       ],
       "overrideSource": "GitHub",
-      "allowIdChange": false,
+      "allowIdChange": true,
       "meta": {
         "excludeFromExport": true
       }
@@ -316,7 +317,24 @@
         "PC Emulation"
       ],
       "overrideSource": "GitHub",
-      "allowIdChange": false
+      "allowIdChange": true
+    },
+    {
+      "id": "gamehub.lite",
+      "url": "https://github.com/Producdevity/gamehub-lite",
+      "author": "Producdevity",
+      "name": "GameHub Lite (pre-release)",
+      "preferredApkIndex": 4,
+      "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":true,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"GameHub Lite (pre-release)\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false,\"includeZips\":false,\"zippedApkFilterRegEx\":\"\"}",
+      "categories": [
+        "PC Emulation"
+      ],
+      "overrideSource": "GitHub",
+      "allowIdChange": true,
+      "meta": {
+        "nameOverride": "GameHub Lite (pre-release)",
+        "excludeFromExport": true
+      }
     },
     {
       "id": "app.gamenative",
@@ -368,7 +386,7 @@
         "PC Emulation"
       ],
       "overrideSource": "GitHub",
-      "allowIdChange": false
+      "allowIdChange": true
     },
     {
       "id": "xyz.aethersx2.android",
@@ -436,7 +454,7 @@
         "Utilities"
       ],
       "overrideSource": "GitHub",
-      "allowIdChange": false
+      "allowIdChange": true
     },
     {
       "id": "com.quantumsoul.esde_android",
