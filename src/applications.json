@@ -163,7 +163,7 @@
     },
     {
       "id": "dev.eden.eden_nightly",
-      "url": "https://github.com/Eden-CI/Nightly/releases",
+      "url": "https://github.com/Eden-CI/Nightly",
       "author": "Eden-CI",
       "name": "Eden Nightly",
       "preferredApkIndex": 0,
