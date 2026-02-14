@@ -1,4 +1,4 @@
-.PHONY: help all readme validate add-app normalize build publish publish-dry-run publish-from-file test test-app test-verbose
+.PHONY: help readme validate add-app normalize build publish publish-dry-run publish-from-file test test-app test-verbose
 default: help
 
 help: # Show help for each of the makefile recipes.
