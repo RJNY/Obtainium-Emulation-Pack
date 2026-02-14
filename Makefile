@@ -1,4 +1,4 @@
-.PHONY: help all readme validate add-app normalize publish publish/dry-run publish/from-file
+.PHONY: help all readme validate add-app normalize publish publish-dry-run publish-from-file
 default: help
 
 help: # Show help for each of the makefile recipes.
@@ -54,8 +54,8 @@ links: # Generate links for all obtainium packages
 publish: # Tag, push, and create a GitHub release (opens $EDITOR for notes)
 	@python scripts/release.py
 
-publish/dry-run: # Preview release notes as a markdown file without publishing
+publish-dry-run: # Preview release notes as a markdown file without publishing
 	@python scripts/release.py --dry-run
 
-publish/from-file: # Publish using a previously edited release notes file (e.g. from publish-dry)
+publish-from-file: # Publish using a previously edited release notes file (e.g. from publish-dry)
 	@python scripts/release.py --notes-file $(FILE)
