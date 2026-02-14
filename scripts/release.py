@@ -388,6 +388,9 @@ def main() -> None:
 
     check_prerequisites()
 
+    print("Fetching tags from remote...")
+    run(["git", "fetch", "--tags"])
+
     latest = get_latest_tag()
 
     # Determine version
