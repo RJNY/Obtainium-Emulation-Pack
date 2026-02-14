@@ -21,7 +21,7 @@ Download and Install the [latest release of Obtainium](https://github.com/ImranR
 > [!TIP]
 > This is recommended installation method for beginners and/or new devices
 
-1. On your android emulation device, navigate to the [latest release](https://github.com/RJNY/Obtainium-Emulation-Pack/releases/latest) of the Obainium Emulation Pack.
+1. On your android emulation device, navigate to the [latest release](https://github.com/RJNY/Obtainium-Emulation-Pack/releases/latest) of the Obtainium Emulation Pack.
 1. Download the file titled `obtainium-emulation-pack-vX.X.X.json` to your device.
 1. Open Obtainium.
 1. Navigate to Import/Export.
@@ -129,7 +129,7 @@ one exists.
 
 You can manually add beta/nightly applications by using the links in the README
 
-### How do I updated Obtainium Emulation Pack?
+### How do I update Obtainium Emulation Pack?
 
 Same as install method. It'll update existing resources.
 It will not remove any other resources you've added.

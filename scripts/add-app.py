@@ -42,6 +42,7 @@ CATEGORIES = [
     "Utilities",
     "PC Emulation",
     "Streaming",
+    "Track Only",
 ]
 
 VARIANT_OPTIONS = [
@@ -183,6 +184,8 @@ def generate_app_entry(
 ) -> dict:
     """Generate a complete app entry."""
     settings = DEFAULT_ADDITIONAL_SETTINGS.copy()
+    if "Track Only" in categories:
+        settings["trackOnly"] = True
     if include_prereleases:
         settings["includePrereleases"] = True
     if verify_latest_tag:

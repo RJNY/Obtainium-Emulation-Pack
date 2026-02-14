@@ -5,13 +5,26 @@ import sys
 import urllib.parse
 from typing import Any
 
+from constants import OBTAINIUM_SCHEME, REDIRECT_URL
+
 
 def generate_obtainium_url(app: dict[str, Any]) -> str:
     """Generate an Obtainium deep-link URL for an app."""
-    obtainium_base = "http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/"
-    app_json = json.dumps(app, separators=(",", ":"))
-    encoded_json = urllib.parse.quote(app_json)
-    return f"{obtainium_base}{encoded_json}"
+    payload = {
+        "id": app["id"],
+        "url": app["url"],
+        "author": app["author"],
+        "name": app["name"],
+        "otherAssetUrls": app.get("otherAssetUrls"),
+        "apkUrls": app.get("apkUrls"),
+        "preferredApkIndex": app.get("preferredApkIndex"),
+        "additionalSettings": app.get("additionalSettings"),
+        "categories": app.get("categories"),
+        "overrideSource": app.get("overrideSource"),
+        "allowIdChange": app.get("allowIdChange"),
+    }
+    encoded = urllib.parse.quote(json.dumps(payload, separators=(",", ":")), safe="")
+    return f"{REDIRECT_URL}?r={OBTAINIUM_SCHEME}{encoded}"
 
 
 def main(json_file: str) -> None:

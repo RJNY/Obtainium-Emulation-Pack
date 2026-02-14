@@ -5,6 +5,9 @@ import sys
 from collections import defaultdict
 from typing import Any
 
+from constants import VARIANTS
+from utils import should_include_app
+
 # Required fields for each app
 REQUIRED_FIELDS = {"id", "url", "author", "name"}
 
@@ -17,9 +20,6 @@ VALID_META_KEYS = {
     "includeInStandard",
     "includeInDualScreen",
 }
-
-# Valid variants
-VARIANTS = ("standard", "dual-screen")
 
 
 def validate_app(app: dict[str, Any], index: int) -> list[str]:
@@ -49,6 +49,17 @@ def validate_app(app: dict[str, Any], index: int) -> list[str]:
         if typo in meta:
             errors.append(f"{app_name}: typo in meta key '{typo}', should be '{correct}'")
 
+    # Validate additionalSettings is valid inner JSON
+    additional_settings = app.get("additionalSettings")
+    if additional_settings is not None:
+        if not isinstance(additional_settings, str):
+            errors.append(f"{app_name}: 'additionalSettings' should be a JSON string")
+        else:
+            try:
+                json.loads(additional_settings)
+            except json.JSONDecodeError as e:
+                errors.append(f"{app_name}: 'additionalSettings' contains invalid JSON: {e}")
+
     # Validate categories is a list
     categories = app.get("categories")
     if categories is not None and not isinstance(categories, list):
@@ -63,14 +74,7 @@ def check_duplicate_ids(apps: list[dict[str, Any]], variant: str) -> list[str]:
     ids_seen: dict[str, str] = {}
 
     for app in apps:
-        meta = app.get("meta", {})
-
-        # Skip if excluded from this variant
-        if meta.get("excludeFromExport", False):
-            continue
-        if variant == "standard" and not meta.get("includeInStandard", True):
-            continue
-        if variant == "dual-screen" and not meta.get("includeInDualScreen", True):
+        if not should_include_app(app, variant):
             continue
 
         app_id = app.get("id", "")

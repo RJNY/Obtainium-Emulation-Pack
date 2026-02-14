@@ -6,6 +6,7 @@ import urllib.parse
 from collections import defaultdict
 from typing import Any
 
+from constants import OBTAINIUM_SCHEME, REDIRECT_URL
 from utils import get_application_url, get_display_name, should_include_app
 
 
@@ -25,7 +26,7 @@ def make_obtainium_link(app: dict[str, Any]) -> str:
         "allowIdChange": app.get("allowIdChange"),
     }
     encoded = urllib.parse.quote(json.dumps(payload, separators=(",", ":")), safe="")
-    return f"http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/{encoded}"
+    return f"{REDIRECT_URL}?r={OBTAINIUM_SCHEME}{encoded}"
 
 
 def generate_category_tables(apps: list[dict[str, Any]]) -> str:

@@ -9,7 +9,7 @@ one exists.
 
 You can manually add beta/nightly applications by using the links in the README
 
-### How do I updated Obtainium Emulation Pack?
+### How do I update Obtainium Emulation Pack?
 
 Same as install method. It'll update existing resources.
 It will not remove any other resources you've added.
