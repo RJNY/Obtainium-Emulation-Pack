@@ -1,4 +1,4 @@
-.PHONY: help all readme validate add-app normalize
+.PHONY: help all readme validate add-app normalize publish
 default: help
 
 help: # Show help for each of the makefile recipes.
@@ -24,6 +24,9 @@ minify: # Generate standard release JSON
 
 minify-dual-screen: # Generate dual screen release JSON
 	@python scripts/minify-json.py src/applications.json obtainium-emulation-pack-dual-screen-latest.json --variant dual-screen
+
+publish: # Tag, push, and create a GitHub release with versioned JSON assets (requires gh CLI)
+	@python scripts/release.py
 
 table: # Generate a table of obtainium links for the README.
 	@python scripts/generate-table.py src/applications.json ./pages/table.md
