@@ -10,8 +10,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub",
-      "allowIdChange": false
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     },
     {
       "id": "io.github.lime3ds.android",
@@ -23,6 +23,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -35,6 +36,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "includeInDualScreen": false
@@ -50,8 +52,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub",
       "allowIdChange": false,
+      "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "Citra MMJ"
       }
@@ -66,8 +68,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "Codeberg",
-      "allowIdChange": true
+      "allowIdChange": true,
+      "overrideSource": "Codeberg"
     },
     {
       "id": "org.citron.citron_emu",
@@ -79,8 +81,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub",
       "allowIdChange": true,
+      "overrideSource": "GitHub",
       "meta": {
         "excludeFromExport": true
       }
@@ -95,6 +97,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "HTML",
       "meta": {
         "urlOverride": "https://dolphin-emu.org",
@@ -111,6 +114,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "excludeFromExport": true
@@ -126,6 +130,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "HTML",
       "meta": {
         "urlOverride": "https://dolphin-emu.org"
@@ -141,8 +146,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "HTML",
-      "allowIdChange": false
+      "allowIdChange": false,
+      "overrideSource": "HTML"
     },
     {
       "id": "dev.eden.eden_emulator",
@@ -154,8 +159,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub",
       "allowIdChange": true,
+      "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "Eden",
         "urlOverride": "https://eden-emulator.github.io"
@@ -171,8 +176,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub",
       "allowIdChange": true,
+      "overrideSource": "GitHub",
       "meta": {
         "excludeFromExport": true
       }
@@ -187,6 +192,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -198,6 +204,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "includeInDualScreen": false
@@ -213,6 +220,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "excludeFromExport": true
@@ -228,6 +236,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "urlOverride": "https://git.ryujinx.app/kenji-nx/ryujinx/-/tree/libryujinx_bionic",
@@ -244,6 +253,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "HTML"
     },
     {
@@ -256,6 +266,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "HTML",
       "meta": {
         "nameOverride": "RetroArch (AArch64)",
@@ -272,6 +283,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "HTML",
       "meta": {
         "nameOverride": "RetroArch Nightly (AArch64)",
@@ -289,6 +301,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -301,6 +314,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "HTML",
       "meta": {
         "urlOverride": "https://www.scummvm.org"
@@ -316,8 +330,8 @@
       "categories": [
         "PC Emulation"
       ],
-      "overrideSource": "GitHub",
-      "allowIdChange": true
+      "allowIdChange": true,
+      "overrideSource": "GitHub"
     },
     {
       "id": "gamehub.lite",
@@ -329,8 +343,8 @@
       "categories": [
         "PC Emulation"
       ],
-      "overrideSource": "GitHub",
       "allowIdChange": true,
+      "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "GameHub Lite (pre-release)",
         "excludeFromExport": true
@@ -346,6 +360,7 @@
       "categories": [
         "PC Emulation"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -357,7 +372,8 @@
       "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"shizukuPretendToBeGooglePlay\":false}",
       "categories": [
         "PC Emulation"
-      ]
+      ],
+      "allowIdChange": false
     },
     {
       "id": "com.winlator.cmod",
@@ -369,8 +385,8 @@
       "categories": [
         "PC Emulation"
       ],
-      "overrideSource": "GitHub",
       "allowIdChange": true,
+      "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "Winlator CMod"
       }
@@ -385,8 +401,8 @@
       "categories": [
         "PC Emulation"
       ],
-      "overrideSource": "GitHub",
-      "allowIdChange": true
+      "allowIdChange": true,
+      "overrideSource": "GitHub"
     },
     {
       "id": "xyz.aethersx2.android",
@@ -398,6 +414,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "NetherSX2-Classic"
@@ -413,6 +430,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "NetherSX2-Patch",
@@ -429,6 +447,7 @@
       "categories": [
         "Streaming"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -441,6 +460,7 @@
       "categories": [
         "Streaming"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -453,8 +473,8 @@
       "categories": [
         "Utilities"
       ],
-      "overrideSource": "GitHub",
-      "allowIdChange": true
+      "allowIdChange": true,
+      "overrideSource": "GitHub"
     },
     {
       "id": "com.quantumsoul.esde_android",
@@ -466,6 +486,7 @@
       "categories": [
         "Utilities"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -478,6 +499,7 @@
       "categories": [
         "Track Only"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -489,7 +511,8 @@
       "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"dontSortReleasesList\":false,\"useLatestAssetDateAsReleaseDate\":false,\"trackOnly\":true,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"Obtainium Emulation Pack\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\"}",
       "categories": [
         "Track Only"
-      ]
+      ],
+      "allowIdChange": false
     },
     {
       "id": "com.magneticchen.daijishou",
@@ -501,6 +524,7 @@
       "categories": [
         "Frontend"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -513,6 +537,7 @@
       "categories": [
         "Frontend"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -525,6 +550,7 @@
       "categories": [
         "Utilities"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -537,8 +563,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub",
       "allowIdChange": false,
+      "overrideSource": "GitHub",
       "meta": {
         "includeInStandard": false,
         "nameOverride": "MelonDS (Dual-Screen)"
@@ -554,8 +580,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub",
       "allowIdChange": false,
+      "overrideSource": "GitHub",
       "meta": {
         "includeInStandard": false,
         "nameOverride": "Cemu (Dual-Screen)"
@@ -571,8 +597,8 @@
       "categories": [
         "Emulator"
       ],
-      "overrideSource": "GitHub",
-      "allowIdChange": true
+      "allowIdChange": true,
+      "overrideSource": "GitHub"
     },
     {
       "id": "io.wip.pico8",
@@ -584,22 +610,21 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
       "id": "rip.moth.cocoonshell",
       "url": "https://github.com/inssekt/CocoonFE",
       "author": "inssekt",
-      "name": "CocoonFE",
+      "name": "Cocoon FE",
       "preferredApkIndex": 0,
       "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
       "categories": [
         "Frontend"
       ],
-      "overrideSource": "GitHub",
-      "meta": {
-        "includeInStandard": false
-      }
+      "allowIdChange": true,
+      "overrideSource": "GitHub"
     },
     {
       "id": "com.moonbench.bifrost",
@@ -611,6 +636,7 @@
       "categories": [
         "Utilities"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub"
     },
     {
@@ -623,6 +649,7 @@
       "categories": [
         "Utilities"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "PixelGuide"
@@ -638,6 +665,7 @@
       "categories": [
         "Utilities"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "EmuReady Lite"
@@ -653,6 +681,7 @@
       "categories": [
         "Emulator"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "urlOverride": "https://vita3k.org"
@@ -668,6 +697,7 @@
       "categories": [
         "Utilities"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "includeInStandard": false
@@ -683,6 +713,7 @@
       "categories": [
         "Utilities"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "includeInStandard": false
@@ -698,6 +729,7 @@
       "categories": [
         "Utilities"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "includeInStandard": false
@@ -713,6 +745,7 @@
       "categories": [
         "Frontend"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "RetroHrai"
@@ -728,6 +761,7 @@
       "categories": [
         "Frontend"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "includeInStandard": false,
@@ -745,6 +779,7 @@
       "categories": [
         "Utilities"
       ],
+      "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "CHDroid"

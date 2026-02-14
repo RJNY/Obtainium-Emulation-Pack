@@ -177,6 +177,7 @@ def generate_app_entry(
     variant: str,
     include_prereleases: bool = False,
     verify_latest_tag: bool = False,
+    allow_id_change: bool = False,
     app_name_override: str | None = None,
     url_override: str | None = None,
 ) -> dict:
@@ -197,6 +198,7 @@ def generate_app_entry(
         "preferredApkIndex": 0,
         "additionalSettings": json.dumps(settings, separators=(",", ":")),
         "categories": categories,
+        "allowIdChange": allow_id_change,
         "overrideSource": source,
     }
 
@@ -277,6 +279,10 @@ def main() -> int:
     verify_latest_tag = prompt_yes_no("Verify latest tag?", False)
     print(f"  Verify latest tag: {'Yes' if verify_latest_tag else 'No'}")
 
+    # Allow ID change
+    allow_id_change = prompt_yes_no("Allow ID change?", False)
+    print(f"  Allow ID change: {'Yes' if allow_id_change else 'No'}")
+
     # Optional overrides
     print("")
     app_name_override = input(
@@ -298,6 +304,7 @@ def main() -> int:
         variant=variant,
         include_prereleases=include_prereleases,
         verify_latest_tag=verify_latest_tag,
+        allow_id_change=allow_id_change,
         app_name_override=app_name_override or None,
         url_override=url_override or None,
     )
