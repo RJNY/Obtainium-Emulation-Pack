@@ -47,13 +47,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run make release
-        run: make release
+      - name: Run make build
+        run: make build
 
       - name: Check for uncommitted changes
         run: |
           if [ -n "$(git diff --name-only)" ]; then
-            echo "Generated files are out of date. Run 'make release' and commit the results."
+            echo "Generated files are out of date. Run 'make build' and commit the results."
             echo ""
             echo "Changed files:"
             git diff --name-only

@@ -16,7 +16,7 @@ cd Obtainium-Emulation-Pack
 # Make your changes to src/applications.json (or use make add-app)
 make validate          # check for structural errors
 make test              # verify configs resolve to real APKs
-make release           # normalize, regenerate README, build release JSONs
+make build             # normalize, regenerate README, build release JSONs
 ```
 
 ## Project Structure
@@ -64,7 +64,7 @@ This will:
 
 > **Tip:** To find the package ID, open the app in Obtainium - the package ID is displayed directly below the source URL (e.g., `com.example.android`).
 
-After running, execute `make release` to regenerate all files.
+After running, execute `make build` to regenerate all files.
 
 ### Option B: Manual Add (For complex configs or non-GitHub sources)
 
@@ -119,7 +119,7 @@ Add a `meta` object to customize how the app appears:
 ```bash
 make validate          # check for structural errors
 make test              # verify your app config resolves to a real APK
-make release           # normalize, regenerate README, build release JSONs
+make build             # normalize, regenerate README, build release JSONs
 ```
 
 ## CI
@@ -128,13 +128,13 @@ Pull requests and pushes to `main` are checked by GitHub Actions:
 
 1. **Validate** - runs `make validate` (structural checks, regex syntax, source types)
 2. **Live Test** - runs `make test` (verifies all app configs resolve to real APKs)
-3. **Check Generated Files** - runs `make release` and fails if generated files are out of date
+3. **Check Generated Files** - runs `make build` and fails if generated files are out of date
 
 All three must pass before merging.
 
 ## Pre-Commit Checklist
 
-Before committing, run `make test` and `make release`, then verify:
+Before committing, run `make test` and `make build`, then verify:
 
 - [ ] `make test` passes (all app configs resolve to downloadable APKs)
 - [ ] `obtainium-emulation-pack-latest.json` has been updated
@@ -154,7 +154,7 @@ Before committing, run `make test` and `make release`, then verify:
 | `make test`                      | Live-test all app configs resolve to downloadable APKs      |
 | `make test-app APP=name`         | Live-test a single app by name (partial match)              |
 | `make test-verbose`              | Live-test all apps with APK URL details                     |
-| `make release`                   | Full pipeline: validate, normalize, readme, both JSONs      |
+| `make build`                     | Full pipeline: validate, normalize, readme, both JSONs      |
 | `make normalize`                 | Normalize key order and backfill defaults                   |
 | `make table`                     | Generate the README table only                              |
 | `make readme`                    | Generate README.md from pages                               |

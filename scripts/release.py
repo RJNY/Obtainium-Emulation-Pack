@@ -1,6 +1,6 @@
 """Create a GitHub release with tagged JSON artifacts.
 
-Expects `make release` to have already been run. This script only handles
+Expects `make build` to have already been run. This script only handles
 the publish side: tagging, pushing, and creating the GitHub release.
 
 Workflow:
@@ -12,7 +12,7 @@ Workflow:
   6. Create git tag, push, and create GitHub release
 
 Usage:
-  make release          # build artifacts first
+  make build            # build artifacts first
   make publish          # then publish
 
 Requires: gh (GitHub CLI), git, python3
@@ -463,7 +463,7 @@ def main() -> None:
     for f in (STANDARD_JSON, DUAL_SCREEN_JSON):
         if not f.exists():
             print(f"Error: Expected artifact not found: {f}")
-            print("Did you run `make release` first?")
+            print("Did you run `make build` first?")
             sys.exit(1)
 
     # Show summary before proceeding
@@ -486,7 +486,7 @@ def main() -> None:
         print("Aborted.")
         sys.exit(0)
 
-    # Commit any uncommitted changes (e.g. from `make release`)
+    # Commit any uncommitted changes (e.g. from `make build`)
     if not check_working_tree_clean():
         print()
         print("Working tree has changes. Committing...")

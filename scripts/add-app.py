@@ -357,7 +357,7 @@ def main() -> int:
         print()
 
     print("Next steps:")
-    print("  1. Run 'make release' to regenerate all files")
+    print("  1. Run 'make build' to regenerate all files")
     print("  2. Review the diff before committing")
 
     return 0
