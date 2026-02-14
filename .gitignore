@@ -2,3 +2,4 @@
 .notes/
 assets/
 __pycache__
+release-notes-*.md
