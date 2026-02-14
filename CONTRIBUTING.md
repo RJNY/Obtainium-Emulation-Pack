@@ -1,45 +1,52 @@
-## Development & Contribution
+# Contributing
 
-### Prerequisites
+## Prerequisites
 
 - Python 3.11+
 - Make (optional, but recommended)
 - Git
 
-### Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
 git clone https://github.com/RJNY/Obtainium-Emulation-Pack.git
 cd Obtainium-Emulation-Pack
 
-# Make your changes to src/applications.json
-# Then regenerate all files before pushing your PR
-make release
+# Make your changes to src/applications.json (or use make add-app)
+make validate          # check for structural errors
+make test              # verify configs resolve to real APKs
+make release           # normalize, regenerate README, build release JSONs
 ```
 
-### Project Structure
+## Project Structure
 
 ```
 src/
   applications.json          # Source of truth - all app definitions
 scripts/
+  validate-json.py           # Validates applications.json
+  test-apps.py               # Live-tests configs resolve to downloadable APKs
+  add-app.py                 # Interactive CLI to add a new app
   generate-table.py          # Generates the README table
   generate-readme.py         # Stitches markdown files into README
   minify-json.py             # Creates release JSON files
-  validate-json.py           # Validates applications.json
+  normalize-json.py          # Normalize key order and backfill defaults
+  release.py                 # Automated release workflow (tag, push, gh release)
+  constants.py               # Shared constants and Obtainium source schema
+  utils.py                   # Shared utility functions and .env loader
 pages/
-  init.md                    # README header/intro
+  header.md                  # README header/intro
   table.md                   # Generated - app tables (do not edit)
   faq.md                     # FAQ section
-  development.md             # This file
+  footer.md                  # Short section linking here (stitched into README)
 obtainium-emulation-pack-latest.json           # Standard release
 obtainium-emulation-pack-dual-screen-latest.json # Dual-screen release
 ```
 
-### Adding a New Application
+## Adding a New Application
 
-#### Option A: Quick Add (Recommended for GitHub apps)
+### Option A: Quick Add (Recommended for GitHub apps)
 
 Use the interactive CLI to quickly add a new app:
 
@@ -59,9 +66,9 @@ This will:
 
 After running, execute `make release` to regenerate all files.
 
-#### Option B: Manual Add (For complex configs or non-GitHub sources)
+### Option B: Manual Add (For complex configs or non-GitHub sources)
 
-##### Step 1: Export the app config from Obtainium
+#### Step 1: Export the app config from Obtainium
 
 1. Open Obtainium on your device
 2. Add the app you want to include (configure it how you want)
@@ -69,7 +76,7 @@ After running, execute `make release` to regenerate all files.
 4. Choose "Obtainium Export" format
 5. Transfer the JSON to your computer
 
-##### Step 2: Add the app to applications.json
+#### Step 2: Add the app to applications.json
 
 Open `src/applications.json` and add your app to the `apps` array:
 
@@ -107,22 +114,19 @@ Add a `meta` object to customize how the app appears:
 }
 ```
 
-#### Step 4: Validate and regenerate
+#### Step 4: Validate, test, and regenerate
 
 ```bash
-make release
+make validate          # check for structural errors
+make test              # verify your app config resolves to a real APK
+make release           # normalize, regenerate README, build release JSONs
 ```
 
-This will:
+## Pre-Commit Checklist
 
-1. Validate your JSON for errors
-2. Regenerate the README table
-3. Update both release JSON files
+Before committing, run `make test` and `make release`, then verify:
 
-### Pre-Commit Checklist
-
-Before committing, run `make release` and verify:
-
+- [ ] `make test` passes (all app configs resolve to downloadable APKs)
 - [ ] `obtainium-emulation-pack-latest.json` has been updated
 - [ ] `obtainium-emulation-pack-dual-screen-latest.json` has been updated
 - [ ] `README.md` has been updated
@@ -130,21 +134,27 @@ Before committing, run `make release` and verify:
 - [ ] The README table links to the correct homepage (use `urlOverride` if not)
 - [ ] Beta apps are excluded with `meta.excludeFromExport: true`
 
-### Available Make Commands
+## Available Make Commands
 
-| Command                   | Description                                                 |
-| ------------------------- | ----------------------------------------------------------- |
-| `make help`               | Show all available commands                                 |
-| `make add-app`            | Interactive CLI to add a new app                            |
-| `make release`            | Run validation, generate table, README, and both JSON files |
-| `make validate`           | Validate applications.json for errors                       |
-| `make table`              | Generate the README table only                              |
-| `make readme`             | Generate README.md from pages                               |
-| `make minify`             | Generate standard release JSON                              |
-| `make minify-dual-screen` | Generate dual-screen release JSON                           |
-| `make links`              | Generate click-to-install URLs (for testing)                |
+| Command                          | Description                                                 |
+| -------------------------------- | ----------------------------------------------------------- |
+| `make help`                      | Show all available commands                                 |
+| `make add-app`                   | Interactive CLI to add a new app                            |
+| `make validate`                  | Validate applications.json (structure, regex, source types) |
+| `make test`                      | Live-test all app configs resolve to downloadable APKs      |
+| `make test-app APP=name`         | Live-test a single app by name (partial match)              |
+| `make test-verbose`              | Live-test all apps with APK URL details                     |
+| `make release`                   | Full pipeline: validate, normalize, readme, both JSONs      |
+| `make normalize`                 | Normalize key order and backfill defaults                   |
+| `make table`                     | Generate the README table only                              |
+| `make readme`                    | Generate README.md from pages                               |
+| `make minify`                    | Generate standard release JSON                              |
+| `make minify-dual-screen`        | Generate dual-screen release JSON                           |
+| `make publish`                   | Tag, push, and create a GitHub release                      |
+| `make publish-dry-run`           | Preview release notes without publishing                    |
+| `make publish-from-file FILE=..` | Publish using a previously edited release notes file        |
 
-### Meta Field Reference
+## Meta Field Reference
 
 These fields in the `meta` object control how apps are processed:
 
@@ -157,7 +167,7 @@ These fields in the `meta` object control how apps are processed:
 | `nameOverride`        | string | `null`  | Override the display name in the README table.                      |
 | `urlOverride`         | string | `null`  | Override the homepage link in the README table.                     |
 
-### Categories
+## Categories
 
 Apps are organized into categories that appear as sections in the README table:
 
@@ -166,13 +176,13 @@ Apps are organized into categories that appear as sections in the README table:
 | `Emulator`     | Console/handheld emulators (Dolphin, RetroArch, PPSSPP, etc.)    |
 | `Frontend`     | Emulator launchers and game library managers (Daijisho, Pegasus) |
 | `Utilities`    | Helper apps (Syncthing, OdinTools, LED controllers, etc.)        |
-| `Dual Screen`  | Apps specifically for dual-screen devices                        |
 | `PC Emulation` | Windows/PC game layers (Winlator, etc.)                          |
 | `Streaming`    | Game streaming clients (Moonlight, etc.)                         |
+| `Track Only`   | Version tracking without APK downloads (drivers, meta-packages)  |
 
 An app can belong to multiple categories.
 
-### Dual-Screen vs Standard
+## Dual-Screen vs Standard
 
 The pack supports two variants:
 
@@ -205,11 +215,11 @@ Example: Standard Cemu excluded from dual-screen, dual-screen fork excluded from
 }
 ```
 
-### Choosing the Right Category and Variant
+## Choosing the Right Category and Variant
 
 Use this decision tree:
 
-1. **Is this app device-specific?** (e.g., AYN Thor frontend, LG dual-screen fork)
+1. **Is this app device-specific?** (e.g., AYN Thor frontend)
 
    - Yes: Set `includeInStandard: false` and use appropriate category
    - No: Continue to step 2

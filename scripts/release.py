@@ -26,10 +26,11 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import urllib.parse
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
+
+from utils import get_application_url, get_display_name, make_obtainium_link, should_include_app
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -40,8 +41,6 @@ APPLICATIONS_JSON = REPO_ROOT / "src" / "applications.json"
 
 SEMVER_PATTERN = re.compile(r"^v?(\d+)\.(\d+)\.(\d+)$")
 
-
-# Helpers
 
 def run(cmd: list[str], capture: bool = False, check: bool = True) -> subprocess.CompletedProcess:
     return subprocess.run(
@@ -64,8 +63,6 @@ def check_prerequisites() -> None:
         print("Error: gh is not authenticated. Run `gh auth login` first.")
         sys.exit(1)
 
-
-# Version helpers
 
 def get_latest_tag() -> str | None:
     result = run(["git", "tag", "--sort=-v:refname"], capture=True, check=False)
@@ -135,8 +132,6 @@ def prompt_version(latest: str | None) -> str:
             print("Invalid choice. Enter 1, 2, 3, or 4.")
 
 
-# App diff detection
-
 def load_apps_from_ref(ref: str) -> dict[str, dict[str, Any]]:
     result = run(
         ["git", "show", f"{ref}:src/applications.json"],
@@ -192,44 +187,7 @@ def diff_apps(
     return added, changed, removed
 
 
-# Obtainium link generation (mirrors generate-table.py)
-
-def make_obtainium_link(app: dict[str, Any]) -> str:
-    payload = {
-        "id": app["id"],
-        "url": app["url"],
-        "author": app["author"],
-        "name": app["name"],
-        "otherAssetUrls": app.get("otherAssetUrls"),
-        "apkUrls": app.get("apkUrls"),
-        "preferredApkIndex": app.get("preferredApkIndex"),
-        "additionalSettings": app.get("additionalSettings"),
-        "categories": app.get("categories"),
-        "overrideSource": app.get("overrideSource"),
-        "allowIdChange": app.get("allowIdChange"),
-    }
-    encoded = urllib.parse.quote(json.dumps(payload, separators=(",", ":")), safe="")
-    return f"http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://app/{encoded}"
-
-
-def should_include_app(app: dict[str, Any], variant: str) -> bool:
-    meta = app.get("meta", {})
-    if meta.get("excludeFromExport", False):
-        return False
-    if variant == "standard":
-        return meta.get("includeInStandard", True)
-    elif variant == "dual-screen":
-        return meta.get("includeInDualScreen", True)
-    return True
-
-
-def get_display_name(app: dict[str, Any]) -> str:
-    return app.get("meta", {}).get("nameOverride") or app.get("name", "")
-
-
-def get_application_url(app: dict[str, Any]) -> str:
-    return app.get("meta", {}).get("urlOverride") or app.get("url", "")
-
+# Table rendering for release notes
 
 def make_app_table_row(app: dict[str, Any]) -> str:
     display_name = f'<a href="{get_application_url(app)}">{get_display_name(app)}</a>'
@@ -273,8 +231,6 @@ def generate_app_table(apps: list[dict[str, Any]], group_by_category: bool = Fal
     return "\n".join(sections)
 
 
-# Commit log
-
 def get_commit_summaries(since_tag: str | None) -> list[str]:
     if since_tag:
         cmd = ["git", "log", f"{since_tag}..HEAD", "--pretty=format:%s"]
@@ -287,8 +243,6 @@ def get_commit_summaries(since_tag: str | None) -> list[str]:
 
     return [line.strip() for line in result.stdout.strip().splitlines() if line.strip()]
 
-
-# Release notes
 
 def generate_release_notes(
     latest_tag: str | None,
@@ -352,8 +306,6 @@ def edit_release_notes(notes: str) -> str:
     return edited
 
 
-# Git / GitHub
-
 def check_working_tree_clean() -> bool:
     result = run(["git", "status", "--porcelain"], capture=True)
     return result.stdout.strip() == ""
@@ -410,8 +362,6 @@ def get_app_count(json_path: Path) -> int:
     except Exception:
         return 0
 
-
-# Main
 
 def main() -> None:
     parser = argparse.ArgumentParser(

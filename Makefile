@@ -1,4 +1,4 @@
-.PHONY: help all readme validate add-app normalize publish publish-dry-run publish-from-file
+.PHONY: help all readme validate add-app normalize publish publish-dry-run publish-from-file test test-app test-verbose
 default: help
 
 help: # Show help for each of the makefile recipes.
@@ -12,11 +12,20 @@ help: # Show help for each of the makefile recipes.
 add-app: # Interactive CLI to add a new app
 	@python scripts/add-app.py
 
-validate: # Validate applications.json for errors
+validate: # Validate applications.json for errors (structure, regex syntax, source types)
 	@python scripts/validate-json.py src/applications.json
 
 normalize: # Normalize key order and add missing defaults in applications.json
 	@python scripts/normalize-json.py src/applications.json
+
+test: # Live-test that all app configs can resolve to downloadable APKs
+	@python scripts/test-apps.py src/applications.json
+
+test-app: # Live-test a single app by name (e.g. make test-app APP=Dolphin)
+	@python scripts/test-apps.py src/applications.json --verbose $(APP)
+
+test-verbose: # Live-test with APK URL details shown
+	@python scripts/test-apps.py src/applications.json --verbose
 
 # ---------------------------------------------------------------------------
 # Build
@@ -39,13 +48,10 @@ table: # Generate a table of obtainium links for the README.
 
 readme: table # Generate the readme file. Why? Because editing that table every change is tedious.
 	@python scripts/generate-readme.py \
-		./pages/init.md \
+		./pages/header.md \
 		./pages/table.md \
 		./pages/faq.md \
-		./pages/development.md
-
-links: # Generate links for all obtainium packages
-	@python scripts/generate-obtainium-urls.py src/applications.json > scripts/links.md
+		./pages/footer.md
 
 # ---------------------------------------------------------------------------
 # Publish

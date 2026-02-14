@@ -5,12 +5,6 @@ from pathlib import Path
 
 
 def stitch_markdown_files(markdown_files: list[str], output_file: str = "README.md") -> None:
-    """Concatenate markdown files with double newlines between sections.
-
-    Args:
-        markdown_files: List of paths to markdown files to combine
-        output_file: Path to write the combined output
-    """
     combined_content = []
 
     for file in markdown_files:

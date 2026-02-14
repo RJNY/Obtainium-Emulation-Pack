@@ -2,36 +2,13 @@
 
 import json
 import sys
-import urllib.parse
 from collections import defaultdict
 from typing import Any
 
-from constants import OBTAINIUM_SCHEME, REDIRECT_URL
-from utils import get_application_url, get_display_name, should_include_app
-
-
-def make_obtainium_link(app: dict[str, Any]) -> str:
-    """Generate an Obtainium deep-link URL for an app."""
-    payload = {
-        "id": app["id"],
-        "url": app["url"],
-        "author": app["author"],
-        "name": app["name"],
-        "otherAssetUrls": app.get("otherAssetUrls"),
-        "apkUrls": app.get("apkUrls"),
-        "preferredApkIndex": app.get("preferredApkIndex"),
-        "additionalSettings": app.get("additionalSettings"),
-        "categories": app.get("categories"),
-        "overrideSource": app.get("overrideSource"),
-        "allowIdChange": app.get("allowIdChange"),
-    }
-    encoded = urllib.parse.quote(json.dumps(payload, separators=(",", ":")), safe="")
-    return f"{REDIRECT_URL}?r={OBTAINIUM_SCHEME}{encoded}"
+from utils import get_application_url, get_display_name, make_obtainium_link, should_include_app
 
 
 def generate_category_tables(apps: list[dict[str, Any]]) -> str:
-    """Generate markdown tables grouped by category."""
-    # Categorize apps
     categorized: defaultdict[str, list[dict[str, Any]]] = defaultdict(list)
     for app in apps:
         categories = app.get("categories", [])
@@ -78,7 +55,6 @@ def generate_category_tables(apps: list[dict[str, Any]]) -> str:
 
 
 def main(input_file: str, output_file: str) -> None:
-    """Generate category-based markdown table from applications.json."""
     with open(input_file, "r", encoding="utf-8") as f:
         data = json.load(f)
 

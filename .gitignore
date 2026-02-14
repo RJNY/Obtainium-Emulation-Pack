@@ -1,4 +1,5 @@
 .DS_Store
+.env
 .notes/
 assets/
 __pycache__

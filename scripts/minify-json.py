@@ -9,30 +9,19 @@ from utils import should_include_app
 
 
 def minify_json(input_file: str, output_file: str, variant: str = "standard") -> None:
-    """Filter apps by variant, remove meta fields, and output minified JSON.
-
-    Args:
-        input_file: Path to source applications.json
-        output_file: Path to write minified JSON
-        variant: One of 'standard' or 'dual-screen'
-    """
     try:
-        # Read JSON data from input file
         with open(input_file, "r", encoding="utf-8") as f:
             data: dict[str, Any] = json.load(f)
 
-        # Filter apps based on variant
         if "apps" in data:
             filtered_apps = []
             for app in data["apps"]:
                 if should_include_app(app, variant):
-                    # Remove meta key from export
                     app_copy = app.copy()
                     app_copy.pop("meta", None)
                     filtered_apps.append(app_copy)
             data["apps"] = filtered_apps
 
-        # Minify JSON and write to output file
         with open(output_file, "w", encoding="utf-8") as f:
             json.dump(data, f, separators=(",", ":"), ensure_ascii=False)
 

@@ -7,6 +7,8 @@ import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
+from utils import load_dotenv
+
 # Default Obtainium settings for GitHub apps
 DEFAULT_ADDITIONAL_SETTINGS = {
     "includePrereleases": False,
@@ -46,10 +48,10 @@ CATEGORIES = [
 ]
 
 VARIANT_OPTIONS = [
-    "Both",  # Include in both standard and dual-screen
-    "Standard only",  # Include in standard only
-    "Dual-screen only",  # Include in dual-screen only
-    "README only",  # Exclude from export, show in table only
+    "Both",
+    "Standard only",
+    "Dual-screen only",
+    "README only",
 ]
 
 SOURCE_DETECTION = {
@@ -61,7 +63,6 @@ SOURCE_DETECTION = {
 
 
 def detect_source(url: str):
-    """Detect the source type from URL."""
     parsed = urlparse(url)
     host = parsed.netloc.lower()
     for domain, source in SOURCE_DETECTION.items():
@@ -71,7 +72,6 @@ def detect_source(url: str):
 
 
 def extract_github_info(url: str) -> tuple[str, str] | None:
-    """Extract author and repo name from GitHub URL."""
     match = re.match(r"https?://github\.com/([^/]+)/([^/]+)", url)
     if match:
         return match.group(1), match.group(2)
@@ -79,7 +79,6 @@ def extract_github_info(url: str) -> tuple[str, str] | None:
 
 
 def prompt(message: str, default: str = "") -> str:
-    """Prompt user for input with optional default."""
     if default:
         result = input(f"{message} [{default}]: ").strip()
         return result if result else default
@@ -87,7 +86,6 @@ def prompt(message: str, default: str = "") -> str:
 
 
 def prompt_yes_no(message: str, default: bool = True) -> bool:
-    """Prompt user for yes/no."""
     default_str = "Y/n" if default else "y/N"
     result = input(f"{message} [{default_str}]: ").strip().lower()
     if not result:
@@ -96,7 +94,6 @@ def prompt_yes_no(message: str, default: bool = True) -> bool:
 
 
 def select_menu(title: str, choices: list[str], default: int = 0) -> str:
-    """Interactive menu with arrow key navigation."""
     # Only use curses if we have a real terminal
     if not sys.stdin.isatty():
         return _select_menu_fallback(title, choices, default)
@@ -111,10 +108,9 @@ def select_menu(title: str, choices: list[str], default: int = 0) -> str:
 
 
 def _select_menu_curses(title: str, choices: list[str], default: int = 0) -> str:
-    """Curses-based interactive menu."""
 
     def menu(stdscr):
-        curses.curs_set(0)  # Hide cursor
+        curses.curs_set(0)
         current = default
 
         while True:
@@ -140,7 +136,7 @@ def _select_menu_curses(title: str, choices: list[str], default: int = 0) -> str
                 current += 1
             elif key in (curses.KEY_ENTER, 10, 13):
                 return choices[current]
-            elif key == 27:  # ESC
+            elif key == 27:
                 return choices[default]
 
     import curses
@@ -149,7 +145,6 @@ def _select_menu_curses(title: str, choices: list[str], default: int = 0) -> str
 
 
 def _select_menu_fallback(title: str, choices: list[str], default: int = 0) -> str:
-    """Fallback menu using simple input."""
     print(f"\n{title}")
     for i, choice in enumerate(choices):
         marker = ">" if i == default else " "
@@ -182,7 +177,6 @@ def generate_app_entry(
     app_name_override: str | None = None,
     url_override: str | None = None,
 ) -> dict:
-    """Generate a complete app entry."""
     settings = DEFAULT_ADDITIONAL_SETTINGS.copy()
     if "Track Only" in categories:
         settings["trackOnly"] = True
@@ -205,7 +199,6 @@ def generate_app_entry(
         "overrideSource": source,
     }
 
-    # Build meta based on variant selection
     meta = {}
     if variant == "Standard only":
         meta["includeInDualScreen"] = False
@@ -213,7 +206,6 @@ def generate_app_entry(
         meta["includeInStandard"] = False
     elif variant == "README only":
         meta["excludeFromExport"] = True
-    # "Both" = no meta needed (default behavior)
 
     if app_name_override:
         meta["nameOverride"] = app_name_override
@@ -227,7 +219,6 @@ def generate_app_entry(
 
 
 def main() -> int:
-    """Interactive CLI to add a new app."""
     print("=" * 50)
     print("  Add New App to Obtainium Emulation Pack")
     print("=" * 50)
@@ -349,7 +340,23 @@ def main() -> int:
         f.write("\n")
 
     print(f"\nApp added to {apps_file}")
-    print("\nNext steps:")
+
+    # Offer to live-test the new app config
+    if prompt_yes_no("\nRun live test on this app?", True):
+        load_dotenv()
+        # Import here to avoid circular deps and keep startup fast
+        from importlib import import_module
+
+        test_mod = import_module("test-apps")
+        print()
+        result = test_mod.test_app(app_entry)
+        test_mod.print_result(result, verbose=True)
+        if not result.passed:
+            print("\nThe app config failed the live test.")
+            print("The entry has been saved - you may want to fix the config and re-test.")
+        print()
+
+    print("Next steps:")
     print("  1. Run 'make release' to regenerate all files")
     print("  2. Review the diff before committing")
 
