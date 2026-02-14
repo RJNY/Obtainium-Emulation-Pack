@@ -122,6 +122,16 @@ make test              # verify your app config resolves to a real APK
 make release           # normalize, regenerate README, build release JSONs
 ```
 
+## CI
+
+Pull requests and pushes to `main` are checked by GitHub Actions:
+
+1. **Validate** - runs `make validate` (structural checks, regex syntax, source types)
+2. **Live Test** - runs `make test` (verifies all app configs resolve to real APKs)
+3. **Check Generated Files** - runs `make release` and fails if generated files are out of date
+
+All three must pass before merging.
+
 ## Pre-Commit Checklist
 
 Before committing, run `make test` and `make release`, then verify:

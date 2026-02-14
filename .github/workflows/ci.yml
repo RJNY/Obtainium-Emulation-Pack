@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate applications.json
+        run: make validate
+
+  test:
+    name: Live Test
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Test app configs resolve to APKs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: make test
+
+  check-generated:
+    name: Check Generated Files
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run make release
+        run: make release
+
+      - name: Check for uncommitted changes
+        run: |
+          if [ -n "$(git diff --name-only)" ]; then
+            echo "Generated files are out of date. Run 'make release' and commit the results."
+            echo ""
+            echo "Changed files:"
+            git diff --name-only
+            echo ""
+            git diff --stat
+            exit 1
+          fi
+          echo "All generated files are up to date."
