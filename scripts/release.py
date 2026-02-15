@@ -30,7 +30,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from utils import get_application_url, get_display_name, make_obtainium_link, should_include_app
+from constants import GITHUB_NOREPLY_SUFFIX
+from utils import get_application_url, get_display_name, load_dotenv, make_obtainium_link, should_include_app
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -40,6 +41,13 @@ DUAL_SCREEN_JSON = REPO_ROOT / "obtainium-emulation-pack-dual-screen-latest.json
 APPLICATIONS_JSON = REPO_ROOT / "src" / "applications.json"
 
 SEMVER_PATTERN = re.compile(r"^v?(\d+)\.(\d+)\.(\d+)$")
+
+
+def load_owner_emails() -> set[str]:
+    raw = os.environ.get("OWNER_EMAILS", "")
+    if not raw.strip():
+        return set()
+    return {email.strip().lower() for email in raw.split(",") if email.strip()}
 
 
 def run(cmd: list[str], capture: bool = False, check: bool = True) -> subprocess.CompletedProcess:
@@ -231,17 +239,59 @@ def generate_app_table(apps: list[dict[str, Any]], group_by_category: bool = Fal
     return "\n".join(sections)
 
 
-def get_commit_summaries(since_tag: str | None) -> list[str]:
+def _git_log_lines(since_tag: str | None, pretty_format: str) -> list[str]:
+    cmd = ["git", "log"]
     if since_tag:
-        cmd = ["git", "log", f"{since_tag}..HEAD", "--pretty=format:%s"]
-    else:
-        cmd = ["git", "log", "--pretty=format:%s"]
+        cmd.append(f"{since_tag}..HEAD")
+    cmd += ["--pretty=format:" + pretty_format]
 
     result = run(cmd, capture=True, check=False)
     if result.returncode != 0 or not result.stdout.strip():
         return []
+    return result.stdout.strip().splitlines()
 
-    return [line.strip() for line in result.stdout.strip().splitlines() if line.strip()]
+
+def extract_github_username(email: str) -> str | None:
+    if not email.endswith(GITHUB_NOREPLY_SUFFIX):
+        return None
+    # Noreply format: "id+username" or just "username"
+    local_part = email[: -len(GITHUB_NOREPLY_SUFFIX)]
+    if "+" in local_part:
+        return local_part.split("+", 1)[1]
+    return local_part
+
+
+def format_contributor(name: str, email: str) -> str:
+    username = extract_github_username(email)
+    if username:
+        return f"@{username}"
+    return name
+
+
+def get_contributors(since_tag: str | None) -> list[str]:
+    owner_emails = load_owner_emails()
+    seen: set[str] = set()
+    contributors: list[str] = []
+
+    for line in _git_log_lines(since_tag, "%an%x00%ae"):
+        if "\x00" not in line:
+            continue
+        name, email = line.split("\x00", 1)
+        name, email = name.strip(), email.strip()
+
+        if email.lower() in owner_emails:
+            continue
+
+        formatted = format_contributor(name, email)
+        if formatted not in seen:
+            seen.add(formatted)
+            contributors.append(formatted)
+
+    return sorted(contributors, key=str.lower)
+
+
+def get_commit_summaries(since_tag: str | None) -> list[str]:
+    return [line.strip() for line in _git_log_lines(since_tag, "%s") if line.strip()]
 
 
 def generate_release_notes(
@@ -252,12 +302,10 @@ def generate_release_notes(
 ) -> str:
     lines: list[str] = []
 
-    # Summary section with commit messages as starting points
     lines.append("## Summary\n")
     commits = get_commit_summaries(latest_tag)
     if commits:
         for msg in commits:
-            # Skip merge commits and release commits
             if msg.startswith("Merge ") or msg.startswith("release:"):
                 continue
             lines.append(f"- {msg}")
@@ -265,19 +313,24 @@ def generate_release_notes(
         lines.append("- ")
     lines.append("")
 
-    # New apps section
+    contributors = get_contributors(latest_tag)
+    if contributors:
+        lines.append("## Contributors\n")
+        lines.append("Thanks to the following people for their contributions to this release:\n")
+        for contributor in contributors:
+            lines.append(f"- {contributor}")
+        lines.append("")
+
     if added:
         lines.append("## New Apps\n")
         lines.append(generate_app_table(added, group_by_category=True))
         lines.append("")
 
-    # Updated apps section
     if changed:
         lines.append("## App Updates\n")
         lines.append(generate_app_table(changed, group_by_category=False))
         lines.append("")
 
-    # Removed apps section
     if removed:
         lines.append("## Removed Apps\n")
         for app in sorted(removed, key=lambda a: get_display_name(a).lower()):
@@ -386,6 +439,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    load_dotenv()
     check_prerequisites()
 
     print("Fetching tags from remote...")

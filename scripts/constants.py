@@ -9,6 +9,8 @@ OBTAINIUM_SCHEME = "obtainium://app/"
 
 VARIANTS = ("standard", "dual-screen")
 
+GITHUB_NOREPLY_SUFFIX = "@users.noreply.github.com"
+
 # ---------------------------------------------------------------------------
 # Obtainium source types and settings schema
 # Derived from Obtainium source code: lib/app_sources/*.dart
