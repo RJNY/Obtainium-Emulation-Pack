@@ -50,13 +50,19 @@ def load_owner_emails() -> set[str]:
     return {email.strip().lower() for email in raw.split(",") if email.strip()}
 
 
-def run(cmd: list[str], capture: bool = False, check: bool = True) -> subprocess.CompletedProcess:
+def run(
+    cmd: list[str],
+    capture: bool = False,
+    check: bool = True,
+    env: dict[str, str] | None = None,
+) -> subprocess.CompletedProcess:
     return subprocess.run(
         cmd,
         cwd=REPO_ROOT,
         capture_output=capture,
         text=True,
         check=check,
+        env=env,
     )
 
 
@@ -66,7 +72,7 @@ def check_prerequisites() -> None:
             print(f"Error: '{tool}' is not installed. Install it first.")
             sys.exit(1)
 
-    result = run(["gh", "auth", "status"], capture=True, check=False)
+    result = run(["gh", "auth", "status"], capture=True, check=False, env=_gh_env())
     if result.returncode != 0:
         print("Error: gh is not authenticated. Run `gh auth login` first.")
         sys.exit(1)
@@ -385,6 +391,16 @@ def create_tag(version: str) -> None:
     run(["git", "push", "origin", version])
 
 
+def _gh_env() -> dict[str, str] | None:
+    """Build env for gh CLI, preferring GITHUB_TOKEN from .env over global gh auth."""
+    token = os.environ.get("GITHUB_TOKEN", "")
+    if not token:
+        return None
+    env = os.environ.copy()
+    env["GH_TOKEN"] = token
+    return env
+
+
 def create_github_release(version: str, notes: str, assets: list[Path]) -> None:
     cmd = ["gh", "release", "create", version]
 
@@ -399,7 +415,7 @@ def create_github_release(version: str, notes: str, assets: list[Path]) -> None:
         cmd.append(str(asset))
 
     print(f"Creating GitHub release {version}...")
-    run(cmd)
+    run(cmd, env=_gh_env())
 
 
 def cleanup(files: list[Path]) -> None:
