@@ -30,8 +30,8 @@ USER_AGENT = (
 REQUEST_TIMEOUT = 30
 MAX_RELEASES_TO_CHECK = 25
 APK_EXTENSIONS = (".apk", ".xapk")
-MAX_STORED_APK_URLS = 5
 MAX_DISPLAYED_APK_URLS = 3
+MAX_DISPLAYED_APKS = 10
 
 
 def _make_request(
@@ -162,6 +162,7 @@ class TestResult:
         self.version: str | None = None
         self.apk_count = 0
         self.apk_urls: list[str] = []
+        self.preferred_apk_index = 0
         self.error: str | None = None
         self.warnings: list[str] = []
         self.duration_ms = 0
@@ -311,6 +312,7 @@ def test_github(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     result.version = version
     result.apk_count = len(apk_urls)
     result.apk_urls = apk_urls
+    result.preferred_apk_index = app.get("preferredApkIndex", 0)
     return result
 
 
@@ -354,6 +356,7 @@ def test_codeberg(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     result.version = version
     result.apk_count = len(apk_urls)
     result.apk_urls = apk_urls
+    result.preferred_apk_index = app.get("preferredApkIndex", 0)
     return result
 
 
@@ -469,7 +472,8 @@ def test_html(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     result.passed = True
     result.version = version
     result.apk_count = len(apk_links)
-    result.apk_urls = apk_links[:MAX_STORED_APK_URLS]
+    result.apk_urls = apk_links
+    result.preferred_apk_index = app.get("preferredApkIndex", 0)
     return result
 
 
@@ -518,7 +522,15 @@ def test_app(app: dict[str, Any]) -> TestResult:
     return result
 
 
-def print_result(result: TestResult, verbose: bool = False) -> None:
+def _filename_from_url(url: str) -> str:
+    return urlparse(url).path.rsplit("/", 1)[-1] or url
+
+
+def print_result(
+    result: TestResult,
+    verbose: bool = False,
+    show_apks: bool = False,
+) -> None:
     status = "\033[32mPASS\033[0m" if result.passed else "\033[31mFAIL\033[0m"
     version_str = f" v{result.version}" if result.version else ""
     apk_str = f" ({result.apk_count} APKs)" if result.apk_count else ""
@@ -529,7 +541,18 @@ def print_result(result: TestResult, verbose: bool = False) -> None:
         print(f"         Error: {result.error}")
     for warning in result.warnings:
         print(f"         \033[33mWarn\033[0m: {warning}")
-    if verbose and result.apk_urls:
+    if show_apks and result.apk_urls:
+        filenames = [_filename_from_url(u) for u in result.apk_urls]
+        has_dupes = len(set(filenames)) < len(filenames)
+        display_urls = result.apk_urls[:MAX_DISPLAYED_APKS]
+        for i, url in enumerate(display_urls):
+            label = url if has_dupes else filenames[i]
+            marker = " \033[36m<-- preferredApkIndex\033[0m" if i == result.preferred_apk_index else ""
+            print(f"         [{i}] {label}{marker}")
+        remaining = len(result.apk_urls) - MAX_DISPLAYED_APKS
+        if remaining > 0:
+            print(f"         ... and {remaining} more")
+    elif verbose and result.apk_urls:
         for url in result.apk_urls[:MAX_DISPLAYED_APK_URLS]:
             print(f"         APK: {url}")
 
@@ -538,13 +561,14 @@ def main() -> int:
     load_dotenv()
 
     if len(sys.argv) < 2:
-        print("Usage: python test-apps.py <json_file> [name_filter] [--id <app_id>] [--verbose]")
+        print("Usage: python test-apps.py <json_file> [name_filter] [--id <app_id>] [--verbose] [--apks]")
         print()
         print("Examples:")
         print("  python test-apps.py src/applications.json              # test all apps")
         print("  python test-apps.py src/applications.json Dolphin      # filter by name")
         print("  python test-apps.py src/applications.json --id org.dolphinemu.dolphinemu")
         print("  python test-apps.py src/applications.json --verbose    # show APK URLs")
+        print("  python test-apps.py src/applications.json --apks       # show numbered APK list")
         return 1
 
     json_file = sys.argv[1]
@@ -553,6 +577,10 @@ def main() -> int:
     verbose = "--verbose" in args
     if verbose:
         args.remove("--verbose")
+
+    show_apks = "--apks" in args
+    if show_apks:
+        args.remove("--apks")
 
     id_filter = None
     if "--id" in args:
@@ -598,7 +626,7 @@ def main() -> int:
     for app in apps:
         result = test_app(app)
         results.append(result)
-        print_result(result, verbose=verbose)
+        print_result(result, verbose=verbose, show_apks=show_apks)
 
     passed = sum(1 for r in results if r.passed)
     failed = sum(1 for r in results if not r.passed)

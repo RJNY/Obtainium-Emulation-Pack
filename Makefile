@@ -1,4 +1,4 @@
-.PHONY: help readme validate add-app normalize build publish publish-dry-run publish-from-file test test-app test-verbose
+.PHONY: help readme validate add-app normalize build publish publish-dry-run publish-from-file test test-app test-apks test-verbose
 default: help
 
 help: # Show help for each of the makefile recipes.
@@ -23,7 +23,10 @@ test: # Live-test that all app configs can resolve to downloadable APKs
 	@python scripts/test-apps.py src/applications.json
 
 test-app: # Live-test a single app by name (e.g. make test-app APP=Dolphin)
-	@python scripts/test-apps.py src/applications.json --verbose $(APP)
+	@python scripts/test-apps.py src/applications.json --verbose --apks $(APP)
+
+test-apks: # Live-test all apps and show numbered APK list for index selection
+	@python scripts/test-apps.py src/applications.json --apks
 
 test-verbose: # Live-test with APK URL details shown
 	@python scripts/test-apps.py src/applications.json --verbose
