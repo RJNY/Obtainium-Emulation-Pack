@@ -59,35 +59,6 @@
       }
     },
     {
-      "id": "org.citron.citron_emu",
-      "url": "https://git.citron-emu.org/Citron/Emulator",
-      "author": "citron",
-      "name": "Citron",
-      "preferredApkIndex": 0,
-      "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"app-mainline-release\\\\.apk$\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
-      "categories": [
-        "Emulator"
-      ],
-      "allowIdChange": true,
-      "overrideSource": "Codeberg"
-    },
-    {
-      "id": "org.citron.citron_emu",
-      "url": "https://github.com/Zephyron-Dev/Citron-CI",
-      "author": "Zephyron-Dev",
-      "name": "Citron Nightly",
-      "preferredApkIndex": 0,
-      "additionalSettings": "{\"includePrereleases\":true,\"fallbackToOlderReleases\":true,\"trackOnly\":false,\"versionExtractionRegEx\":\"\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"app-mainline-release\\\\.apk$\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
-      "categories": [
-        "Emulator"
-      ],
-      "allowIdChange": true,
-      "overrideSource": "GitHub",
-      "meta": {
-        "excludeFromExport": true
-      }
-    },
-    {
       "id": "org.dolphinemu.dolphinemu",
       "url": "https://dolphin-emu.org/download/?ref=btn",
       "author": "dolphin-emu.org",
@@ -373,7 +344,8 @@
       "categories": [
         "PC Emulation"
       ],
-      "allowIdChange": false
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     },
     {
       "id": "com.winlator.cmod",
@@ -512,7 +484,8 @@
       "categories": [
         "Track Only"
       ],
-      "allowIdChange": false
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     },
     {
       "id": "com.magneticchen.daijishou",
