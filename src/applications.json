@@ -536,7 +536,7 @@
       "categories": [
         "Emulator"
       ],
-      "allowIdChange": false,
+      "allowIdChange": true,
       "overrideSource": "GitHub",
       "meta": {
         "includeInStandard": false,
