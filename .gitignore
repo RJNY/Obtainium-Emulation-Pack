@@ -1,5 +1,7 @@
 .DS_Store
 .env
+tmp/
+out/
 .notes/
 assets/
 __pycache__
