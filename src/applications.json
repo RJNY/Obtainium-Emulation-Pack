@@ -475,6 +475,19 @@
       "overrideSource": "GitHub"
     },
     {
+      "id": "994078275",
+      "url": "https://github.com/MrPurple666/purple-turnip",
+      "author": "MrPurple666",
+      "name": "Mr. Purple Turnip Drivers",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":true,\"versionExtractionRegEx\":\"(T[\\\\d]+(?:\\\\.\\\\d+)?(?:hf)?)\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":false,\"appName\":\"Mr. Purple Turnip Drivers\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "categories": [
+        "Track Only"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
+    },
+    {
       "id": "767644078",
       "url": "https://github.com/GlazedBelmont/es-de-android-custom-systems",
       "author": "GlazedBelmont",
