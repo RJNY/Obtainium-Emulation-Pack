@@ -540,6 +540,23 @@
       "overrideSource": "GitHub"
     },
     {
+      "id": "793772977",
+      "url": "https://github.com/streamingdv/PSPlay-Application-Hosting",
+      "author": "streamingdv",
+      "name": "PXPlay",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"includePrereleases\":false,\"fallbackToOlderReleases\":true,\"filterReleaseTitlesByRegEx\":\"\",\"filterReleaseNotesByRegEx\":\"\",\"verifyLatestTag\":false,\"sortMethodChoice\":\"date\",\"useLatestAssetDateAsReleaseDate\":false,\"releaseTitleAsVersion\":false,\"trackOnly\":false,\"versionExtractionRegEx\":\"v[\\\\d.]+_v([\\\\d.]+)\",\"matchGroupToUse\":\"\",\"versionDetection\":false,\"releaseDateAsVersion\":false,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"PXPlay_Android.*\\\\.apk\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"appAuthor\":\"\",\"shizukuPretendToBeGooglePlay\":false,\"allowInsecure\":false,\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"refreshBeforeDownload\":false}",
+      "categories": [
+        "Streaming"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "excludeFromExport": true,
+        "urlOverride": "https://streamingdv.com"
+      }
+    },
+    {
       "id": "app.o2ptweaks",
       "url": "https://github.com/FeralAI/o2ptweaks.app",
       "author": "FeralAI",
