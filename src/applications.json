@@ -38,6 +38,7 @@
       "name": "Cemu",
       "preferredApkIndex": 0,
       "additionalSettings": {
+        "releaseTitleAsVersion": true,
         "about": "Wii U emulator"
       },
       "categories": [
