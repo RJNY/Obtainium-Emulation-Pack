@@ -204,46 +204,43 @@ def diff_apps(
 
 # Table rendering for release notes
 
-def make_app_table_row(app: dict[str, Any]) -> str:
+def make_app_table_row(app: dict[str, Any], change: str) -> str:
     display_name = f'<a href="{get_application_url(app)}">{get_display_name(app)}</a>'
     obtainium_link = make_obtainium_link(app)
-    badge = f'<a href="{obtainium_link}">Add to Obtainium!</a>'
+    badge = f'<a href="{obtainium_link}">Add to Obtainium!</a>' if change != "Removed" else "-"
     std = "✅" if should_include_app(app, "standard") else "❌"
     ds = "✅" if should_include_app(app, "dual-screen") else "❌"
-    return f"| {display_name} | {badge} | {std} | {ds} |"
+    return f"| {display_name} | {badge} | {change} | {std} | {ds} |"
 
 
-TABLE_HEADER = (
-    "| Application Name | Add to Obtainium | Included in export json? | Included in DS json? |\n"
-    "|------------------|------------------|---------------------------|----------------------|"
+CHANGES_TABLE_HEADER = (
+    "| Application | Add to Obtainium | Change | Standard | Dual-Screen |\n"
+    "|-------------|------------------|--------|----------|-------------|"
 )
 
 
-def generate_app_table(apps: list[dict[str, Any]], group_by_category: bool = False) -> str:
-    if not apps:
+def generate_changes_table(
+    added: list[dict[str, Any]],
+    changed: list[dict[str, Any]],
+    removed: list[dict[str, Any]],
+) -> str:
+    rows: list[tuple[str, dict[str, Any]]] = []
+    for app in added:
+        rows.append(("Added", app))
+    for app in changed:
+        rows.append(("Updated", app))
+    for app in removed:
+        rows.append(("Removed", app))
+
+    if not rows:
         return ""
 
-    if not group_by_category:
-        lines = [TABLE_HEADER]
-        for app in sorted(apps, key=lambda a: get_display_name(a).lower()):
-            lines.append(make_app_table_row(app))
-        return "\n".join(lines)
+    rows.sort(key=lambda r: get_display_name(r[1]).lower())
 
-    # Group by category
-    categorized: defaultdict[str, list[dict[str, Any]]] = defaultdict(list)
-    for app in apps:
-        for cat in app.get("categories", ["Other"]):
-            categorized[cat].append(app)
-
-    sections: list[str] = []
-    for category in sorted(categorized.keys()):
-        sections.append(f"### {category}\n")
-        sections.append(TABLE_HEADER)
-        for app in sorted(categorized[category], key=lambda a: get_display_name(a).lower()):
-            sections.append(make_app_table_row(app))
-        sections.append("")
-
-    return "\n".join(sections)
+    lines = [CHANGES_TABLE_HEADER]
+    for change, app in rows:
+        lines.append(make_app_table_row(app, change))
+    return "\n".join(lines)
 
 
 def _git_log_lines(since_tag: str | None, pretty_format: str) -> list[str]:
@@ -328,20 +325,9 @@ def generate_release_notes(
             lines.append(f"- {contributor}")
         lines.append("")
 
-    if added:
-        lines.append("## New Apps\n")
-        lines.append(generate_app_table(added, group_by_category=True))
-        lines.append("")
-
-    if changed:
-        lines.append("## App Updates\n")
-        lines.append(generate_app_table(changed, group_by_category=False))
-        lines.append("")
-
-    if removed:
-        lines.append("## Removed Apps\n")
-        for app in sorted(removed, key=lambda a: get_display_name(a).lower()):
-            lines.append(f"- {get_display_name(app)}")
+    if added or changed or removed:
+        lines.append("## App Changes\n")
+        lines.append(generate_changes_table(added, changed, removed))
         lines.append("")
 
     return "\n".join(lines)
