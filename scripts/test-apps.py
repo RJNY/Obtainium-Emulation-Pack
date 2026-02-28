@@ -181,6 +181,22 @@ class TestResult:
         self.warnings: list[str] = []
         self.duration_ms = 0
 
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "app_name": self.app_name,
+            "app_id": self.app_id,
+            "source": self.source,
+            "url": self.url,
+            "passed": self.passed,
+            "version": self.version,
+            "apk_count": self.apk_count,
+            "apk_urls": self.apk_urls,
+            "preferred_apk_index": self.preferred_apk_index,
+            "error": self.error,
+            "warnings": self.warnings,
+            "duration_ms": self.duration_ms,
+        }
+
     def __repr__(self) -> str:
         status = "PASS" if self.passed else "FAIL"
         return f"{status}: {self.app_name} ({self.source})"
@@ -571,6 +587,15 @@ def print_result(
             print(f"         APK: {url}")
 
 
+def _print_json_error(message: str) -> None:
+    output = {
+        "summary": {"total": 0, "passed": 0, "failed": 0, "warned": 0, "wall_time_ms": 0, "cumulative_time_ms": 0},
+        "results": [],
+        "error": message,
+    }
+    print(json.dumps(output, indent=2))
+
+
 def main() -> int:
     load_dotenv()
 
@@ -609,6 +634,11 @@ def main() -> int:
         default=8,
         help="Number of parallel workers (default: 8, use 1 for serial)",
     )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Output results as JSON (for CI/scripting)",
+    )
     args = parser.parse_args()
 
     json_file = args.file
@@ -617,12 +647,16 @@ def main() -> int:
     verbose = args.verbose
     show_apks = args.apks
     workers = max(args.jobs, 1)
+    json_output = args.json
 
     try:
         with open(json_file, "r", encoding="utf-8") as f:
             data = json.load(f)
     except (json.JSONDecodeError, FileNotFoundError) as e:
-        print(f"Error loading {json_file}: {e}")
+        if json_output:
+            _print_json_error(f"Error loading {json_file}: {e}")
+        else:
+            print(f"Error loading {json_file}: {e}")
         return 1
 
     apps = data.get("apps", [])
@@ -632,21 +666,27 @@ def main() -> int:
         apps = [a for a in apps if name_filter in a.get("name", "").lower()]
 
     if not apps:
-        print("No apps matched the filter.")
+        if json_output:
+            _print_json_error("No apps matched the filter.")
+        else:
+            print("No apps matched the filter.")
         return 1
 
-    has_token = bool(os.environ.get("GITHUB_TOKEN"))
-    github_count = sum(1 for a in apps if _effective_source(a) == "GitHub")
-    if github_count > 0 and not has_token:
-        print(
-            f"\033[33mNote\033[0m: {github_count} GitHub apps to test, "
-            "but GITHUB_TOKEN is not set. You may hit rate limits.\n"
-            "  Set it with: export GITHUB_TOKEN=<your_token>\n"
-        )
+    if not json_output:
+        has_token = bool(os.environ.get("GITHUB_TOKEN"))
+        github_count = sum(1 for a in apps if _effective_source(a) == "GitHub")
+        if github_count > 0 and not has_token:
+            print(
+                f"\033[33mNote\033[0m: {github_count} GitHub apps to test, "
+                "but GITHUB_TOKEN is not set. You may hit rate limits.\n"
+                "  Set it with: export GITHUB_TOKEN=<your_token>\n"
+            )
 
     serial = workers == 1 or len(apps) == 1
-    mode = "serial" if serial else f"{workers} workers"
-    print(f"Testing {len(apps)} app(s) ({mode})...\n")
+
+    if not json_output:
+        mode = "serial" if serial else f"{workers} workers"
+        print(f"Testing {len(apps)} app(s) ({mode})...\n")
 
     wall_start = time.monotonic()
 
@@ -655,7 +695,8 @@ def main() -> int:
         for app in apps:
             result = test_app(app)
             results.append(result)
-            print_result(result, verbose=verbose, show_apks=show_apks)
+            if not json_output:
+                print_result(result, verbose=verbose, show_apks=show_apks)
     else:
         result_map: dict[str, TestResult] = {}
         with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -663,10 +704,10 @@ def main() -> int:
             for future in as_completed(futures):
                 result = future.result()
                 result_map[result.app_id] = result
-        # Print in original order
         results = [result_map[app["id"]] for app in apps]
-        for result in results:
-            print_result(result, verbose=verbose, show_apks=show_apks)
+        if not json_output:
+            for result in results:
+                print_result(result, verbose=verbose, show_apks=show_apks)
 
     wall_ms = int((time.monotonic() - wall_start) * 1000)
     passed = sum(1 for r in results if r.passed)
@@ -674,15 +715,29 @@ def main() -> int:
     warned = sum(1 for r in results if r.warnings)
     sum_time = sum(r.duration_ms for r in results)
 
-    print(f"\n{'=' * 60}")
-    print(f"Results: {passed} passed, {failed} failed, {warned} with warnings")
-    print(f"Time: {wall_ms / 1000:.1f}s wall, {sum_time / 1000:.1f}s cumulative")
+    if json_output:
+        output = {
+            "summary": {
+                "total": len(results),
+                "passed": passed,
+                "failed": failed,
+                "warned": warned,
+                "wall_time_ms": wall_ms,
+                "cumulative_time_ms": sum_time,
+            },
+            "results": [r.to_dict() for r in results],
+        }
+        print(json.dumps(output, indent=2))
+    else:
+        print(f"\n{'=' * 60}")
+        print(f"Results: {passed} passed, {failed} failed, {warned} with warnings")
+        print(f"Time: {wall_ms / 1000:.1f}s wall, {sum_time / 1000:.1f}s cumulative")
 
-    if failed > 0:
-        print(f"\nFailed apps:")
-        for r in results:
-            if not r.passed:
-                print(f"  - {r.app_name}: {r.error}")
+        if failed > 0:
+            print(f"\nFailed apps:")
+            for r in results:
+                if not r.passed:
+                    print(f"  - {r.app_name}: {r.error}")
 
     return 1 if failed > 0 else 0
 
