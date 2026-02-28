@@ -2,7 +2,5 @@
 .env
 tmp/
 out/
-.notes/
 assets/
 __pycache__
-release-notes-*.md

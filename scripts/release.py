@@ -502,10 +502,12 @@ def main() -> None:
         notes = generate_release_notes(latest, added, changed, removed)
 
         if args.dry_run:
-            preview_path = REPO_ROOT / f"release-notes-{version}.md"
+            tmp_dir = REPO_ROOT / "tmp"
+            tmp_dir.mkdir(exist_ok=True)
+            preview_path = tmp_dir / f"release-notes-{version}.md"
             with open(preview_path, "w") as f:
                 f.write(notes)
-            print(f"\nRelease notes written to {preview_path.name}")
+            print(f"\nRelease notes written to tmp/{preview_path.name}")
         else:
             notes = edit_release_notes(notes)
 
