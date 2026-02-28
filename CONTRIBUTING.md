@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Python 3.11+
-- Make (optional, but recommended)
+- [just](https://github.com/casey/just) (task runner)
 - Git
 
 ## Quick Start
@@ -13,33 +13,35 @@
 git clone https://github.com/RJNY/Obtainium-Emulation-Pack.git
 cd Obtainium-Emulation-Pack
 
-# Make your changes to src/applications.json (or use make add-app)
-make validate          # check for structural errors
-make test              # verify configs resolve to real APKs
-make build             # normalize, regenerate README, build release JSONs
+# Make your changes to src/applications.json (or use just add-app)
+just test              # verify configs resolve to real APKs
+just build             # test, validate, normalize, and generate all output files
 ```
 
 ## Project Structure
 
 ```
+justfile                         # Primary task runner (run `just` to see commands)
+utility.just                     # Private helper recipes (imported by justfile)
 src/
-  applications.json          # Source of truth - all app definitions
+  applications.json              # Source of truth - all app definitions
 scripts/
-  validate-json.py           # Validates applications.json
-  test-apps.py               # Live-tests configs resolve to downloadable APKs
-  add-app.py                 # Interactive CLI to add a new app
-  generate-table.py          # Generates the README table
-  generate-readme.py         # Stitches markdown files into README
-  minify-json.py             # Creates release JSON files
-  normalize-json.py          # Normalize key order and backfill defaults
-  release.py                 # Automated release workflow (tag, push, gh release)
-  constants.py               # Shared constants and Obtainium source schema
-  utils.py                   # Shared utility functions and .env loader
+  constants.py                   # Shared constants and Obtainium source schema
+  utils.py                       # Shared utility functions and .env loader
+  help_formatter.py              # Styled argparse help formatter (ANSI colors)
+  validate-json.py               # Validates applications.json
+  test-apps.py                   # Live-tests configs resolve to downloadable APKs
+  add-app.py                     # Interactive CLI to add a new app
+  generate-table.py              # Generates the README table
+  generate-readme.py             # Stitches markdown files into README
+  minify-json.py                 # Creates release JSON files
+  normalize-json.py              # Normalize key order and backfill defaults
+  release.py                     # Automated release workflow (tag, push, gh release)
 pages/
-  header.md                  # README header/intro
-  table.md                   # Generated - app tables (do not edit)
-  faq.md                     # FAQ section
-  footer.md                  # Short section linking here (stitched into README)
+  header.md                      # README header/intro
+  table.md                       # Generated - app tables (do not edit)
+  faq.md                         # FAQ section
+  footer.md                      # Short section linking here (stitched into README)
 obtainium-emulation-pack-latest.json           # Standard release
 obtainium-emulation-pack-dual-screen-latest.json # Dual-screen release
 ```
@@ -51,7 +53,7 @@ obtainium-emulation-pack-dual-screen-latest.json # Dual-screen release
 Use the interactive CLI to quickly add a new app:
 
 ```bash
-make add-app
+just add-app
 ```
 
 This will:
@@ -64,7 +66,7 @@ This will:
 
 > **Tip:** To find the package ID, open the app in Obtainium - the package ID is displayed directly below the source URL (e.g., `com.example.android`).
 
-After running, execute `make build` to regenerate all files.
+After running, execute `just build` to regenerate all files.
 
 ### Option B: Manual Add (For complex configs or non-GitHub sources)
 
@@ -117,26 +119,27 @@ Add a `meta` object to customize how the app appears:
 #### Step 4: Validate, test, and regenerate
 
 ```bash
-make validate          # check for structural errors
-make test              # verify your app config resolves to a real APK
-make build             # normalize, regenerate README, build release JSONs
+just validate          # check for structural errors
+just test              # verify your app config resolves to a real APK
+just build             # test, validate, normalize, and generate all output files
 ```
 
 ## CI
 
-Pull requests and pushes to `main` are checked by GitHub Actions:
+Pull requests and pushes to `main` are checked by GitHub Actions (single job):
 
-1. **Validate** - runs `make validate` (structural checks, regex syntax, source types)
-2. **Live Test** - runs `make test` (verifies all app configs resolve to real APKs)
-3. **Check Generated Files** - runs `make build` and fails if generated files are out of date
+1. **Validate** - structural checks, regex syntax, source types
+2. **Test** - verifies all app configs resolve to real APKs
+3. **Generate** - normalizes, generates README, builds release JSONs
+4. **Diff check** - fails if generated files are out of date
 
-All three must pass before merging.
+All steps must pass before merging.
 
 ## Pre-Commit Checklist
 
-Before committing, run `make test` and `make build`, then verify:
+Before committing, run `just build`, then verify:
 
-- [ ] `make test` passes (all app configs resolve to downloadable APKs)
+- [ ] `just test` passes (all app configs resolve to downloadable APKs)
 - [ ] `obtainium-emulation-pack-latest.json` has been updated
 - [ ] `obtainium-emulation-pack-dual-screen-latest.json` has been updated
 - [ ] `README.md` has been updated
@@ -144,25 +147,22 @@ Before committing, run `make test` and `make build`, then verify:
 - [ ] The README table links to the correct homepage (use `urlOverride` if not)
 - [ ] Beta apps are excluded with `meta.excludeFromExport: true`
 
-## Available Make Commands
+## Available Commands
 
-| Command                          | Description                                                 |
-| -------------------------------- | ----------------------------------------------------------- |
-| `make help`                      | Show all available commands                                 |
-| `make add-app`                   | Interactive CLI to add a new app                            |
-| `make validate`                  | Validate applications.json (structure, regex, source types) |
-| `make test`                      | Live-test all app configs resolve to downloadable APKs      |
-| `make test-app APP=name`         | Live-test a single app by name (partial match)              |
-| `make test-verbose`              | Live-test all apps with APK URL details                     |
-| `make build`                     | Full pipeline: validate, normalize, readme, both JSONs      |
-| `make normalize`                 | Normalize key order and backfill defaults                   |
-| `make table`                     | Generate the README table only                              |
-| `make readme`                    | Generate README.md from pages                               |
-| `make minify`                    | Generate standard release JSON                              |
-| `make minify-dual-screen`        | Generate dual-screen release JSON                           |
-| `make publish`                   | Tag, push, and create a GitHub release                      |
-| `make publish-dry-run`           | Preview release notes without publishing                    |
-| `make publish-from-file FILE=..` | Publish using a previously edited release notes file        |
+Run `just` to see all available commands. Recipes with `*args` accept `-h` for help.
+
+| Command                 | Description                                                 |
+| ----------------------- | ----------------------------------------------------------- |
+| `just add-app`          | Interactive CLI to add a new app                            |
+| `just validate`         | Validate applications.json (structure, regex, source types) |
+| `just normalize`        | Normalize key order and backfill defaults                   |
+| `just test`             | Live-test all app configs resolve to downloadable APKs      |
+| `just test AppName`     | Live-test a single app by name (partial match)              |
+| `just test --verbose`   | Live-test all apps with APK URL details                     |
+| `just generate`         | Generate all output files (README, release JSONs)           |
+| `just generate table`   | Generate the README table only                              |
+| `just build`            | Test, validate, normalize, and generate all output files    |
+| `just release`          | Tag, push, and create a GitHub release                      |
 
 ## Meta Field Reference
 

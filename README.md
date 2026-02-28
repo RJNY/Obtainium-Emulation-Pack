@@ -169,7 +169,7 @@ Quick version:
 git clone https://github.com/RJNY/Obtainium-Emulation-Pack.git
 cd Obtainium-Emulation-Pack
 
-# Add or edit apps in src/applications.json (or use make add-app)
-make test      # verify configs resolve to real APKs
-make build     # validate, regenerate README, and build release JSONs
+# Add or edit apps in src/applications.json (or use just add-app)
+just test      # verify configs resolve to real APKs
+just build     # test, validate, normalize, and generate all output files
 ```
