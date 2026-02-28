@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
 """Live validation that app configs can resolve to downloadable APKs.
 
-Usage:
-    python scripts/test-apps.py src/applications.json
-    python scripts/test-apps.py src/applications.json Dolphin
-    python scripts/test-apps.py src/applications.json --id org.dolphinemu.dolphinemu
-
 Set GITHUB_TOKEN in .env or environment to avoid API rate limits.
 """
 
+import argparse
 import json
 import os
 import re
 import ssl
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from html.parser import HTMLParser
 from typing import Any
 from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
 
+from help_formatter import StyledHelpFormatter
 from utils import load_dotenv
 
 USER_AGENT = (
@@ -560,39 +558,49 @@ def print_result(
 def main() -> int:
     load_dotenv()
 
-    if len(sys.argv) < 2:
-        print("Usage: python test-apps.py <json_file> [name_filter] [--id <app_id>] [--verbose] [--apks]")
-        print()
-        print("Examples:")
-        print("  python test-apps.py src/applications.json              # test all apps")
-        print("  python test-apps.py src/applications.json Dolphin      # filter by name")
-        print("  python test-apps.py src/applications.json --id org.dolphinemu.dolphinemu")
-        print("  python test-apps.py src/applications.json --verbose    # show APK URLs")
-        print("  python test-apps.py src/applications.json --apks       # show numbered APK list")
-        return 1
+    parser = argparse.ArgumentParser(
+        description="Live-test app configs resolve to downloadable APKs.",
+        formatter_class=StyledHelpFormatter,
+    )
+    parser.add_argument(
+        "name",
+        nargs="?",
+        help="Filter by app name (case-insensitive substring match)",
+    )
+    parser.add_argument(
+        "-f", "--file",
+        default="src/applications.json",
+        help="Path to applications.json (default: src/applications.json)",
+    )
+    parser.add_argument(
+        "--id",
+        dest="id_filter",
+        help="Filter by exact app ID",
+    )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Show APK download URLs",
+    )
+    parser.add_argument(
+        "--apks",
+        action="store_true",
+        help="Show numbered APK list with preferredApkIndex marker",
+    )
+    parser.add_argument(
+        "-j", "--jobs",
+        type=int,
+        default=8,
+        help="Number of parallel workers (default: 8, use 1 for serial)",
+    )
+    args = parser.parse_args()
 
-    json_file = sys.argv[1]
-    args = sys.argv[2:]
-
-    verbose = "--verbose" in args
-    if verbose:
-        args.remove("--verbose")
-
-    show_apks = "--apks" in args
-    if show_apks:
-        args.remove("--apks")
-
-    id_filter = None
-    if "--id" in args:
-        idx = args.index("--id")
-        if idx + 1 < len(args):
-            id_filter = args[idx + 1]
-            args = args[:idx] + args[idx + 2:]
-        else:
-            print("Error: --id requires an argument")
-            return 1
-
-    name_filter = " ".join(args).lower() if args else None
+    json_file = args.file
+    name_filter = args.name.lower() if args.name else None
+    id_filter = args.id_filter
+    verbose = args.verbose
+    show_apks = args.apks
+    workers = max(args.jobs, 1)
 
     try:
         with open(json_file, "r", encoding="utf-8") as f:
@@ -620,22 +628,39 @@ def main() -> int:
             "  Set it with: export GITHUB_TOKEN=<your_token>\n"
         )
 
-    print(f"Testing {len(apps)} app(s)...\n")
+    serial = workers == 1 or len(apps) == 1
+    mode = "serial" if serial else f"{workers} workers"
+    print(f"Testing {len(apps)} app(s) ({mode})...\n")
 
-    results = []
-    for app in apps:
-        result = test_app(app)
-        results.append(result)
-        print_result(result, verbose=verbose, show_apks=show_apks)
+    wall_start = time.monotonic()
 
+    if serial:
+        results = []
+        for app in apps:
+            result = test_app(app)
+            results.append(result)
+            print_result(result, verbose=verbose, show_apks=show_apks)
+    else:
+        result_map: dict[str, TestResult] = {}
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = {pool.submit(test_app, app): app for app in apps}
+            for future in as_completed(futures):
+                result = future.result()
+                result_map[result.app_id] = result
+        # Print in original order
+        results = [result_map[app["id"]] for app in apps]
+        for result in results:
+            print_result(result, verbose=verbose, show_apks=show_apks)
+
+    wall_ms = int((time.monotonic() - wall_start) * 1000)
     passed = sum(1 for r in results if r.passed)
     failed = sum(1 for r in results if not r.passed)
     warned = sum(1 for r in results if r.warnings)
-    total_time = sum(r.duration_ms for r in results)
+    sum_time = sum(r.duration_ms for r in results)
 
     print(f"\n{'=' * 60}")
     print(f"Results: {passed} passed, {failed} failed, {warned} with warnings")
-    print(f"Time: {total_time / 1000:.1f}s total")
+    print(f"Time: {wall_ms / 1000:.1f}s wall, {sum_time / 1000:.1f}s cumulative")
 
     if failed > 0:
         print(f"\nFailed apps:")

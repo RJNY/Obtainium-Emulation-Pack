@@ -31,6 +31,7 @@ from pathlib import Path
 from typing import Any
 
 from constants import GITHUB_NOREPLY_SUFFIX
+from help_formatter import StyledHelpFormatter
 from utils import get_application_url, get_display_name, load_dotenv, make_obtainium_link, should_include_app
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -434,7 +435,8 @@ def get_app_count(json_path: Path) -> int:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Create a GitHub release for Obtainium Emulation Pack"
+        description="Create a GitHub release for Obtainium Emulation Pack",
+        formatter_class=StyledHelpFormatter,
     )
     parser.add_argument(
         "--version", "-v",
@@ -449,7 +451,7 @@ def main() -> None:
         help="Path to a file containing release notes. Skips generation and editor.",
     )
     parser.add_argument(
-        "--dry-run",
+        "--dry-run", "--dryrun",
         action="store_true",
         help="Show what would happen without making changes.",
     )
