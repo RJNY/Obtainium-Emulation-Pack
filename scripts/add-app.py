@@ -193,7 +193,7 @@ def generate_app_entry(
         "author": author,
         "name": name,
         "preferredApkIndex": 0,
-        "additionalSettings": json.dumps(settings, separators=(",", ":")),
+        "additionalSettings": settings,
         "categories": categories,
         "allowIdChange": allow_id_change,
         "overrideSource": source,

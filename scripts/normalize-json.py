@@ -3,6 +3,7 @@
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 from constants import SRC_FILE
 
@@ -20,10 +21,70 @@ KEY_ORDER = [
     "meta",
 ]
 
+# Canonical key order for additionalSettings - source-specific keys first,
+# then common keys, grouped logically. Matches DEFAULT_ADDITIONAL_SETTINGS
+# in add-app.py with source-specific keys prepended.
+SETTINGS_KEY_ORDER = [
+    # GitHub/Codeberg source-specific
+    "includePrereleases",
+    "fallbackToOlderReleases",
+    "filterReleaseTitlesByRegEx",
+    "filterReleaseNotesByRegEx",
+    "verifyLatestTag",
+    "sortMethodChoice",
+    "useLatestAssetDateAsReleaseDate",
+    "releaseTitleAsVersion",
+    "github-creds",
+    "GHReqPrefix",
+    # HTML source-specific
+    "intermediateLink",
+    "customLinkFilterRegex",
+    "filterByLinkText",
+    "matchLinksOutsideATags",
+    "skipSort",
+    "reverseSort",
+    "sortByLastLinkSegment",
+    "versionExtractWholePage",
+    "requestHeader",
+    "defaultPseudoVersioningMethod",
+    # Common keys
+    "trackOnly",
+    "versionExtractionRegEx",
+    "matchGroupToUse",
+    "versionDetection",
+    "releaseDateAsVersion",
+    "useVersionCodeAsOSVersion",
+    "apkFilterRegEx",
+    "invertAPKFilter",
+    "autoApkFilterByArch",
+    "appName",
+    "appAuthor",
+    "shizukuPretendToBeGooglePlay",
+    "allowInsecure",
+    "exemptFromBackgroundUpdates",
+    "skipUpdateNotifications",
+    "about",
+    "refreshBeforeDownload",
+    "includeZips",
+    "zippedApkFilterRegEx",
+]
+
 # Fields to backfill with defaults when missing
 DEFAULTS: dict[str, object] = {
     "allowIdChange": False,
 }
+
+
+def _order_dict(d: dict[str, Any], key_order: list[str]) -> dict[str, Any]:
+    ordered: dict[str, Any] = {}
+    for key in key_order:
+        if key in d:
+            ordered[key] = d[key]
+    # Preserve any unexpected keys at the end (safety net)
+    for key in d:
+        if key not in ordered:
+            ordered[key] = d[key]
+    return ordered
 
 
 def normalize_app(app: dict) -> dict:
@@ -31,17 +92,12 @@ def normalize_app(app: dict) -> dict:
         if key not in app:
             app[key] = default
 
-    ordered: dict[str, object] = {}
-    for key in KEY_ORDER:
-        if key in app:
-            ordered[key] = app[key]
+    # Normalize additionalSettings key order if it's a dict
+    settings = app.get("additionalSettings")
+    if isinstance(settings, dict):
+        app["additionalSettings"] = _order_dict(settings, SETTINGS_KEY_ORDER)
 
-    # Preserve any unexpected keys at the end (safety net)
-    for key in app:
-        if key not in ordered:
-            ordered[key] = app[key]
-
-    return ordered
+    return _order_dict(app, KEY_ORDER)
 
 
 def normalize(input_path: str) -> int:

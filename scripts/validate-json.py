@@ -15,7 +15,7 @@ from constants import (
     VALID_SOURCES,
     VARIANTS,
 )
-from utils import should_include_app
+from utils import get_additional_settings, should_include_app
 
 REQUIRED_FIELDS = {"id", "url", "author", "name"}
 
@@ -155,14 +155,10 @@ def _validate_additional_settings(
     if raw is None:
         return errors, warnings
 
-    if not isinstance(raw, str):
-        errors.append(f"{app_name}: 'additionalSettings' should be a JSON string")
-        return errors, warnings
-
     try:
-        settings = json.loads(raw)
-    except json.JSONDecodeError as e:
-        errors.append(f"{app_name}: 'additionalSettings' contains invalid JSON: {e}")
+        settings = get_additional_settings(app)
+    except (json.JSONDecodeError, TypeError) as e:
+        errors.append(f"{app_name}: 'additionalSettings' is invalid: {e}")
         return errors, warnings
 
     if not isinstance(settings, dict):
