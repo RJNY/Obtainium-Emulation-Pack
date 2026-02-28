@@ -123,6 +123,21 @@ def _apply_apk_filter(urls: list[str], settings: dict[str, Any]) -> list[str]:
     return [u for u in urls if pattern.search(u)]
 
 
+def _replace_match_groups(match: re.Match, group_string: str) -> str | None:
+    """Replicate Obtainium's replaceMatchGroupsInString behavior."""
+    if re.fullmatch(r"\d+", group_string):
+        group_string = f"${group_string}"
+    tokens = list(re.finditer(r"\$(\d+)", group_string))
+    if not tokens:
+        return None
+    result = group_string
+    for token in tokens:
+        group_num = int(token.group(1))
+        replacement = match.group(group_num) or ""
+        result = result.replace(token.group(0), replacement)
+    return result
+
+
 def _extract_version(raw_version: str, settings: dict[str, Any]) -> tuple[str, str | None]:
     """Apply versionExtractionRegEx. Returns (version, warning_or_none)."""
     regex_str = settings.get("versionExtractionRegEx", "")
@@ -133,9 +148,10 @@ def _extract_version(raw_version: str, settings: dict[str, Any]) -> tuple[str, s
         if match:
             group_to_use = settings.get("matchGroupToUse", "")
             if group_to_use:
-                return match.expand(group_to_use), None
-            elif match.groups():
-                return match.group(1), None
+                version = _replace_match_groups(match, group_to_use)
+                if version:
+                    return version, None
+                return raw_version, "matchGroupToUse produced no result"
             return match.group(0), None
     except re.error as e:
         return raw_version, f"versionExtractionRegEx error: {e}"
