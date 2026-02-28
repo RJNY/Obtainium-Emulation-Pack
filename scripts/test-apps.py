@@ -18,7 +18,7 @@ from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
 
 from help_formatter import StyledHelpFormatter
-from utils import get_additional_settings, load_dotenv
+from utils import get_additional_settings, hydrate_settings, load_dotenv
 
 USER_AGENT = (
     "Mozilla/5.0 (Linux; Android 10; K) "
@@ -496,7 +496,8 @@ def test_app(app: dict[str, Any]) -> TestResult:
     source = _effective_source(app)
 
     try:
-        settings = get_additional_settings(app)
+        sparse = get_additional_settings(app)
+        settings = hydrate_settings(sparse, source)
     except (json.JSONDecodeError, TypeError):
         result = TestResult(app.get("name", "?"), app.get("id", "?"), source, app.get("url", "?"))
         result.error = "Cannot parse additionalSettings"

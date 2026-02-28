@@ -9,35 +9,6 @@ from urllib.parse import urlparse
 
 from utils import load_dotenv
 
-# Default Obtainium settings for GitHub apps
-DEFAULT_ADDITIONAL_SETTINGS = {
-    "includePrereleases": False,
-    "fallbackToOlderReleases": True,
-    "filterReleaseTitlesByRegEx": "",
-    "filterReleaseNotesByRegEx": "",
-    "verifyLatestTag": False,
-    "sortMethodChoice": "date",
-    "useLatestAssetDateAsReleaseDate": False,
-    "releaseTitleAsVersion": False,
-    "trackOnly": False,
-    "versionExtractionRegEx": "",
-    "matchGroupToUse": "",
-    "versionDetection": True,
-    "releaseDateAsVersion": False,
-    "useVersionCodeAsOSVersion": False,
-    "apkFilterRegEx": "",
-    "invertAPKFilter": False,
-    "autoApkFilterByArch": True,
-    "appName": "",
-    "appAuthor": "",
-    "shizukuPretendToBeGooglePlay": False,
-    "allowInsecure": False,
-    "exemptFromBackgroundUpdates": False,
-    "skipUpdateNotifications": False,
-    "about": "",
-    "refreshBeforeDownload": False,
-}
-
 CATEGORIES = [
     "Emulator",
     "Frontend",
@@ -177,7 +148,7 @@ def generate_app_entry(
     app_name_override: str | None = None,
     url_override: str | None = None,
 ) -> dict:
-    settings = DEFAULT_ADDITIONAL_SETTINGS.copy()
+    settings: dict[str, object] = {}
     if "Track Only" in categories:
         settings["trackOnly"] = True
     if include_prereleases:
@@ -357,7 +328,7 @@ def main() -> int:
         print()
 
     print("Next steps:")
-    print("  1. Run 'make build' to regenerate all files")
+    print("  1. Run 'just build' to regenerate all files")
     print("  2. Review the diff before committing")
 
     return 0

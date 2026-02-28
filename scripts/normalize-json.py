@@ -5,9 +5,9 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from constants import SRC_FILE
+from constants import SETTINGS_SCHEMA, SRC_FILE
 
-# Canonical key order - matches the output of generate_app_entry() in add-app.py
+# Canonical top-level key order for each app entry
 KEY_ORDER = [
     "id",
     "url",
@@ -21,58 +21,13 @@ KEY_ORDER = [
     "meta",
 ]
 
-# Canonical key order for additionalSettings - source-specific keys first,
-# then common keys, grouped logically. Matches DEFAULT_ADDITIONAL_SETTINGS
-# in add-app.py with source-specific keys prepended.
-SETTINGS_KEY_ORDER = [
-    # GitHub/Codeberg source-specific
-    "includePrereleases",
-    "fallbackToOlderReleases",
-    "filterReleaseTitlesByRegEx",
-    "filterReleaseNotesByRegEx",
-    "verifyLatestTag",
-    "sortMethodChoice",
-    "useLatestAssetDateAsReleaseDate",
-    "releaseTitleAsVersion",
-    "github-creds",
-    "GHReqPrefix",
-    # HTML source-specific
-    "intermediateLink",
-    "customLinkFilterRegex",
-    "filterByLinkText",
-    "matchLinksOutsideATags",
-    "skipSort",
-    "reverseSort",
-    "sortByLastLinkSegment",
-    "versionExtractWholePage",
-    "requestHeader",
-    "defaultPseudoVersioningMethod",
-    # Common keys
-    "trackOnly",
-    "versionExtractionRegEx",
-    "matchGroupToUse",
-    "versionDetection",
-    "releaseDateAsVersion",
-    "useVersionCodeAsOSVersion",
-    "apkFilterRegEx",
-    "invertAPKFilter",
-    "autoApkFilterByArch",
-    "appName",
-    "appAuthor",
-    "shizukuPretendToBeGooglePlay",
-    "allowInsecure",
-    "exemptFromBackgroundUpdates",
-    "skipUpdateNotifications",
-    "about",
-    "refreshBeforeDownload",
-    "includeZips",
-    "zippedApkFilterRegEx",
-]
-
 # Fields to backfill with defaults when missing
 DEFAULTS: dict[str, object] = {
     "allowIdChange": False,
 }
+
+# Settings key order derived from SETTINGS_SCHEMA insertion order
+_SETTINGS_KEY_ORDER = list(SETTINGS_SCHEMA.keys())
 
 
 def _order_dict(d: dict[str, Any], key_order: list[str]) -> dict[str, Any]:
@@ -92,10 +47,9 @@ def normalize_app(app: dict) -> dict:
         if key not in app:
             app[key] = default
 
-    # Normalize additionalSettings key order if it's a dict
     settings = app.get("additionalSettings")
     if isinstance(settings, dict):
-        app["additionalSettings"] = _order_dict(settings, SETTINGS_KEY_ORDER)
+        app["additionalSettings"] = _order_dict(settings, _SETTINGS_KEY_ORDER)
 
     return _order_dict(app, KEY_ORDER)
 

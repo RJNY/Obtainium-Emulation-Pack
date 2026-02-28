@@ -32,7 +32,7 @@ from typing import Any
 
 from constants import GITHUB_NOREPLY_SUFFIX
 from help_formatter import StyledHelpFormatter
-from utils import get_application_url, get_display_name, load_dotenv, make_obtainium_link, should_include_app
+from utils import get_additional_settings, get_application_url, get_display_name, load_dotenv, make_obtainium_link, should_include_app
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -171,14 +171,7 @@ def load_apps_from_file() -> dict[str, dict[str, Any]]:
 def normalize_app_for_comparison(app: dict[str, Any]) -> dict[str, Any]:
     """Parse additionalSettings and strip meta so formatting-only changes are ignored."""
     normalized = {k: v for k, v in app.items() if k != "meta"}
-
-    settings = normalized.get("additionalSettings")
-    if isinstance(settings, str):
-        try:
-            normalized["additionalSettings"] = json.loads(settings)
-        except json.JSONDecodeError:
-            pass
-
+    normalized["additionalSettings"] = get_additional_settings(normalized)
     return normalized
 
 

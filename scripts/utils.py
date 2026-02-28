@@ -1,12 +1,13 @@
 """Shared utility functions for Obtainium Emulation Pack scripts."""
 
+import copy
 import json
 import os
 import urllib.parse
 from pathlib import Path
 from typing import Any
 
-from constants import OBTAINIUM_SCHEME, REDIRECT_URL
+from constants import OBTAINIUM_SCHEME, REDIRECT_URL, SETTINGS_SCHEMA
 
 
 def load_dotenv() -> None:
@@ -56,15 +57,37 @@ def get_additional_settings(app: dict[str, Any]) -> dict[str, Any]:
     return {}
 
 
-def stringify_additional_settings(app: dict[str, Any]) -> str:
-    """Return additionalSettings as a compact JSON string for Obtainium consumption."""
-    raw = app.get("additionalSettings", {})
-    if isinstance(raw, str):
-        return raw
-    return json.dumps(raw, separators=(",", ":"))
+def get_defaults_for_source(source: str | None) -> dict[str, Any]:
+    """Return the full default settings dict for a given source type."""
+    defaults: dict[str, Any] = {}
+    for key, defn in SETTINGS_SCHEMA.items():
+        if source is None or source in defn.sources:
+            defaults[key] = copy.deepcopy(defn.default)
+    return defaults
+
+
+def hydrate_settings(sparse: dict[str, Any], source: str | None) -> dict[str, Any]:
+    """Merge sparse settings with schema defaults to produce a full settings dict.
+
+    Keys are ordered according to SETTINGS_SCHEMA insertion order.
+    """
+    defaults = get_defaults_for_source(source)
+    defaults.update(sparse)
+    return defaults
+
+
+def stringify_additional_settings(
+    settings: dict[str, Any],
+    source: str | None = None,
+) -> str:
+    """Hydrate and stringify settings for Obtainium consumption."""
+    hydrated = hydrate_settings(settings, source)
+    return json.dumps(hydrated, separators=(",", ":"))
 
 
 def make_obtainium_link(app: dict[str, Any]) -> str:
+    settings = get_additional_settings(app)
+    source = app.get("overrideSource")
     payload = {
         "id": app["id"],
         "url": app["url"],
@@ -73,7 +96,7 @@ def make_obtainium_link(app: dict[str, Any]) -> str:
         "otherAssetUrls": app.get("otherAssetUrls"),
         "apkUrls": app.get("apkUrls"),
         "preferredApkIndex": app.get("preferredApkIndex"),
-        "additionalSettings": stringify_additional_settings(app),
+        "additionalSettings": stringify_additional_settings(settings, source),
         "categories": app.get("categories"),
         "overrideSource": app.get("overrideSource"),
         "allowIdChange": app.get("allowIdChange"),

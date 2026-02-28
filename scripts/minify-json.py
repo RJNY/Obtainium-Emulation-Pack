@@ -5,7 +5,7 @@ import json
 import sys
 from typing import Any
 
-from utils import should_include_app, stringify_additional_settings
+from utils import get_additional_settings, should_include_app, stringify_additional_settings
 
 
 def minify_json(input_file: str, output_file: str, variant: str = "standard") -> None:
@@ -19,7 +19,9 @@ def minify_json(input_file: str, output_file: str, variant: str = "standard") ->
                 if should_include_app(app, variant):
                     app_copy = app.copy()
                     app_copy.pop("meta", None)
-                    app_copy["additionalSettings"] = stringify_additional_settings(app_copy)
+                    settings = get_additional_settings(app_copy)
+                    source = app_copy.get("overrideSource")
+                    app_copy["additionalSettings"] = stringify_additional_settings(settings, source)
                     filtered_apps.append(app_copy)
             data["apps"] = filtered_apps
 
