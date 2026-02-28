@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 
 from constants import (
     COMMON_SETTINGS_KEYS,
+    DEPRECATED_SETTINGS_KEYS,
     REGEX_SETTINGS_KEYS,
     SOURCE_HOST_MAP,
     SOURCE_SPECIFIC_KEYS,
@@ -57,7 +58,7 @@ def _detect_source_from_url(url: str) -> str | None:
 
 
 def _valid_keys_for_source(source: str | None) -> set[str]:
-    valid = set(COMMON_SETTINGS_KEYS)
+    valid = set(COMMON_SETTINGS_KEYS) | set(DEPRECATED_SETTINGS_KEYS)
     if source and source in SOURCE_SPECIFIC_KEYS:
         valid |= SOURCE_SPECIFIC_KEYS[source]
     return valid
@@ -183,6 +184,13 @@ def _validate_additional_settings(
                 err = _check_regex(regex_val, f"intermediateLink[{i}].customLinkFilterRegex", app_name)
                 if err:
                     errors.append(err)
+
+    # Warn on deprecated keys
+    for key, replacement in DEPRECATED_SETTINGS_KEYS.items():
+        if key in settings:
+            warnings.append(
+                f"{app_name}: deprecated key '{key}', use '{replacement}' instead"
+            )
 
     # Check for source-inappropriate keys
     url = app.get("url", "")

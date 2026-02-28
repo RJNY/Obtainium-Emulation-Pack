@@ -14,6 +14,7 @@ GITHUB_NOREPLY_SUFFIX = "@users.noreply.github.com"
 # ---------------------------------------------------------------------------
 # Obtainium source types and settings schema
 # Derived from Obtainium source code: lib/app_sources/*.dart
+# Reference: ~/code/Obtainium
 # ---------------------------------------------------------------------------
 
 # Valid overrideSource values (runtime type names from Obtainium)
@@ -104,11 +105,12 @@ SOURCE_SPECIFIC_KEYS: dict[str, set[str]] = {
         "sortMethodChoice",
         "useLatestAssetDateAsReleaseDate",
         "releaseTitleAsVersion",
-        "dontSortReleasesList",
         "github-creds",
+        "GHReqPrefix",
     },
     "GitLab": {
         "fallbackToOlderReleases",
+        "gitlab-creds",
     },
     "Codeberg": {
         # Inherits GitHub's settings
@@ -120,9 +122,14 @@ SOURCE_SPECIFIC_KEYS: dict[str, set[str]] = {
         "sortMethodChoice",
         "useLatestAssetDateAsReleaseDate",
         "releaseTitleAsVersion",
-        "dontSortReleasesList",
     },
     "FDroid": {
+        "filterVersionsByRegEx",
+        "trySelectingSuggestedVersionCode",
+        "autoSelectHighestVersionCode",
+    },
+    "IzzyOnDroid": {
+        # Inherits FDroid's settings
         "filterVersionsByRegEx",
         "trySelectingSuggestedVersionCode",
         "autoSelectHighestVersionCode",
@@ -131,6 +138,21 @@ SOURCE_SPECIFIC_KEYS: dict[str, set[str]] = {
         "appIdOrName",
         "pickHighestVersionCode",
         "trySelectingSuggestedVersionCode",
+    },
+    "SourceHut": {
+        "fallbackToOlderReleases",
+    },
+    "APKPure": {
+        "fallbackToOlderReleases",
+        "stayOneVersionBehind",
+        "useFirstApkOfVersion",
+    },
+    "APKMirror": {
+        "fallbackToOlderReleases",
+        "filterReleaseTitlesByRegEx",
+    },
+    "Farsroid": {
+        "useFirstApkOfVersion",
     },
     "HTML": {
         "intermediateLink",
@@ -143,19 +165,21 @@ SOURCE_SPECIFIC_KEYS: dict[str, set[str]] = {
         "versionExtractWholePage",
         "requestHeader",
         "defaultPseudoVersioningMethod",
-        "supportFixedAPKURL",
-        "sortByFileNamesNotLinks",
     },
     "DirectAPKLink": {
-        "intermediateLink",
-        "customLinkFilterRegex",
-        "filterByLinkText",
-        "skipSort",
-        "reverseSort",
-        "sortByLastLinkSegment",
         "requestHeader",
         "defaultPseudoVersioningMethod",
     },
+}
+
+# Deprecated keys still accepted for backward compatibility.
+# Obtainium auto-migrates these on load (see appJSONCompatibilityModifiers
+# in lib/providers/source_provider.dart). New configs should use the
+# replacement key instead.
+DEPRECATED_SETTINGS_KEYS: dict[str, str] = {
+    "dontSortReleasesList": "sortMethodChoice",
+    "supportFixedAPKURL": "defaultPseudoVersioningMethod",
+    "sortByFileNamesNotLinks": "sortByLastLinkSegment",
 }
 
 # Settings keys that contain regex patterns (should be validated)
