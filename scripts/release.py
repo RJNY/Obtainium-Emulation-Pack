@@ -1,6 +1,6 @@
 """Create a GitHub release with tagged JSON artifacts.
 
-Expects `make build` to have already been run. This script only handles
+Expects `just build` to have already been run. This script only handles
 the publish side: tagging, pushing, and creating the GitHub release.
 
 Workflow:
@@ -12,8 +12,8 @@ Workflow:
   6. Create git tag, push, and create GitHub release
 
 Usage:
-  make build            # build artifacts first
-  make publish          # then publish
+  just build            # build artifacts first
+  just release          # then publish
 
 Requires: gh (GitHub CLI), git, python3
 """
@@ -40,6 +40,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 STANDARD_JSON = REPO_ROOT / "obtainium-emulation-pack-latest.json"
 DUAL_SCREEN_JSON = REPO_ROOT / "obtainium-emulation-pack-dual-screen-latest.json"
 APPLICATIONS_JSON = REPO_ROOT / "src" / "applications.json"
+
+RELEASES_URL = "https://github.com/RJNY/Obtainium-Emulation-Pack/releases/tag"
 
 SEMVER_PATTERN = re.compile(r"^v?(\d+)\.(\d+)\.(\d+)$")
 
@@ -204,13 +206,27 @@ def diff_apps(
 
 # Table rendering for release notes
 
+def _make_ref_key(app: dict[str, Any]) -> str:
+    return get_display_name(app).lower().replace(" ", "-").replace("!", "").replace("(", "").replace(")", "")
+
+
 def make_app_table_row(app: dict[str, Any], change: str) -> str:
-    display_name = f'<a href="{get_application_url(app)}">{get_display_name(app)}</a>'
-    obtainium_link = make_obtainium_link(app)
-    badge = f'<a href="{obtainium_link}">Add to Obtainium!</a>' if change != "Removed" else "-"
+    name = get_display_name(app)
+    ref_key = _make_ref_key(app)
+    app_link = f"[{name}]({get_application_url(app)})"
+    if change == "Removed":
+        install = "-"
+    else:
+        install = f"[Add to Obtainium!][{ref_key}]"
     std = "✅" if should_include_app(app, "standard") else "❌"
     ds = "✅" if should_include_app(app, "dual-screen") else "❌"
-    return f"| {display_name} | {badge} | {change} | {std} | {ds} |"
+    return f"| {app_link} | {install} | {change} | {std} | {ds} |"
+
+
+def make_app_reference_link(app: dict[str, Any]) -> str:
+    ref_key = _make_ref_key(app)
+    obtainium_link = make_obtainium_link(app)
+    return f"[{ref_key}]: {obtainium_link}"
 
 
 CHANGES_TABLE_HEADER = (
@@ -223,6 +239,7 @@ def generate_changes_table(
     added: list[dict[str, Any]],
     changed: list[dict[str, Any]],
     removed: list[dict[str, Any]],
+    version: str,
 ) -> str:
     rows: list[tuple[str, dict[str, Any]]] = []
     for app in added:
@@ -240,6 +257,15 @@ def generate_changes_table(
     lines = [CHANGES_TABLE_HEADER]
     for change, app in rows:
         lines.append(make_app_table_row(app, change))
+
+    lines.append("")
+    lines.append("Links appear broken? [click here][release]")
+    lines.append("")
+    lines.append(f"[release]: {RELEASES_URL}/{version}")
+    for change, app in rows:
+        if change != "Removed":
+            lines.append(make_app_reference_link(app))
+
     return "\n".join(lines)
 
 
@@ -303,6 +329,7 @@ def generate_release_notes(
     added: list[dict[str, Any]],
     changed: list[dict[str, Any]],
     removed: list[dict[str, Any]],
+    version: str,
 ) -> str:
     lines: list[str] = []
 
@@ -327,7 +354,7 @@ def generate_release_notes(
 
     if added or changed or removed:
         lines.append("## App Changes\n")
-        lines.append(generate_changes_table(added, changed, removed))
+        lines.append(generate_changes_table(added, changed, removed, version))
         lines.append("")
 
     return "\n".join(lines)
@@ -437,6 +464,10 @@ def main() -> None:
         help="Path to a file containing release notes. Skips generation and editor.",
     )
     parser.add_argument(
+        "--since", "-s",
+        help="Override base tag for diff (e.g. v7.5.0). Defaults to latest tag.",
+    )
+    parser.add_argument(
         "--dry-run", "--dryrun",
         action="store_true",
         help="Show what would happen without making changes.",
@@ -449,7 +480,7 @@ def main() -> None:
     print("Fetching tags from remote...")
     run(["git", "fetch", "--tags"])
 
-    latest = get_latest_tag()
+    latest = args.since or get_latest_tag()
 
     # Determine version
     if args.version:
@@ -463,10 +494,11 @@ def main() -> None:
         version = prompt_version(latest)
 
     # Check if tag already exists
-    result = run(["git", "tag", "-l", version], capture=True)
-    if version in result.stdout.strip().splitlines():
-        print(f"Error: Tag {version} already exists.")
-        sys.exit(1)
+    if not args.dry_run:
+        result = run(["git", "tag", "-l", version], capture=True)
+        if version in result.stdout.strip().splitlines():
+            print(f"Error: Tag {version} already exists.")
+            sys.exit(1)
 
     # Detect changed apps
     print("\nDetecting app changes...")
@@ -485,7 +517,7 @@ def main() -> None:
         notes = args.notes
     else:
         # Auto-generate and open in editor
-        notes = generate_release_notes(latest, added, changed, removed)
+        notes = generate_release_notes(latest, added, changed, removed, version)
 
         if args.dry_run:
             tmp_dir = REPO_ROOT / "tmp"
@@ -523,7 +555,7 @@ def main() -> None:
     for f in (STANDARD_JSON, DUAL_SCREEN_JSON):
         if not f.exists():
             print(f"Error: Expected artifact not found: {f}")
-            print("Did you run `make build` first?")
+            print("Did you run `just build` first?")
             sys.exit(1)
 
     # Show summary before proceeding
@@ -546,7 +578,7 @@ def main() -> None:
         print("Aborted.")
         sys.exit(0)
 
-    # Commit any uncommitted changes (e.g. from `make build`)
+    # Commit any uncommitted changes (e.g. from `just build`)
     if not check_working_tree_clean():
         print()
         print("Working tree has changes. Committing...")
@@ -563,7 +595,7 @@ def main() -> None:
 
         print()
         print(f"Release {version} created successfully!")
-        print(f"https://github.com/RJNY/Obtainium-Emulation-Pack/releases/tag/{version}")
+        print(f"{RELEASES_URL}/{version}")
     finally:
         cleanup(versioned_copies)
 
