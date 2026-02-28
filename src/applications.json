@@ -198,6 +198,22 @@
       }
     },
     {
+      "id": "com.virtualapplications.play",
+      "url": "https://purei.org/downloads/play/stable/",
+      "author": "jpd002",
+      "name": "Play!",
+      "preferredApkIndex": 0,
+      "additionalSettings": "{\"intermediateLink\":[{\"customLinkFilterRegex\":\"/stable/\\\\d+\\\\.\\\\d+/\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false}],\"customLinkFilterRegex\":\"Play-release\\\\.apk\",\"filterByLinkText\":false,\"skipSort\":false,\"reverseSort\":false,\"sortByLastLinkSegment\":false,\"versionExtractWholePage\":false,\"requestHeader\":[],\"defaultPseudoVersioningMethod\":\"\",\"trackOnly\":false,\"versionExtractionRegEx\":\"/(\\\\d+\\\\.\\\\d+)/\",\"matchGroupToUse\":\"\",\"versionDetection\":true,\"useVersionCodeAsOSVersion\":false,\"apkFilterRegEx\":\"\",\"invertAPKFilter\":false,\"autoApkFilterByArch\":true,\"appName\":\"\",\"exemptFromBackgroundUpdates\":false,\"skipUpdateNotifications\":false,\"about\":\"\",\"supportFixedAPKURL\":false}",
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "HTML",
+      "meta": {
+        "urlOverride": "https://purei.org"
+      }
+    },
+    {
       "id": "org.ppsspp.ppsspp",
       "url": "https://www.ppsspp.org/download",
       "author": "www.ppsspp.org",
