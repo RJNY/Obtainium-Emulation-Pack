@@ -149,6 +149,11 @@ def prompt_version(latest: str | None) -> str:
             print("Invalid choice. Enter 1, 2, 3, or 4.")
 
 
+def _app_key(app: dict[str, Any]) -> str:
+    """Compound key to distinguish apps that share an Android package ID (e.g. variant forks)."""
+    return f"{app['id']}::{app['url']}"
+
+
 def load_apps_from_ref(ref: str) -> dict[str, dict[str, Any]]:
     result = run(
         ["git", "show", f"{ref}:src/applications.json"],
@@ -159,13 +164,13 @@ def load_apps_from_ref(ref: str) -> dict[str, dict[str, Any]]:
         return {}
 
     data = json.loads(result.stdout)
-    return {app["id"]: app for app in data.get("apps", [])}
+    return {_app_key(app): app for app in data.get("apps", [])}
 
 
 def load_apps_from_file() -> dict[str, dict[str, Any]]:
     with open(APPLICATIONS_JSON, "r", encoding="utf-8") as f:
         data = json.load(f)
-    return {app["id"]: app for app in data.get("apps", [])}
+    return {_app_key(app): app for app in data.get("apps", [])}
 
 
 def normalize_app_for_comparison(app: dict[str, Any]) -> dict[str, Any]:
