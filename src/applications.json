@@ -916,10 +916,7 @@
         "Frontend"
       ],
       "allowIdChange": false,
-      "overrideSource": "GitHub",
-      "meta": {
-        "urlOverride": "https://github.com/rommapp/romm"
-      }
+      "overrideSource": "GitHub"
     },
     {
       "id": "com.moonbench.bifrost",
