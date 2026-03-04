@@ -698,13 +698,12 @@ def main() -> int:
             if not json_output:
                 print_result(result, verbose=verbose, show_apks=show_apks)
     else:
-        result_map: dict[str, TestResult] = {}
+        result_map: dict[int, TestResult] = {}
         with ThreadPoolExecutor(max_workers=workers) as pool:
-            futures = {pool.submit(test_app, app): app for app in apps}
+            futures = {pool.submit(test_app, app): i for i, app in enumerate(apps)}
             for future in as_completed(futures):
-                result = future.result()
-                result_map[result.app_id] = result
-        results = [result_map[app["id"]] for app in apps]
+                result_map[futures[future]] = future.result()
+        results = [result_map[i] for i in range(len(apps))]
         if not json_output:
             for result in results:
                 print_result(result, verbose=verbose, show_apks=show_apks)
