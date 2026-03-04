@@ -23,7 +23,7 @@ jobs:
       - name: Test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/test-apps.py
+        run: python scripts/test-apps.py --verbose --apks
 
       - name: Generate
         run: |
