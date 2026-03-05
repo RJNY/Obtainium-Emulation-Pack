@@ -626,7 +626,7 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "verifyLatestTag": true,
-        "apkFilterRegEx": "syncthingandroid_release.*\\.apk$",
+        "apkFilterRegEx": "syncthingfork_release.*\\.apk$",
         "about": "Continuous file synchronization"
       },
       "categories": [
