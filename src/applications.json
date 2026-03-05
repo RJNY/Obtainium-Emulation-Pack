@@ -1105,6 +1105,24 @@
       "meta": {
         "nameOverride": "CHDroid"
       }
+    },
+    {
+      "id": "com.izzy2lost.x1box",
+      "url": "https://github.com/rfandango/xemu-android",
+      "author": "rfandango",
+      "name": "Xemu Android",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "appName": "X1 BOX"
+      },
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "nameOverride": "X1 BOX"
+      }
     }
   ],
   "settings": {
