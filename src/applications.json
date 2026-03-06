@@ -162,14 +162,11 @@
     },
     {
       "id": "dev.eden.eden_emulator",
-      "url": "https://github.com/eden-emulator/Releases",
-      "author": "eden-emulator",
+      "url": "https://git.eden-emu.dev/eden-emu/eden",
+      "author": "eden-emu",
       "name": "Eden",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "versionExtractionRegEx": "v?(.+)",
-        "matchGroupToUse": "$1",
-        "versionDetection": false,
         "apkFilterRegEx": "standard",
         "appName": "Eden",
         "about": "Nintendo Switch emulator"
@@ -178,10 +175,10 @@
         "Emulator"
       ],
       "allowIdChange": true,
-      "overrideSource": "GitHub",
+      "overrideSource": "Codeberg",
       "meta": {
         "nameOverride": "Eden",
-        "urlOverride": "https://eden-emulator.github.io"
+        "urlOverride": "https://eden-emu.dev"
       }
     },
     {
