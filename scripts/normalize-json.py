@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Normalize key order and backfill defaults in applications.json."""
 
 import json
 import sys
@@ -7,7 +8,6 @@ from typing import Any
 
 from constants import SETTINGS_SCHEMA, SRC_FILE
 
-# Canonical top-level key order for each app entry
 KEY_ORDER = [
     "id",
     "url",
@@ -21,12 +21,10 @@ KEY_ORDER = [
     "meta",
 ]
 
-# Fields to backfill with defaults when missing
 DEFAULTS: dict[str, object] = {
     "allowIdChange": False,
 }
 
-# Settings key order derived from SETTINGS_SCHEMA insertion order
 _SETTINGS_KEY_ORDER = list(SETTINGS_SCHEMA.keys())
 
 
@@ -35,7 +33,6 @@ def _order_dict(d: dict[str, Any], key_order: list[str]) -> dict[str, Any]:
     for key in key_order:
         if key in d:
             ordered[key] = d[key]
-    # Preserve any unexpected keys at the end (safety net)
     for key in d:
         if key not in ordered:
             ordered[key] = d[key]
@@ -72,7 +69,6 @@ def normalize(input_path: str) -> int:
     for i, app in enumerate(apps):
         normalized = normalize_app(app)
 
-        # Check if anything changed (key order or new defaults)
         if list(app.keys()) != list(normalized.keys()) or app != normalized:
             changes += 1
 

@@ -6,8 +6,9 @@ import os
 import urllib.parse
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
-from constants import OBTAINIUM_SCHEME, REDIRECT_URL, SETTINGS_SCHEMA
+from constants import OBTAINIUM_SCHEME, REDIRECT_URL, SETTINGS_SCHEMA, SOURCE_HOST_MAP
 
 
 def load_dotenv() -> None:
@@ -26,6 +27,18 @@ def load_dotenv() -> None:
             value = value.strip().strip("\"'")
             if key and value and key not in os.environ:
                 os.environ[key] = value
+
+
+def detect_source_from_url(url: str) -> str | None:
+    """Match a URL's host against SOURCE_HOST_MAP, including subdomains."""
+    try:
+        host = urlparse(url).netloc.lower().lstrip("www.")
+    except Exception:
+        return None
+    for domain, source in SOURCE_HOST_MAP.items():
+        if host == domain or host.endswith(f".{domain}"):
+            return source
+    return None
 
 
 def should_include_app(app: dict[str, Any], variant: str) -> bool:

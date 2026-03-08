@@ -78,15 +78,10 @@ DEPRECATED_SETTINGS_KEYS: dict[str, str] = {
 }
 
 
-# ---------------------------------------------------------------------------
-# Obtainium additionalSettings schema
-# Single source of truth for key metadata: default value, applicable sources,
-# whether the value is a regex pattern. Derived from Obtainium source code:
-# lib/app_sources/*.dart. Reference: ~/code/Obtainium
-#
-# Dict insertion order defines the canonical key ordering used by
-# normalize-json.py and export hydration.
-# ---------------------------------------------------------------------------
+# Obtainium additionalSettings schema: single source of truth for key metadata
+# (default value, applicable sources, regex flag). Derived from Obtainium source
+# code (lib/app_sources/*.dart). Dict insertion order defines canonical key
+# ordering used by normalize-json.py and export hydration.
 
 ALL_SOURCES = frozenset(VALID_SOURCES)
 
@@ -106,7 +101,6 @@ class SettingDef(NamedTuple):
 
 
 SETTINGS_SCHEMA: dict[str, SettingDef] = {
-    # --- GitHub / Codeberg source-specific ---
     "includePrereleases":           SettingDef(False,  _GITHUB_LIKE),
     "fallbackToOlderReleases":      SettingDef(True,   frozenset({"GitHub", "Codeberg", "GitLab", "SourceHut", "APKPure", "APKMirror"})),
     "filterReleaseTitlesByRegEx":   SettingDef("",     frozenset({"GitHub", "Codeberg", "APKMirror"}), is_regex=True),
@@ -118,23 +112,18 @@ SETTINGS_SCHEMA: dict[str, SettingDef] = {
     "github-creds":                 SettingDef("",     frozenset({"GitHub"})),
     "GHReqPrefix":                  SettingDef("",     frozenset({"GitHub"})),
 
-    # --- GitLab source-specific ---
     "gitlab-creds":                 SettingDef("",     frozenset({"GitLab"})),
 
-    # --- FDroid / IzzyOnDroid source-specific ---
     "filterVersionsByRegEx":        SettingDef("",     frozenset({"FDroid", "IzzyOnDroid"}), is_regex=True),
     "trySelectingSuggestedVersionCode": SettingDef(True, frozenset({"FDroid", "IzzyOnDroid", "FDroidRepo"})),
     "autoSelectHighestVersionCode": SettingDef(False,  frozenset({"FDroid", "IzzyOnDroid"})),
 
-    # --- FDroidRepo source-specific ---
     "appIdOrName":                  SettingDef("",     frozenset({"FDroidRepo"})),
     "pickHighestVersionCode":       SettingDef(False,  frozenset({"FDroidRepo"})),
 
-    # --- APKPure source-specific ---
     "stayOneVersionBehind":         SettingDef(False,  frozenset({"APKPure"})),
     "useFirstApkOfVersion":         SettingDef(True,   frozenset({"APKPure", "Farsroid"})),
 
-    # --- HTML source-specific ---
     "intermediateLink":             SettingDef([],     frozenset({"HTML"})),
     "customLinkFilterRegex":        SettingDef("",     frozenset({"HTML"}), is_regex=True),
     "filterByLinkText":             SettingDef(False,  frozenset({"HTML"})),
@@ -146,7 +135,6 @@ SETTINGS_SCHEMA: dict[str, SettingDef] = {
     "requestHeader":                SettingDef(_DEFAULT_USER_AGENT_HEADER, frozenset({"HTML", "DirectAPKLink"})),
     "defaultPseudoVersioningMethod": SettingDef("partialAPKHash", frozenset({"HTML", "DirectAPKLink"})),
 
-    # --- Common keys (all sources) ---
     "trackOnly":                    SettingDef(False,  ALL_SOURCES),
     "versionExtractionRegEx":       SettingDef("",     ALL_SOURCES, is_regex=True),
     "matchGroupToUse":              SettingDef("",     ALL_SOURCES),
@@ -167,10 +155,6 @@ SETTINGS_SCHEMA: dict[str, SettingDef] = {
     "includeZips":                  SettingDef(False,  ALL_SOURCES),
     "zippedApkFilterRegEx":         SettingDef("",     ALL_SOURCES, is_regex=True),
 }
-
-# ---------------------------------------------------------------------------
-# Derived views - computed from SETTINGS_SCHEMA so there's one place to update
-# ---------------------------------------------------------------------------
 
 COMMON_SETTINGS_KEYS: set[str] = {
     key for key, s in SETTINGS_SCHEMA.items() if s.sources == ALL_SOURCES

@@ -5,9 +5,8 @@ import json
 import re
 import sys
 from pathlib import Path
-from urllib.parse import urlparse
 
-from utils import load_dotenv
+from utils import detect_source_from_url, load_dotenv
 
 CATEGORIES = [
     "Emulator",
@@ -24,22 +23,6 @@ VARIANT_OPTIONS = [
     "Dual-screen only",
     "README only",
 ]
-
-SOURCE_DETECTION = {
-    "github.com": "GitHub",
-    "gitlab.com": "GitLab",
-    "codeberg.org": "Codeberg",
-    "f-droid.org": "F-Droid",
-}
-
-
-def detect_source(url: str):
-    parsed = urlparse(url)
-    host = parsed.netloc.lower()
-    for domain, source in SOURCE_DETECTION.items():
-        if domain in host:
-            return source
-    return None
 
 
 def extract_github_info(url: str) -> tuple[str, str] | None:
@@ -65,7 +48,6 @@ def prompt_yes_no(message: str, default: bool = True) -> bool:
 
 
 def select_menu(title: str, choices: list[str], default: int = 0) -> str:
-    # Only use curses if we have a real terminal
     if not sys.stdin.isatty():
         return _select_menu_fallback(title, choices, default)
 
@@ -74,7 +56,6 @@ def select_menu(title: str, choices: list[str], default: int = 0) -> str:
 
         return _select_menu_curses(title, choices, default)
     except Exception:
-        # Fallback to simple input if curses fails
         return _select_menu_fallback(title, choices, default)
 
 
@@ -194,61 +175,49 @@ def main() -> int:
     print("  Add New App to Obtainium Emulation Pack")
     print("=" * 50)
 
-    # Get URL first - we can auto-detect a lot from it
     url = prompt("\nApp URL (GitHub/GitLab/etc.)")
     if not url:
         print("URL is required.")
         return 1
 
-    # Detect source
-    source = detect_source(url)
+    source = detect_source_from_url(url)
     if source:
         print(f"  Detected source: {source}")
     else:
         source = prompt("Source type", "GitHub")
 
-    # Try to extract info from GitHub URL
     author = ""
     name = ""
     github_info = extract_github_info(url)
     if github_info:
         author, repo_name = github_info
-        # Clean up name (replace hyphens with spaces, title case)
         name = repo_name.replace("-", " ").replace("_", " ").title()
         print(f"  Detected author: {author}")
         print(f"  Detected name: {name}")
 
-    # Confirm or override detected values
     author = prompt("Author", author)
     name = prompt("App name", name)
 
-    # App ID
     app_id = prompt("Android package ID (e.g., com.example.app)")
     if not app_id:
         print("Package ID is required.")
         return 1
 
-    # Category - interactive menu
     category = select_menu("Select category:", CATEGORIES)
     print(f"  Selected: {category}")
 
-    # Variant - interactive menu
     variant = select_menu("Include in which release(s):", VARIANT_OPTIONS)
     print(f"  Selected: {variant}")
 
-    # Pre-releases
     include_prereleases = prompt_yes_no("Include pre-releases?", False)
     print(f"  Include pre-releases: {'Yes' if include_prereleases else 'No'}")
 
-    # Verify latest tag
     verify_latest_tag = prompt_yes_no("Verify latest tag?", False)
     print(f"  Verify latest tag: {'Yes' if verify_latest_tag else 'No'}")
 
-    # Allow ID change
     allow_id_change = prompt_yes_no("Allow ID change?", False)
     print(f"  Allow ID change: {'Yes' if allow_id_change else 'No'}")
 
-    # Optional overrides
     print("")
     app_name_override = input(
         "App name override - leave blank to skip (sets display name in both Obtainium & README): "
@@ -258,7 +227,6 @@ def main() -> int:
 
     url_override = input("Homepage URL override - leave blank to skip: ").strip()
 
-    # Generate the entry
     app_entry = generate_app_entry(
         app_id=app_id,
         url=url,
@@ -274,18 +242,15 @@ def main() -> int:
         url_override=url_override or None,
     )
 
-    # Show preview
     print("\n" + "=" * 50)
     print("  Generated Entry Preview")
     print("=" * 50)
     print(json.dumps(app_entry, indent=2))
 
-    # Confirm and save
     if not prompt_yes_no("\nAdd this app to applications.json?", True):
         print("Cancelled.")
         return 0
 
-    # Load existing file
     apps_file = Path("src/applications.json")
     if not apps_file.exists():
         print(f"Error: {apps_file} not found. Run from repo root.")
@@ -294,7 +259,6 @@ def main() -> int:
     with open(apps_file, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # Check for duplicate ID
     existing_ids = {app["id"] for app in data.get("apps", [])}
     if app_id in existing_ids:
         print(f"\nWarning: App with ID '{app_id}' already exists!")
@@ -302,20 +266,16 @@ def main() -> int:
             print("Cancelled.")
             return 0
 
-    # Add the new app
     data["apps"].append(app_entry)
 
-    # Write back
     with open(apps_file, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
         f.write("\n")
 
     print(f"\nApp added to {apps_file}")
 
-    # Offer to live-test the new app config
     if prompt_yes_no("\nRun live test on this app?", True):
         load_dotenv()
-        # Import here to avoid circular deps and keep startup fast
         from importlib import import_module
 
         test_mod = import_module("test-apps")

@@ -26,7 +26,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -35,8 +34,6 @@ from help_formatter import StyledHelpFormatter
 from utils import get_additional_settings, get_application_url, get_display_name, load_dotenv, make_obtainium_link, should_include_app
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-
-# Release artifact paths (relative to repo root)
 STANDARD_JSON = REPO_ROOT / "obtainium-emulation-pack-latest.json"
 DUAL_SCREEN_JSON = REPO_ROOT / "obtainium-emulation-pack-dual-screen-latest.json"
 APPLICATIONS_JSON = REPO_ROOT / "src" / "applications.json"
@@ -185,24 +182,21 @@ def diff_apps(
     new_apps: dict[str, dict[str, Any]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     """Returns (added, changed, removed) app lists. Removed entries use the old version."""
-    old_ids = set(old_apps.keys())
-    new_ids = set(new_apps.keys())
+    old_keys = set(old_apps.keys())
+    new_keys = set(new_apps.keys())
 
-    added = [new_apps[id] for id in sorted(new_ids - old_ids)]
-
-    removed = [old_apps[id] for id in sorted(old_ids - new_ids)]
+    added = [new_apps[k] for k in sorted(new_keys - old_keys)]
+    removed = [old_apps[k] for k in sorted(old_keys - new_keys)]
 
     changed = []
-    for id in sorted(old_ids & new_ids):
-        old_norm = normalize_app_for_comparison(old_apps[id])
-        new_norm = normalize_app_for_comparison(new_apps[id])
+    for k in sorted(old_keys & new_keys):
+        old_norm = normalize_app_for_comparison(old_apps[k])
+        new_norm = normalize_app_for_comparison(new_apps[k])
         if json.dumps(old_norm, sort_keys=True) != json.dumps(new_norm, sort_keys=True):
-            changed.append(new_apps[id])
+            changed.append(new_apps[k])
 
     return added, changed, removed
 
-
-# Table rendering for release notes
 
 def _make_ref_key(app: dict[str, Any]) -> str:
     return get_display_name(app).lower().replace(" ", "-").replace("!", "").replace("(", "").replace(")", "")
@@ -282,7 +276,6 @@ def _git_log_lines(since_tag: str | None, pretty_format: str) -> list[str]:
 def extract_github_username(email: str) -> str | None:
     if not email.endswith(GITHUB_NOREPLY_SUFFIX):
         return None
-    # Noreply format: "id+username" or just "username"
     local_part = email[: -len(GITHUB_NOREPLY_SUFFIX)]
     if "+" in local_part:
         return local_part.split("+", 1)[1]
@@ -480,7 +473,6 @@ def main() -> None:
 
     latest = args.since or get_latest_tag()
 
-    # Determine version
     if args.version:
         version = args.version
         if not version.startswith("v"):
@@ -491,14 +483,12 @@ def main() -> None:
     else:
         version = prompt_version(latest)
 
-    # Check if tag already exists
     if not args.dry_run:
         result = run(["git", "tag", "-l", version], capture=True)
         if version in result.stdout.strip().splitlines():
             print(f"Error: Tag {version} already exists.")
             sys.exit(1)
 
-    # Detect changed apps
     print("\nDetecting app changes...")
     old_apps = load_apps_from_ref(latest) if latest else {}
     new_apps = load_apps_from_file()
@@ -508,13 +498,11 @@ def main() -> None:
     print(f"  Changed: {len(changed)}")
     print(f"  Removed: {len(removed)}")
 
-    # Determine release notes
     if args.notes_file:
         notes = Path(args.notes_file).read_text().strip()
     elif args.notes:
         notes = args.notes
     else:
-        # Auto-generate and open in editor
         notes = generate_release_notes(latest, added, changed, removed, version)
 
         if args.dry_run:
@@ -531,7 +519,6 @@ def main() -> None:
         print("Warning: Release notes are empty. Using auto-generated notes.")
         notes = ""
 
-    # Dry run summary
     if args.dry_run:
         print()
         print("=== DRY RUN ===")
@@ -549,14 +536,12 @@ def main() -> None:
         print()
         return
 
-    # Verify artifacts exist
     for f in (STANDARD_JSON, DUAL_SCREEN_JSON):
         if not f.exists():
             print(f"Error: Expected artifact not found: {f}")
             print("Did you run `just build` first?")
             sys.exit(1)
 
-    # Show summary before proceeding
     std_count = get_app_count(STANDARD_JSON)
     ds_count = get_app_count(DUAL_SCREEN_JSON)
 
@@ -576,7 +561,6 @@ def main() -> None:
         print("Aborted.")
         sys.exit(0)
 
-    # Commit any uncommitted changes (e.g. from `just build`)
     if not check_working_tree_clean():
         print()
         print("Working tree has changes. Committing...")
@@ -584,7 +568,6 @@ def main() -> None:
         run(["git", "commit", "-m", f"release: {version}"])
         run(["git", "push"])
 
-    # Create versioned copies for upload
     versioned_copies = create_versioned_copies(version)
 
     try:

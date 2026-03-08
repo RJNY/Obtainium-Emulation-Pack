@@ -10,12 +10,11 @@ from constants import (
     COMMON_SETTINGS_KEYS,
     DEPRECATED_SETTINGS_KEYS,
     REGEX_SETTINGS_KEYS,
-    SOURCE_HOST_MAP,
     SOURCE_SPECIFIC_KEYS,
     VALID_SOURCES,
     VARIANTS,
 )
-from utils import get_additional_settings, should_include_app
+from utils import detect_source_from_url, get_additional_settings, should_include_app
 
 REQUIRED_FIELDS = {"id", "url", "author", "name"}
 
@@ -44,17 +43,6 @@ def _check_regex(pattern: str, field_name: str, app_name: str) -> str | None:
         return None
     except re.error as e:
         return f"{app_name}: invalid regex in '{field_name}': {e} (pattern: {pattern!r})"
-
-
-def _detect_source_from_url(url: str) -> str | None:
-    try:
-        host = urlparse(url).netloc.lower().lstrip("www.")
-    except Exception:
-        return None
-    for domain, source in SOURCE_HOST_MAP.items():
-        if host == domain or host.endswith(f".{domain}"):
-            return source
-    return None
 
 
 def _valid_keys_for_source(source: str | None) -> set[str]:
@@ -106,7 +94,7 @@ def _validate_override_source(
         warnings.append(f"{app_name}: missing overrideSource (auto-detection may be fragile)")
 
     if url and source:
-        detected = _detect_source_from_url(url)
+        detected = detect_source_from_url(url)
         if detected and detected != source and source != "HTML" and detected != "HTML":
             warnings.append(
                 f"{app_name}: URL host suggests '{detected}' but "
@@ -164,7 +152,6 @@ def _validate_additional_settings(
     if not isinstance(settings, dict):
         return errors, warnings
 
-    # Validate regex fields
     for key in REGEX_SETTINGS_KEYS:
         value = settings.get(key, "")
         if isinstance(value, str):
@@ -172,7 +159,6 @@ def _validate_additional_settings(
             if err:
                 errors.append(err)
 
-    # Validate regex in intermediate link steps
     for i, link in enumerate(settings.get("intermediateLink", [])):
         if isinstance(link, dict):
             regex_val = link.get("customLinkFilterRegex", "")
@@ -181,16 +167,14 @@ def _validate_additional_settings(
                 if err:
                     errors.append(err)
 
-    # Warn on deprecated keys
     for key, replacement in DEPRECATED_SETTINGS_KEYS.items():
         if key in settings:
             warnings.append(
                 f"{app_name}: deprecated key '{key}', use '{replacement}' instead"
             )
 
-    # Check for source-inappropriate keys
     url = app.get("url", "")
-    effective_source = app.get("overrideSource") or _detect_source_from_url(url)
+    effective_source = app.get("overrideSource") or detect_source_from_url(url)
     if effective_source:
         valid_keys = _valid_keys_for_source(effective_source)
         for key in settings:

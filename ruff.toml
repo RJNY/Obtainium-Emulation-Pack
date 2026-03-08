@@ -1,0 +1,24 @@
+target-version = "py311"
+line-length = 120
+
+[lint]
+select = [
+    "F",     # pyflakes
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "I",     # isort
+    "UP",    # pyupgrade
+    "B",     # flake8-bugbear
+    "SIM",   # flake8-simplify
+    "RUF",   # ruff-specific rules
+]
+ignore = [
+    "E501",  # line length handled by formatter
+    "SIM108", # ternary operator suggestions (readability tradeoff)
+]
+
+[lint.isort]
+known-first-party = ["constants", "utils", "help_formatter"]
+
+[format]
+quote-style = "double"

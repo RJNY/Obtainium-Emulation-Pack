@@ -18,7 +18,7 @@ from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
 
 from help_formatter import StyledHelpFormatter
-from utils import get_additional_settings, hydrate_settings, load_dotenv
+from utils import detect_source_from_url, get_additional_settings, hydrate_settings, load_dotenv
 
 USER_AGENT = (
     "Mozilla/5.0 (Linux; Android 10; K) "
@@ -36,16 +36,17 @@ def _make_request(
     url: str,
     headers: dict[str, str] | None = None,
     timeout: int = REQUEST_TIMEOUT,
+    allow_insecure: bool = False,
 ) -> tuple[str, dict[str, str], str]:
-    """Returns (body, response_headers, final_url). Allows self-signed certs."""
     hdrs = {"User-Agent": USER_AGENT}
     if headers:
         hdrs.update(headers)
 
     req = Request(url, headers=hdrs)
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
+    if allow_insecure:
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
 
     resp = urlopen(req, timeout=timeout, context=ctx)
     body = resp.read().decode("utf-8", errors="replace")
@@ -56,11 +57,12 @@ def _make_request(
 def _fetch_json(
     url: str,
     headers: dict[str, str] | None = None,
+    allow_insecure: bool = False,
 ) -> tuple[Any, dict[str, str]]:
     hdrs = {"Accept": "application/json"}
     if headers:
         hdrs.update(headers)
-    body, resp_headers, _ = _make_request(url, headers=hdrs)
+    body, resp_headers, _ = _make_request(url, headers=hdrs, allow_insecure=allow_insecure)
     return json.loads(body), resp_headers
 
 
@@ -89,7 +91,7 @@ def _filter_links_by_regex(links: list[str], regex: str) -> list[str]:
 
 
 def _filter_links_by_extension(links: list[str]) -> list[str]:
-    return [link for link in links if any(link.lower().endswith(ext) for ext in APK_EXTENSIONS)]
+    return [link for link in links if link.lower().endswith(APK_EXTENSIONS)]
 
 
 def _sort_links(
@@ -166,6 +168,22 @@ def _check_apk_index(app: dict[str, Any], apk_count: int) -> str | None:
     return None
 
 
+def _finalize_success(
+    result: "TestResult",
+    app: dict[str, Any],
+    version: str | None,
+    apk_urls: list[str],
+) -> None:
+    index_warning = _check_apk_index(app, len(apk_urls))
+    if index_warning:
+        result.warnings.append(index_warning)
+    result.passed = True
+    result.version = version
+    result.apk_count = len(apk_urls)
+    result.apk_urls = apk_urls
+    result.preferred_apk_index = app.get("preferredApkIndex", 0)
+
+
 class TestResult:
     def __init__(self, app_name: str, app_id: str, source: str, url: str):
         self.app_name = app_name
@@ -225,7 +243,7 @@ def _collect_apks_from_assets(assets: list[dict], settings: dict[str, Any]) -> l
     for asset in assets:
         name = asset.get("name", "").lower()
         dl_url = asset.get("browser_download_url", "")
-        if any(name.endswith(ext) for ext in APK_EXTENSIONS):
+        if name.endswith(APK_EXTENSIONS):
             urls.append(dl_url)
         elif name.endswith(".zip") and settings.get("includeZips", False):
             urls.append(dl_url)
@@ -283,6 +301,7 @@ def _find_release_with_apks(
 
 def test_github(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     result = TestResult(app["name"], app["id"], "GitHub", app["url"])
+    insecure = settings.get("allowInsecure", False)
 
     try:
         owner, repo, _ = _parse_owner_repo(app["url"])
@@ -293,7 +312,7 @@ def test_github(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     api_url = f"https://api.github.com/repos/{owner}/{repo}/releases?per_page={MAX_RELEASES_TO_CHECK}"
 
     try:
-        releases, resp_headers = _fetch_json(api_url, headers=_github_headers())
+        releases, resp_headers = _fetch_json(api_url, headers=_github_headers(), allow_insecure=insecure)
     except Exception as e:
         result.error = f"GitHub API error: {e}"
         if "403" in str(e) or "rate" in str(e).lower():
@@ -334,20 +353,13 @@ def test_github(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     if warning:
         result.warnings.append(warning)
 
-    index_warning = _check_apk_index(app, len(apk_urls))
-    if index_warning:
-        result.warnings.append(index_warning)
-
-    result.passed = True
-    result.version = version
-    result.apk_count = len(apk_urls)
-    result.apk_urls = apk_urls
-    result.preferred_apk_index = app.get("preferredApkIndex", 0)
+    _finalize_success(result, app, version, apk_urls)
     return result
 
 
 def test_codeberg(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     result = TestResult(app["name"], app["id"], "Codeberg", app["url"])
+    insecure = settings.get("allowInsecure", False)
 
     try:
         owner, repo, host = _parse_owner_repo(app["url"])
@@ -358,7 +370,7 @@ def test_codeberg(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     api_url = f"https://{host}/api/v1/repos/{owner}/{repo}/releases?limit={MAX_RELEASES_TO_CHECK}"
 
     try:
-        releases, _ = _fetch_json(api_url)
+        releases, _ = _fetch_json(api_url, allow_insecure=insecure)
     except Exception as e:
         result.error = f"Codeberg API error: {e}"
         return result
@@ -378,15 +390,7 @@ def test_codeberg(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     if warning:
         result.warnings.append(warning)
 
-    index_warning = _check_apk_index(app, len(apk_urls))
-    if index_warning:
-        result.warnings.append(index_warning)
-
-    result.passed = True
-    result.version = version
-    result.apk_count = len(apk_urls)
-    result.apk_urls = apk_urls
-    result.preferred_apk_index = app.get("preferredApkIndex", 0)
+    _finalize_success(result, app, version, apk_urls)
     return result
 
 
@@ -405,6 +409,7 @@ def _follow_intermediate_links(
     start_url: str,
     steps: list[dict],
     headers: dict[str, str],
+    allow_insecure: bool = False,
 ) -> tuple[str, str | None]:
     """Walk intermediateLink chain. Returns (final_url, error_or_none)."""
     current_url = start_url
@@ -412,7 +417,7 @@ def _follow_intermediate_links(
         if not isinstance(step, dict):
             continue
         try:
-            body, _, final_url = _make_request(current_url, headers=headers)
+            body, _, final_url = _make_request(current_url, headers=headers, allow_insecure=allow_insecure)
         except Exception as e:
             return current_url, f"Failed to fetch intermediate URL ({current_url}): {e}"
 
@@ -441,17 +446,18 @@ def _follow_intermediate_links(
 
 def test_html(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     result = TestResult(app["name"], app["id"], "HTML", app["url"])
+    insecure = settings.get("allowInsecure", False)
 
     req_headers = _parse_request_headers(settings)
     intermediate_links = settings.get("intermediateLink", [])
 
-    current_url, error = _follow_intermediate_links(app["url"], intermediate_links, req_headers)
+    current_url, error = _follow_intermediate_links(app["url"], intermediate_links, req_headers, allow_insecure=insecure)
     if error:
         result.error = error
         return result
 
     try:
-        body, _, final_url = _make_request(current_url, headers=req_headers)
+        body, _, final_url = _make_request(current_url, headers=req_headers, allow_insecure=insecure)
     except Exception as e:
         result.error = f"Failed to fetch final URL ({current_url}): {e}"
         return result
@@ -495,33 +501,12 @@ def test_html(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
         else:
             result.warnings.append("No version extracted (no regex match, no pseudo-method)")
 
-    index_warning = _check_apk_index(app, len(apk_links))
-    if index_warning:
-        result.warnings.append(index_warning)
-
-    result.passed = True
-    result.version = version
-    result.apk_count = len(apk_links)
-    result.apk_urls = apk_links
-    result.preferred_apk_index = app.get("preferredApkIndex", 0)
+    _finalize_success(result, app, version, apk_links)
     return result
 
 
 def _effective_source(app: dict[str, Any]) -> str:
-    override = app.get("overrideSource")
-    if override:
-        return override
-
-    host = urlparse(app.get("url", "")).netloc.lower().lstrip("www.")
-    if "github.com" in host:
-        return "GitHub"
-    if "gitlab.com" in host:
-        return "GitLab"
-    if "codeberg.org" in host:
-        return "Codeberg"
-    if "f-droid.org" in host:
-        return "FDroid"
-    return "HTML"
+    return app.get("overrideSource") or detect_source_from_url(app.get("url", "")) or "HTML"
 
 
 def test_app(app: dict[str, Any]) -> TestResult:

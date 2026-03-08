@@ -36,14 +36,7 @@ def _parse_gh_json(result: subprocess.CompletedProcess) -> list | None:
 
 def _ensure_label_exists() -> None:
     result = _run_gh(["label", "list", "--search", ISSUE_LABEL, "--json", "name"])
-    labels = _parse_gh_json(result)
-    if labels is None:
-        _run_gh([
-            "label", "create", ISSUE_LABEL,
-            "--description", "Automatically created when a scheduled app test fails",
-            "--color", "d93f0b",
-        ])
-        return
+    labels = _parse_gh_json(result) or []
     if not any(label["name"] == ISSUE_LABEL for label in labels):
         _run_gh([
             "label", "create", ISSUE_LABEL,

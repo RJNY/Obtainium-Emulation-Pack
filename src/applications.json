@@ -22,6 +22,9 @@
       "name": "Azahar",
       "preferredApkIndex": 0,
       "additionalSettings": {
+        "versionExtractionRegEx": "(.+)",
+        "matchGroupToUse": "$1-vanilla",
+        "versionDetection": false,
         "apkFilterRegEx": "vanilla",
         "about": "Nintendo 3DS emulator"
       },
@@ -147,8 +150,8 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "versionExtractWholePage": true,
-        "versionExtractionRegEx": "Version:.*?([\\d.-]+)",
-        "matchGroupToUse": "1",
+        "versionExtractionRegEx": "Version:.*?>([\\d][\\w.-]+)",
+        "matchGroupToUse": "$1",
         "versionDetection": false,
         "appName": "Duckstation ",
         "appAuthor": "stenzek ",
@@ -589,6 +592,7 @@
       "name": "Artemis",
       "preferredApkIndex": 0,
       "additionalSettings": {
+        "includePrereleases": true,
         "versionExtractionRegEx": "v?(.+)",
         "matchGroupToUse": "$1",
         "versionDetection": false,
@@ -891,6 +895,9 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "includePrereleases": true,
+        "versionExtractionRegEx": "(b)eta-(.*)",
+        "matchGroupToUse": "$1$2",
+        "versionDetection": false,
         "about": "Game launcher frontend"
       },
       "categories": [
@@ -1041,27 +1048,6 @@
       "overrideSource": "GitHub",
       "meta": {
         "includeInStandard": false
-      }
-    },
-    {
-      "id": "com.retrohrai.launcher",
-      "url": "https://github.com/retrohrai/Releases",
-      "author": "RetroHrai",
-      "name": "RetroHrai",
-      "preferredApkIndex": 0,
-      "additionalSettings": {
-        "includePrereleases": true,
-        "verifyLatestTag": true,
-        "appName": "RetroHrai",
-        "about": "Retro game launcher"
-      },
-      "categories": [
-        "Frontend"
-      ],
-      "allowIdChange": false,
-      "overrideSource": "GitHub",
-      "meta": {
-        "nameOverride": "RetroHrai"
       }
     },
     {

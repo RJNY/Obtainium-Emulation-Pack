@@ -24,7 +24,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python scripts/test-apps.py --json > test-results.json 2>&1 || true
+          python scripts/test-apps.py --json > test-results.json 2>/dev/null || true
           cat test-results.json
 
       - name: Process results and manage issues
