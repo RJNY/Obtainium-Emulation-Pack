@@ -72,7 +72,7 @@ def check_prerequisites() -> None:
             print(f"Error: '{tool}' is not installed. Install it first.")
             sys.exit(1)
 
-    result = run(["gh", "auth", "status"], capture=True, check=False, env=_gh_env())
+    result = run(["gh", "auth", "status"], capture=True, check=False)
     if result.returncode != 0:
         print("Error: gh is not authenticated. Run `gh auth login` first.")
         sys.exit(1)
@@ -396,16 +396,6 @@ def create_tag(version: str) -> None:
     run(["git", "push", "origin", version])
 
 
-def _gh_env() -> dict[str, str] | None:
-    """Build env for gh CLI, preferring GITHUB_TOKEN from .env over global gh auth."""
-    token = os.environ.get("GITHUB_TOKEN", "")
-    if not token:
-        return None
-    env = os.environ.copy()
-    env["GH_TOKEN"] = token
-    return env
-
-
 def create_github_release(version: str, notes: str, assets: list[Path]) -> None:
     cmd = ["gh", "release", "create", version]
 
@@ -420,7 +410,7 @@ def create_github_release(version: str, notes: str, assets: list[Path]) -> None:
         cmd.append(str(asset))
 
     print(f"Creating GitHub release {version}...")
-    run(cmd, env=_gh_env())
+    run(cmd)
 
 
 def cleanup(files: list[Path]) -> None:
