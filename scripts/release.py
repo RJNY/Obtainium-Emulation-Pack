@@ -210,8 +210,8 @@ def make_app_table_row(app: dict[str, Any], change: str) -> str:
         install = "-"
     else:
         install = f"[Add to Obtainium!][{ref_key}]"
-    std = "✅" if should_include_app(app, "standard") else "❌"
-    ds = "✅" if should_include_app(app, "dual-screen") else "❌"
+    std = "✅" if should_include_app(app, "standard") else "-"
+    ds = "✅" if should_include_app(app, "dual-screen") else "-"
     return f"| {app_link} | {install} | {change} | {std} | {ds} |"
 
 
@@ -222,8 +222,8 @@ def make_app_reference_link(app: dict[str, Any]) -> str:
 
 
 CHANGES_TABLE_HEADER = (
-    "| Application | Add to Obtainium | Change | Standard | Dual-Screen |\n"
-    "|-------------|------------------|--------|----------|-------------|"
+    "| App | Add to Obtainium | Change | Standard | Dual-Screen |\n"
+    "|-----|------------------|--------|:--------:|:-----------:|"
 )
 
 

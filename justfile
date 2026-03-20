@@ -10,9 +10,9 @@ default:
 add-app:
     @python scripts/add-app.py
 
-# Test, validate, normalize, and generate all output files
+# Validate, normalize, and generate all output files
 [group('Release')]
-build: test validate normalize generate
+build: validate normalize generate
 
 # Tag, push, and create a GitHub release
 [group('Release')]
@@ -30,6 +30,7 @@ normalize:
     @python scripts/normalize-json.py src/applications.json
 
 # Live-test app configs
+[group('Release')]
 test *args:
     @python scripts/test-apps.py {{ args }}
 

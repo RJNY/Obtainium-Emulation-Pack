@@ -13,9 +13,9 @@
 git clone https://github.com/RJNY/Obtainium-Emulation-Pack.git
 cd Obtainium-Emulation-Pack
 
-# Make your changes to src/applications.json (or use just add-app)
-just test              # verify configs resolve to real APKs
-just build             # test, validate, normalize, and generate all output files
+just add-app                    # interactive CLI to add a new app
+just test --verbose --apks      # verify configs resolve to real APKs (with full details)
+just build                      # test, validate, normalize, and generate all output files
 ```
 
 ## Project Structure
@@ -36,6 +36,7 @@ scripts/
   generate-readme.py             # Stitches markdown files into README
   minify-json.py                 # Creates release JSON files
   normalize-json.py              # Normalize key order and backfill defaults
+  process-test-results.py        # Processes scheduled test results, manages GitHub issues
   release.py                     # Automated release workflow (tag, push, gh release)
 pages/
   header.md                      # README header/intro
@@ -89,11 +90,16 @@ Open `src/applications.json` and add your app to the `apps` array:
   "author": "example",
   "name": "Example Emulator",
   "preferredApkIndex": 0,
-  "additionalSettings": "{...}",
+  "additionalSettings": {
+    "apkFilterRegEx": "arm64",
+    "about": "Example emulator description"
+  },
   "categories": ["Emulator"],
   "overrideSource": "GitHub"
 }
 ```
+
+> **Note:** `additionalSettings` is a **sparse JSON object** - only include values that differ from the defaults. The full settings are hydrated automatically at export time. See `scripts/constants.py` for the schema and default values.
 
 #### Step 3: Add meta fields (optional)
 
@@ -106,7 +112,10 @@ Add a `meta` object to customize how the app appears:
   "author": "example",
   "name": "Example Emulator",
   "preferredApkIndex": 0,
-  "additionalSettings": "{...}",
+  "additionalSettings": {
+    "apkFilterRegEx": "arm64",
+    "about": "Example emulator description"
+  },
   "categories": ["Emulator"],
   "overrideSource": "GitHub",
   "meta": {
@@ -119,14 +128,16 @@ Add a `meta` object to customize how the app appears:
 #### Step 4: Validate, test, and regenerate
 
 ```bash
-just validate          # check for structural errors
-just test              # verify your app config resolves to a real APK
-just build             # test, validate, normalize, and generate all output files
+just test AppName --verbose --apks  # verify your app config resolves to a real APK
+just validate                       # check for structural errors
+just build                          # test, validate, normalize, and generate all output files
 ```
 
 ## CI
 
-Pull requests and pushes to `main` are checked by GitHub Actions (single job):
+### Pull request / push checks
+
+Pull requests and pushes to `main` are checked by GitHub Actions (`ci.yml`, single job):
 
 1. **Validate** - structural checks, regex syntax, source types
 2. **Test** - verifies all app configs resolve to real APKs
@@ -134,6 +145,10 @@ Pull requests and pushes to `main` are checked by GitHub Actions (single job):
 4. **Diff check** - fails if generated files are out of date
 
 All steps must pass before merging.
+
+### Scheduled tests
+
+A separate workflow (`scheduled-test.yml`) runs daily at ~6 AM Central. It live-tests every app config and automatically creates GitHub issues for any failures. When a previously failing app starts passing again, the issue is auto-closed. You can dry-run this locally with `just test-cron`.
 
 ## Pre-Commit Checklist
 
@@ -151,18 +166,22 @@ Before committing, run `just build`, then verify:
 
 Run `just` to see all available commands. Recipes with `*args` accept `-h` for help.
 
-| Command                 | Description                                                 |
-| ----------------------- | ----------------------------------------------------------- |
-| `just add-app`          | Interactive CLI to add a new app                            |
-| `just validate`         | Validate applications.json (structure, regex, source types) |
-| `just normalize`        | Normalize key order and backfill defaults                   |
-| `just test`             | Live-test all app configs resolve to downloadable APKs      |
-| `just test AppName`     | Live-test a single app by name (partial match)              |
-| `just test --verbose`   | Live-test all apps with APK URL details                     |
-| `just generate`         | Generate all output files (README, release JSONs)           |
-| `just generate table`   | Generate the README table only                              |
-| `just build`            | Test, validate, normalize, and generate all output files    |
-| `just release`          | Tag, push, and create a GitHub release                      |
+| Command                       | Description                                                 |
+| ----------------------------- | ----------------------------------------------------------- |
+| `just add-app`                | Interactive CLI to add a new app                            |
+| `just validate`               | Validate applications.json (structure, regex, source types) |
+| `just normalize`              | Normalize key order and backfill defaults                   |
+| `just test`                   | Live-test all app configs resolve to downloadable APKs      |
+| `just test AppName`           | Live-test a single app by name (partial match)              |
+| `just test --verbose --apks`   | Live-test all apps with full APK URL details                |
+| `just test-cron`              | Dry-run the scheduled test workflow (no issues created)     |
+| `just generate`               | Generate all output files (README, release JSONs)           |
+| `just generate table`         | Generate the README table only                              |
+| `just generate readme`        | Generate README (includes table)                            |
+| `just generate standard`      | Generate standard release JSON only                         |
+| `just generate dual-screen`   | Generate dual-screen release JSON only                      |
+| `just build`                  | Test, validate, normalize, and generate all output files    |
+| `just release`                | Tag, push, and create a GitHub release                      |
 
 ## Meta Field Reference
 
@@ -197,7 +216,7 @@ An app can belong to multiple categories.
 The pack supports two variants:
 
 - **Standard** (`obtainium-emulation-pack-latest.json`): For regular Android devices
-- **Dual-Screen** (`obtainium-emulation-pack-dual-screen-latest.json`): For dual-screen devices like LG V60/Velvet
+- **Dual-Screen** (`obtainium-emulation-pack-dual-screen-latest.json`): For dual-screen devices (AYN Thor, Anbernic RG DS, etc.)
 
 Some apps have dual-screen-specific forks (e.g., Cemu, MelonDS). Use the `includeInStandard` and `includeInDualScreen` flags to control which variant(s) include each app.
 
@@ -220,7 +239,7 @@ Example: Standard Cemu excluded from dual-screen, dual-screen fork excluded from
   "id": "info.cemu.cemu",
   "name": "Cemu",
   "url": "https://github.com/SapphireRhodonite/Cemu",
-  "categories": ["Dual Screen"],
+  "categories": ["Emulator"],
   "meta": { "includeInStandard": false }
 }
 ```

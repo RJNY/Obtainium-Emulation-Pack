@@ -15,15 +15,19 @@ def generate_category_tables(apps: list[dict[str, Any]]) -> str:
         for category in categories:
             categorized[category].append(app)
 
-    markdown_sections = ["## Applications\n"]
+    markdown_sections = [
+        "## What's in the Pack\n",
+        "Don't want the whole pack? Browse the tables below on your device "
+        "and tap the **Add to Obtainium!** links for just the apps you want.\n",
+    ]
 
     for category in sorted(categorized.keys()):
         markdown_sections.append(f"### {category}\n")
         markdown_sections.append(
-            "| Application Name | Add to Obtainium | Included in export json? | Included in DS json? |"
+            "| App | Add to Obtainium | Standard | Dual-Screen |"
         )
         markdown_sections.append(
-            "|------------------|------------------|---------------------------|----------------------|"
+            "|-----|------------------|:--------:|:-----------:|"
         )
 
         apps_in_category = sorted(
@@ -40,9 +44,9 @@ def generate_category_tables(apps: list[dict[str, Any]]) -> str:
             )
             obtainium_link = make_obtainium_link(app)
             badge_md = f'<a href="{obtainium_link}">Add to Obtainium!</a>'
-            include_standard = "✅" if should_include_app(app, "standard") else "❌"
+            include_standard = "✅" if should_include_app(app, "standard") else "-"
             include_dual_screen = (
-                "✅" if should_include_app(app, "dual-screen") else "❌"
+                "✅" if should_include_app(app, "dual-screen") else "-"
             )
 
             markdown_sections.append(
