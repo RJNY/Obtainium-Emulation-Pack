@@ -1,34 +1,33 @@
+<div align="center">
+
 # Obtainium Emulation Pack
 
-An [Obtainium](https://github.com/ImranR98/Obtainium) import file that adds popular Android
-emulation applications to Obtainium.
+A curated collection of Android emulators and gaming utilities for [Obtainium](https://github.com/ImranR98/Obtainium).
+<br>Import the pack and get automatic updates for every emulator on your device - no Play Store, no manual APK hunting.
 
-The maintainer of Obtainium also hosts a collection of Crowdsourced app configurations.
-[apps.obtainium.imranr.dev](https://apps.obtainium.imranr.dev)
+[![GitHub Release](https://img.shields.io/github/v/release/RJNY/Obtainium-Emulation-Pack?label=latest%20release)](https://github.com/RJNY/Obtainium-Emulation-Pack/releases/latest)
+[![Tests](https://img.shields.io/github/actions/workflow/status/RJNY/Obtainium-Emulation-Pack/scheduled-test.yml?label=daily%20tests)](https://github.com/RJNY/Obtainium-Emulation-Pack/actions/workflows/scheduled-test.yml)
 
-## Prerequisite
+<sub>The Obtainium maintainer also hosts a broader collection of crowdsourced app configs at <a href="https://apps.obtainium.imranr.dev">apps.obtainium.imranr.dev</a></sub>
 
-> [!TIP]
-> Which APK you need to download will depend on your device.
-> If you're unsure, you can download `app-release.apk`
+</div>
 
-Download and Install the [latest release of Obtainium](https://github.com/ImranR98/Obtainium/releases/latest)
+---
 
-## Setup
+## Getting Started
 
-### Option 1. Import Method
+### 1. Install Obtainium
 
-> [!TIP]
-> This is recommended installation method for beginners and/or new devices
+Download the [latest release of Obtainium](https://github.com/ImranR98/Obtainium/releases/latest) and install it on your device. If you're unsure which APK to grab, use `app-release.apk`.
 
-1. On your android emulation device, navigate to the [latest release](https://github.com/RJNY/Obtainium-Emulation-Pack/releases/latest) of the Obtainium Emulation Pack.
-1. Download the file titled `obtainium-emulation-pack-vX.X.X.json` to your device.
-1. Open Obtainium.
-1. Navigate to Import/Export.
-1. Select `Obtainium Import` and open `obtainium-emulation-pack-vX.X.X.json`
-1. You should see packages imported to your obtainium.
+### 2. Import the Pack
 
-### Option 2. Click-to-Install Method
+This is the easiest way to get started, especially on a new device.
 
-1. Visit this page on your android emulation device
-1. Click the "Add to Obtainium!" links of the emulators you wish to track
+1. On your device, go to the [latest release](https://github.com/RJNY/Obtainium-Emulation-Pack/releases/latest).
+2. Download the JSON for your device:
+   - **Standard** (`obtainium-emulation-pack-vX.X.X.json`) - most devices
+   - **Dual-Screen** (`obtainium-emulation-pack-dual-screen-vX.X.X.json`) - dual-screen devices (AYN Thor, Anbernic RG DS, etc.)
+3. In Obtainium, go to **Import/Export** > **Obtainium Import** and select the file.
+
+Obtainium will now track and update all included apps.
