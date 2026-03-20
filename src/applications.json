@@ -241,10 +241,7 @@
         "Emulator"
       ],
       "allowIdChange": false,
-      "overrideSource": "GitHub",
-      "meta": {
-        "includeInDualScreen": false
-      }
+      "overrideSource": "GitHub"
     },
     {
       "id": "me.magnum.melonds.nightly",
@@ -266,10 +263,7 @@
         "Emulator"
       ],
       "allowIdChange": false,
-      "overrideSource": "GitHub",
-      "meta": {
-        "excludeFromExport": true
-      }
+      "overrideSource": "GitHub"
     },
     {
       "id": "com.virtualapplications.play",
@@ -811,16 +805,16 @@
       "overrideSource": "GitHub"
     },
     {
-      "id": "me.magnum.melonds",
+      "id": "me.magnum.melondualds",
       "url": "https://github.com/SapphireRhodonite/melonDS-android",
       "author": "SapphireRhodonite",
-      "name": "MelonDS",
+      "name": "MelonDualDS",
       "preferredApkIndex": 0,
       "additionalSettings": {
         "versionExtractionRegEx": "v?(.+)",
         "matchGroupToUse": "$1",
         "versionDetection": false,
-        "appName": "MelonDS (Dual-Screen)",
+        "appName": "MelonDualDS",
         "about": "Nintendo DS emulator"
       },
       "categories": [
@@ -829,8 +823,7 @@
       "allowIdChange": true,
       "overrideSource": "GitHub",
       "meta": {
-        "includeInStandard": false,
-        "nameOverride": "MelonDS (Dual-Screen)"
+        "nameOverride": "MelonDualDS"
       }
     },
     {
