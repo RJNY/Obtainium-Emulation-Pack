@@ -1084,8 +1084,8 @@
     },
     {
       "id": "com.izzy2lost.x1box",
-      "url": "https://github.com/rfandango/xemu-android",
-      "author": "rfandango",
+      "url": "https://github.com/izzy2lost/xemu",
+      "author": "izzy2lost",
       "name": "Xemu Android",
       "preferredApkIndex": 0,
       "additionalSettings": {
