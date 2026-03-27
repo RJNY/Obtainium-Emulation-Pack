@@ -16,7 +16,7 @@
       "overrideSource": "GitHub"
     },
     {
-      "id": "io.github.lime3ds.android",
+      "id": "org.azahar_emu.azahar",
       "url": "https://github.com/azahar-emu/azahar",
       "author": "azahar-emu",
       "name": "Azahar",
