@@ -1099,6 +1099,19 @@
       "meta": {
         "nameOverride": "X1 BOX"
       }
+    },
+    {
+      "id": "com.rfandango.haku_x",
+      "url": "https://github.com/rfandango/hakuX",
+      "author": "rfandango",
+      "name": "Hakux",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
