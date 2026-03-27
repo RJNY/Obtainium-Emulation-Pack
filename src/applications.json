@@ -485,6 +485,31 @@
       "overrideSource": "GitHub"
     },
     {
+      "id": "app.gamenative",
+      "url": "https://github.com/utkarshdalal/GameNative",
+      "author": "utkarshdalal",
+      "name": "GameNative (pre-release)",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "includePrereleases": true,
+        "verifyLatestTag": true,
+        "versionExtractionRegEx": "v?(.+)",
+        "matchGroupToUse": "$1",
+        "versionDetection": false,
+        "appName": "GameNative (pre-release)",
+        "about": "Native Windows game compatibility layer"
+      },
+      "categories": [
+        "PC Emulation"
+      ],
+      "allowIdChange": true,
+      "overrideSource": "GitHub",
+      "meta": {
+        "nameOverride": "GameNative (pre-release)",
+        "excludeFromExport": true
+      }
+    },
+    {
       "id": "com.winlator",
       "url": "https://github.com/brunodev85/winlator",
       "author": "brunodev85",
