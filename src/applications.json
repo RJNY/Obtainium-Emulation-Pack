@@ -186,24 +186,23 @@
     },
     {
       "id": "dev.eden.eden_nightly",
-      "url": "https://github.com/Eden-CI/Nightly",
-      "author": "Eden-CI",
-      "name": "Eden Nightly",
+      "url": "https://git.eden-emu.dev/eden-ci/nightly",
+      "author": "eden-emu",
+      "name": "Eden (Nightly)",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "fallbackToOlderReleases": false,
-        "versionExtractionRegEx": "v?(.+)",
-        "matchGroupToUse": "$1",
-        "versionDetection": false,
         "apkFilterRegEx": "standard",
+        "appName": "Eden (Nightly)",
         "about": "Nintendo Switch emulator (nightly builds)"
       },
       "categories": [
         "Emulator"
       ],
       "allowIdChange": true,
-      "overrideSource": "GitHub",
+      "overrideSource": "Codeberg",
       "meta": {
+        "nameOverride": "Eden (Nightly)",
+        "urlOverride": "https://eden-emu.dev",
         "excludeFromExport": true
       }
     },
