@@ -547,7 +547,7 @@ def print_result(
     show_apks: bool = False,
 ) -> None:
     status = "\033[32mPASS\033[0m" if result.passed else "\033[31mFAIL\033[0m"
-    version_str = f" v{result.version}" if result.version else ""
+    version_str = f" {result.version}" if result.version else ""
     apk_str = f" ({result.apk_count} APKs)" if result.apk_count else ""
 
     print(f"  {status}  {result.app_name}{version_str}{apk_str} [{result.duration_ms}ms]")

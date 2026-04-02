@@ -646,16 +646,13 @@
     },
     {
       "id": "476086958",
-      "url": "https://github.com/K11MCH1/AdrenoToolsDrivers",
-      "author": "K11MCH1",
-      "name": "AdrenoToolsDrivers",
+      "url": "https://github.com/StevenMXZ/Adreno-Tools-Drivers",
+      "author": "StevenMXZ",
+      "name": "Adreno-Tools-Drivers",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "filterReleaseNotesByRegEx": "Turnip",
         "trackOnly": true,
-        "versionDetection": false,
-        "autoApkFilterByArch": false,
-        "appName": "Turnip Drivers"
+        "appName": "Adreno Tools Drivers"
       },
       "categories": [
         "Track Only"
@@ -671,10 +668,6 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "trackOnly": true,
-        "versionExtractionRegEx": "(T[\\d]+(?:\\.\\d+)?(?:hf)?)",
-        "matchGroupToUse": "$1",
-        "versionDetection": false,
-        "autoApkFilterByArch": false,
         "appName": "Mr. Purple Turnip Drivers"
       },
       "categories": [
