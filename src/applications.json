@@ -407,7 +407,7 @@
       "name": "ScummVM",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "customLinkFilterRegex": "android-(?:arm|x86).*\\.apk$",
+        "customLinkFilterRegex": "android-arm64-v8a.apk$",
         "sortByLastLinkSegment": true,
         "defaultPseudoVersioningMethod": "APKLinkHash",
         "versionExtractionRegEx": "scummvm-(\\d+(?:\\.\\d+)+)-android",
@@ -1101,6 +1101,39 @@
       "additionalSettings": {},
       "categories": [
         "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.emulnk",
+      "url": "https://github.com/EmuLnk/emulnk",
+      "author": "EmuLnk",
+      "name": "Emulnk",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "includePrereleases": true
+      },
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "includeInStandard": false
+      }
+    },
+    {
+      "id": "dev.cannoli.scorza",
+      "url": "https://github.com/CannoliHQ/cannoli",
+      "author": "CannoliHQ",
+      "name": "Cannoli",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "includePrereleases": true
+      },
+      "categories": [
+        "Frontend"
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
