@@ -1137,6 +1137,34 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.aure.clustertune",
+      "url": "https://github.com/AurelioB/cluster-tune",
+      "author": "AurelioB",
+      "name": "Cluster Tune",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.k2.consolelauncher",
+      "url": "https://github.com/likeich/console-launcher",
+      "author": "likeich",
+      "name": "Console Launcher",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "includePrereleases": true
+      },
+      "categories": [
+        "Frontend"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
