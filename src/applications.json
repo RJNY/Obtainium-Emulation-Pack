@@ -84,6 +84,11 @@
       "additionalSettings": {
         "customLinkFilterRegex": "https:\\/\\/dl.dolphin-emu.org\\/builds.+dolphin-master-.+.apk",
         "sortByLastLinkSegment": true,
+        "requestHeader": [
+          {
+            "requestHeader": "User-Agent: Obtainium/1.0"
+          }
+        ],
         "versionExtractionRegEx": "dolphin-master-(.+).apk",
         "matchGroupToUse": "$1",
         "versionDetection": false,
@@ -127,6 +132,11 @@
       "additionalSettings": {
         "customLinkFilterRegex": "https:\\/\\/dl.dolphin-emu.org\\/releases.+dolphin.+.apk",
         "sortByLastLinkSegment": true,
+        "requestHeader": [
+          {
+            "requestHeader": "User-Agent: Obtainium/1.0"
+          }
+        ],
         "versionExtractionRegEx": "/releases/.+/dolphin-(.+).apk",
         "matchGroupToUse": "$1",
         "versionDetection": false,
