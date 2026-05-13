@@ -1175,6 +1175,25 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.neogamelab.neostation",
+      "url": "https://github.com/miguelsotobaez/neostation-frontend",
+      "author": "miguelsotobaez",
+      "name": "NeoStation",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "includePrereleases": true,
+        "verifyLatestTag": true
+      },
+      "categories": [
+        "Frontend"
+      ],
+      "allowIdChange": true,
+      "overrideSource": "GitHub",
+      "meta": {
+        "urlOverride": "https://neostation.dev"
+      }
     }
   ],
   "settings": {
