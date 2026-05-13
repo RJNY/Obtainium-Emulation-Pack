@@ -1194,6 +1194,32 @@
       "meta": {
         "urlOverride": "https://neostation.dev"
       }
+    },
+    {
+      "id": "com.retrohrai.launcher",
+      "url": "https://github.com/retrohrai/Releases",
+      "author": "retrohrai",
+      "name": "RetroHrai",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Frontend"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
+    },
+    {
+      "id": "xyz.aethersx2.tturnip",
+      "url": "https://github.com/nckstwrt/NetherSX2-Turnip",
+      "author": "nckstwrt",
+      "name": "NetherSX2-Turnip",
+      "preferredApkIndex": 1,
+      "additionalSettings": {},
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
