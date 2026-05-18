@@ -1220,6 +1220,19 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.raofflineproxy",
+      "url": "https://github.com/misantronic/RAOfflineProxy",
+      "author": "misantronic",
+      "name": "RAOfflineProxy",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
