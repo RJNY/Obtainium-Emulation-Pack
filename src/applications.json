@@ -754,6 +754,25 @@
       "overrideSource": "GitHub"
     },
     {
+      "id": "org.force9.starboard",
+      "url": "https://github.com/get-starboard/starboard",
+      "author": "get-starboard",
+      "name": "Starboard",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "apkFilterRegEx": "\\.apk$",
+        "about": "Run PortMaster games on Android."
+      },
+      "categories": [
+        "Frontend"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "urlOverride": "https://get-starboard.app/"
+      }
+    },
+    {
       "id": "793772977",
       "url": "https://github.com/streamingdv/PSPlay-Application-Hosting",
       "author": "streamingdv",
