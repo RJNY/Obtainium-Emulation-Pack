@@ -1252,6 +1252,24 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.androosio.thortune",
+      "url": "https://github.com/androosio/thortune",
+      "author": "androosio",
+      "name": "ThorTune",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "about": "AYN Thor system tweaks: JamesDSP system-wide audio DSP and display saturation, with a lower-screen companion panel"
+      },
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "includeInStandard": false
+      }
     }
   ],
   "settings": {
