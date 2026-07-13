@@ -6,7 +6,7 @@ SRC_FILE = "src/applications.json"
 PAGES_DIR = "pages"
 TABLE_FILE = "pages/table.md"
 
-REDIRECT_URL = "http://apps.obtainium.imranr.dev/redirect.html"
+REDIRECT_URL = "https://apps.obtainium.page/redirect"
 OBTAINIUM_SCHEME = "obtainium://app/"
 
 VARIANTS = ("standard", "dual-screen")
