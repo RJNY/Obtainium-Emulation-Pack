@@ -1250,6 +1250,24 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "org.citron.citron_emu",
+      "url": "https://github.com/citron-neo/emulator",
+      "author": "citron-neo",
+      "name": "Citron Neo",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "appName": "Citron Neo"
+      },
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "nameOverride": "Citron Neo"
+      }
     }
   ],
   "settings": {
