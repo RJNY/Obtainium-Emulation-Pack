@@ -869,24 +869,6 @@
       }
     },
     {
-      "id": "come.nanodata.armsx2",
-      "url": "https://github.com/ARMSX2/ARMSX2",
-      "author": "ARMSX2",
-      "name": "ARMSX2",
-      "preferredApkIndex": 0,
-      "additionalSettings": {
-        "versionExtractionRegEx": "v?(.+)",
-        "matchGroupToUse": "$1",
-        "versionDetection": false,
-        "about": "PlayStation 2 emulator"
-      },
-      "categories": [
-        "Emulator"
-      ],
-      "allowIdChange": true,
-      "overrideSource": "GitHub"
-    },
-    {
       "id": "io.wip.pico8",
       "url": "https://github.com/Macs75/pico8-android",
       "author": "Macs75",
@@ -1249,6 +1231,22 @@
       "additionalSettings": {},
       "categories": [
         "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.armsx2",
+      "url": "https://github.com/ARMSX2/ARMSX2",
+      "author": "ARMSX2",
+      "name": "ARMSX2",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "verifyLatestTag": true,
+        "about": "PlayStation 2 emulator"
+      },
+      "categories": [
+        "Emulator"
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
