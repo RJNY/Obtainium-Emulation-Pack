@@ -1268,6 +1268,22 @@
       "meta": {
         "nameOverride": "Citron Neo"
       }
+    },
+    {
+      "id": "org.retroshelf.app",
+      "url": "https://github.com/retroshelf-org/android",
+      "author": "retroshelf-org",
+      "name": "retroshelf",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "urlOverride": "https://www.retroshelf.org"
+      }
     }
   ],
   "settings": {
