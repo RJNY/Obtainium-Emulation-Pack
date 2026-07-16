@@ -1253,6 +1253,7 @@
       "overrideSource": "GitHub",
       "meta": {
         "nameOverride": "Mimir"
+      },
       "id": "com.armsx2",
       "url": "https://github.com/ARMSX2/ARMSX2",
       "author": "ARMSX2",
