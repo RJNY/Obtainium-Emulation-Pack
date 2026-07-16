@@ -1236,6 +1236,24 @@
       "overrideSource": "GitHub"
     },
     {
+      "id": "pup.app.mimir",
+      "url": "https://github.com/ItsRetroPup/Mimir",
+      "author": "ItsRetroPup",
+      "name": "Mimir",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "includePrereleases": true,
+        "verifyLatestTag": true,
+        "appName": "Mimir"
+      },
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": true,
+      "overrideSource": "GitHub",
+      "meta": {
+        "nameOverride": "Mimir"
+      },
       "id": "com.armsx2",
       "url": "https://github.com/ARMSX2/ARMSX2",
       "author": "ARMSX2",
