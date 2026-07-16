@@ -1268,6 +1268,22 @@
       "meta": {
         "nameOverride": "Citron Neo"
       }
+    },
+    {
+      "id": "pup.app.mimir",
+      "url": "https://github.com/ItsRetroPup/Mimir",
+      "author": "ItsRetroPup",
+      "name": "Mimir",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "includePrereleases": true,
+        "verifyLatestTag": true
+      },
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {

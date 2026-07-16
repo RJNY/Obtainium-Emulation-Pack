@@ -19,11 +19,11 @@ _generate-all: _generate-readme _generate-standard _generate-dual-screen
 
 [private]
 _generate-table:
-    @python scripts/generate-table.py src/applications.json ./pages/table.md
+    @python3 scripts/generate-table.py src/applications.json ./pages/table.md
 
 [private]
 _generate-readme: _generate-table
-    @python scripts/generate-readme.py \
+    @python3 scripts/generate-readme.py \
         ./pages/header.md \
         ./pages/table.md \
         ./pages/faq.md \
@@ -31,8 +31,8 @@ _generate-readme: _generate-table
 
 [private]
 _generate-standard:
-    @python scripts/minify-json.py src/applications.json obtainium-emulation-pack-latest.json --variant standard
+    @python3 scripts/minify-json.py src/applications.json obtainium-emulation-pack-latest.json --variant standard
 
 [private]
 _generate-dual-screen:
-    @python scripts/minify-json.py src/applications.json obtainium-emulation-pack-dual-screen-latest.json --variant dual-screen
+    @python3 scripts/minify-json.py src/applications.json obtainium-emulation-pack-dual-screen-latest.json --variant dual-screen
