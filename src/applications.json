@@ -1275,10 +1275,7 @@
       "author": "ItsRetroPup",
       "name": "Mimir",
       "preferredApkIndex": 0,
-      "additionalSettings": {
-        "includePrereleases": true,
-        "verifyLatestTag": true
-      },
+      "additionalSettings": {},
       "categories": [
         "Utilities"
       ],
