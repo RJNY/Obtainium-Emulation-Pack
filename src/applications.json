@@ -1281,6 +1281,21 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "io.navivani.swiff",
+      "url": "https://github.com/NaviVani-dev/Swiff",
+      "author": "NaviVani",
+      "name": "Swiff",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "verifyLatestTag": true
+      },
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
