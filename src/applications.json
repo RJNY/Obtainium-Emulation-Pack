@@ -178,9 +178,8 @@
       "url": "https://git.eden-emu.dev/eden-emu/eden",
       "author": "eden-emu",
       "name": "Eden",
-      "preferredApkIndex": 0,
+      "preferredApkIndex": 3,
       "additionalSettings": {
-        "apkFilterRegEx": "standard",
         "appName": "Eden",
         "about": "Nintendo Switch emulator"
       },
@@ -199,9 +198,8 @@
       "url": "https://git.eden-emu.dev/eden-ci/nightly",
       "author": "eden-emu",
       "name": "Eden (Nightly)",
-      "preferredApkIndex": 0,
+      "preferredApkIndex": 3,
       "additionalSettings": {
-        "apkFilterRegEx": "standard",
         "appName": "Eden (Nightly)",
         "about": "Nintendo Switch emulator (nightly builds)"
       },
