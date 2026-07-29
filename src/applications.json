@@ -481,7 +481,7 @@
       "url": "https://github.com/utkarshdalal/GameNative",
       "author": "utkarshdalal",
       "name": "GameNative",
-      "preferredApkIndex": 0,
+      "preferredApkIndex": 1,
       "additionalSettings": {
         "about": "Native Windows game compatibility layer"
       },
