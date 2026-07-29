@@ -160,7 +160,7 @@ Before committing, run `just build`, then verify:
 - [ ] `README.md` has been updated
 - [ ] The README table shows a friendly application name (use `nameOverride` if not)
 - [ ] The README table links to the correct homepage (use `urlOverride` if not)
-- [ ] Beta apps are excluded with `meta.excludeFromExport: true`
+- [ ] Apps that shouldn't be auto-installed are table-only via `meta.excludeFromExport: true`
 
 ## Available Commands
 
@@ -187,14 +187,26 @@ Run `just` to see all available commands. Recipes with `*args` accept `-h` for h
 
 These fields in the `meta` object control how apps are processed:
 
-| Field                 | Type   | Default | Description                                                         |
-| --------------------- | ------ | ------- | ------------------------------------------------------------------- |
-| `excludeFromExport`   | bool   | `false` | Exclude from both release JSON files. Use for beta/unstable apps.   |
-| `excludeFromTable`    | bool   | `false` | Exclude from the README table.                                      |
-| `includeInStandard`   | bool   | `true`  | Include in standard release. Set `false` for dual-screen-only apps. |
-| `includeInDualScreen` | bool   | `true`  | Include in dual-screen release. Set `false` for standard-only apps. |
-| `nameOverride`        | string | `null`  | Override the display name in the README table.                      |
-| `urlOverride`         | string | `null`  | Override the homepage link in the README table.                     |
+| Field                 | Type   | Default | Description                                                                     |
+| --------------------- | ------ | ------- | ------------------------------------------------------------------------------- |
+| `excludeFromExport`   | bool   | `false` | Table-only: keep the README row and install link, omit from both release JSONs. |
+| `excludeFromTable`    | bool   | `false` | Omit from the README table.                                                     |
+| `includeInStandard`   | bool   | `true`  | Include in the standard release JSON.                                           |
+| `includeInDualScreen` | bool   | `true`  | Include in the dual-screen release JSON.                                        |
+| `nameOverride`        | string | `null`  | Override the display name in the README table.                                  |
+| `urlOverride`         | string | `null`  | Override the homepage link in the README table.                                 |
+
+### Table-only entries
+
+`excludeFromExport: true` keeps an app in the README table with a working **Add to Obtainium!** link, but leaves it out of both release JSONs.
+
+Importing a release JSON installs everything in it, so this is the right setting whenever an app is worth listing but shouldn't land on every device:
+
+- Beta, nightly, or otherwise unstable builds
+- Apps that only function on one vendor's hardware (e.g. O2P Tweaks)
+- Apps that modify system state, or bundle and install a second app that Obtainium can't see or update
+
+This is a distribution decision, not a quality judgment. Table-only entries are still discoverable and still linked from every release.
 
 ## Categories
 
@@ -219,6 +231,8 @@ The pack supports two variants:
 - **Dual-Screen** (`obtainium-emulation-pack-dual-screen-latest.json`): For dual-screen devices (AYN Thor, Anbernic RG DS, etc.)
 
 Some apps have dual-screen-specific forks (e.g., Cemu, MelonDS). Use the `includeInStandard` and `includeInDualScreen` flags to control which variant(s) include each app.
+
+These flags exist to keep each package ID unique per file, not to target devices. A device-specific app that doesn't collide with anything (OdinTools, for example) still ships in both variants.
 
 **Why this matters:** Apps with the same Android package ID (`id` field) will conflict in Obtainium. If two apps share an ID (like standard Cemu and dual-screen Cemu), they **must not** both appear in the same JSON file.
 
@@ -248,18 +262,16 @@ Example: Standard Cemu excluded from dual-screen, dual-screen fork excluded from
 
 Use this decision tree:
 
-1. **Is this app device-specific?** (e.g., AYN Thor frontend)
+1. **Should this app install on every device that imports the pack?**
 
-   - Yes: Set `includeInStandard: false` and use appropriate category
-   - No: Continue to step 2
+   - No: Set `excludeFromExport: true` (table-only, see above) and stop here. The variant flags don't apply, since the app isn't in either release JSON.
+   - Yes: Continue to step 2
 
-2. **Does this app share an ID with another app in the pack?** (e.g., forks, beta builds, dual-screen variants)
+2. **Is this a dual-screen fork of an app already in the pack?** (e.g., Cemu, MelonDS)
 
-   - Yes: Only one app per ID can be in each release JSON. Options:
-     - Use `includeInStandard`/`includeInDualScreen` to split between variants
-     - Use `excludeFromExport: true` on the less stable version (e.g., nightly builds)
-   - No: App can be in both variants (default)
+   - Yes: Use `includeInStandard` / `includeInDualScreen` so each package ID appears in exactly one variant
+   - No: Continue to step 3
 
-3. **Is this app stable and ready for users?**
-   - Yes: Include normally
-   - No: Set `excludeFromExport: true` (still visible in table but not in release JSONs)
+3. **Does it otherwise share an ID with another app in the pack?** (e.g., forks, nightly builds)
+   - Yes: Split across variants with `includeInStandard`/`includeInDualScreen`, or set `excludeFromExport: true` on the one that shouldn't ship (usually the nightly)
+   - No: It goes in both variants. This is the default, and it's correct even for device-specific apps.
