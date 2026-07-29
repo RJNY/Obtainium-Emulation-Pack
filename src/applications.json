@@ -1312,6 +1312,32 @@
       "meta": {
         "excludeFromExport": true
       }
+    },
+    {
+      "id": "com.kei.pulse",
+      "url": "https://github.com/keiretrogaming/pulse",
+      "author": "keiretrogaming",
+      "name": "Pulse",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
+    },
+    {
+      "id": "xendroid.compose",
+      "url": "https://github.com/rfandango/XenDroid",
+      "author": "rfandango",
+      "name": "Xendroid",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
