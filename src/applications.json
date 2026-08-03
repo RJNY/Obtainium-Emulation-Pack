@@ -1338,6 +1338,19 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.nanodata.armsx",
+      "url": "https://github.com/ARMSX2/ARMSX1",
+      "author": "ARMSX2",
+      "name": "ARMSX1",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
