@@ -1177,8 +1177,8 @@
     },
     {
       "id": "com.neogamelab.neostation",
-      "url": "https://github.com/miguelsotobaez/neostation-frontend",
-      "author": "miguelsotobaez",
+      "url": "https://github.com/misobadev/neostation-frontend",
+      "author": "misoba",
       "name": "NeoStation",
       "preferredApkIndex": 0,
       "additionalSettings": {
