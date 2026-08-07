@@ -17,14 +17,10 @@ from typing import Any
 from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
 
+from constants import USER_AGENT
 from help_formatter import StyledHelpFormatter
 from utils import detect_source_from_url, get_additional_settings, hydrate_settings, load_dotenv
 
-USER_AGENT = (
-    "Mozilla/5.0 (Linux; Android 10; K) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) "
-    "Chrome/114.0.0.0 Mobile Safari/537.36"
-)
 REQUEST_TIMEOUT = 30
 MAX_RELEASES_TO_CHECK = 100
 APK_EXTENSIONS = (".apk", ".xapk")

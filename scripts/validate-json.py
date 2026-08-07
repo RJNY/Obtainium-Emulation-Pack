@@ -7,10 +7,13 @@ from typing import Any
 from urllib.parse import urlparse
 
 from constants import (
+    BROWSER_USER_AGENT_MARKERS,
     COMMON_SETTINGS_KEYS,
     DEPRECATED_SETTINGS_KEYS,
     REGEX_SETTINGS_KEYS,
+    SETTINGS_SCHEMA,
     SOURCE_SPECIFIC_KEYS,
+    USER_AGENT,
     VALID_SOURCES,
     VARIANTS,
 )
@@ -43,6 +46,70 @@ def _check_regex(pattern: str, field_name: str, app_name: str) -> str | None:
         return None
     except re.error as e:
         return f"{app_name}: invalid regex in '{field_name}': {e} (pattern: {pattern!r})"
+
+
+def _check_request_header_shape(settings: dict[str, Any], app_name: str) -> list[str]:
+    if "requestHeader" not in settings:
+        return []
+
+    raw = settings["requestHeader"]
+    if not isinstance(raw, list):
+        return [
+            f"{app_name}: 'requestHeader' must be a list of objects, "
+            f"got {type(raw).__name__}"
+        ]
+
+    errors = []
+    for i, entry in enumerate(raw):
+        if not isinstance(entry, dict) or not isinstance(entry.get("requestHeader"), str):
+            errors.append(
+                f'{app_name}: requestHeader[{i}] must be an object like '
+                f'{{"requestHeader": "Key: Value"}}'
+            )
+    return errors
+
+
+def _well_formed_headers(settings: dict[str, Any]) -> list[str]:
+    raw = settings.get("requestHeader")
+    if not isinstance(raw, list):
+        return []
+    return [
+        entry["requestHeader"]
+        for entry in raw
+        if isinstance(entry, dict) and isinstance(entry.get("requestHeader"), str)
+    ]
+
+
+def _find_spoofed_user_agent(settings: dict[str, Any]) -> str | None:
+    """The browser marker of the first User-Agent header that spoofs a browser."""
+    for header in _well_formed_headers(settings):
+        lowered = header.lower()
+        if not lowered.startswith("user-agent:"):
+            continue
+        marker = next((m for m in BROWSER_USER_AGENT_MARKERS if m.lower() in lowered), None)
+        if marker:
+            return marker
+    return None
+
+
+def _check_browser_user_agent(settings: dict[str, Any], app_name: str) -> list[str]:
+    marker = _find_spoofed_user_agent(settings)
+    if not marker:
+        return []
+    return [
+        f"{app_name}: requestHeader User-Agent spoofs a browser "
+        f"(contains {marker!r}); use {USER_AGENT!r} instead"
+    ]
+
+
+def _check_schema_default_user_agent() -> list[str]:
+    marker = _find_spoofed_user_agent({"requestHeader": SETTINGS_SCHEMA["requestHeader"].default})
+    if not marker:
+        return []
+    return [
+        f"constants.py USER_AGENT spoofs a browser (contains {marker!r}); "
+        f"it must identify as Obtainium, never as a browser"
+    ]
 
 
 def _valid_keys_for_source(source: str | None) -> set[str]:
@@ -167,6 +234,9 @@ def _validate_additional_settings(
                 if err:
                     errors.append(err)
 
+    errors += _check_request_header_shape(settings, app_name)
+    errors += _check_browser_user_agent(settings, app_name)
+
     for key, replacement in DEPRECATED_SETTINGS_KEYS.items():
         if key in settings:
             warnings.append(
@@ -239,6 +309,13 @@ def check_duplicate_ids(apps: list[dict[str, Any]], variant: str) -> list[str]:
 
 
 def validate_json(input_file: str) -> int:
+    schema_errors = _check_schema_default_user_agent()
+    if schema_errors:
+        print(f"Validation failed with {len(schema_errors)} error(s):\n")
+        for error in schema_errors:
+            print(f"  x {error}")
+        return 1
+
     try:
         with open(input_file, "r", encoding="utf-8") as f:
             data = json.load(f)

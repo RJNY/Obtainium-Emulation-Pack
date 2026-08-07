@@ -87,11 +87,21 @@ ALL_SOURCES = frozenset(VALID_SOURCES)
 
 _GITHUB_LIKE = frozenset({"GitHub", "Codeberg"})
 
-_DEFAULT_USER_AGENT_HEADER = [
-    {"requestHeader": "User-Agent: Mozilla/5.0 (Linux; Android 10; K) "
-     "AppleWebKit/537.36 (KHTML, like Gecko) "
-     "Chrome/114.0.0.0 Mobile Safari/537.36"}
-]
+# Honestly identify as Obtainium, never as a browser. Do not carelessly change this!
+USER_AGENT = "Obtainium/1.0"
+
+_DEFAULT_USER_AGENT_HEADER = [{"requestHeader": f"User-Agent: {USER_AGENT}"}]
+
+# Substrings that mark a User-Agent as browser-spoofing. Matched case-insensitively.
+BROWSER_USER_AGENT_MARKERS = (
+    "Mozilla/",
+    "AppleWebKit/",
+    "Chrome/",
+    "Safari/",
+    "Gecko/",
+    "Edg/",
+    "Opera/",
+)
 
 
 class SettingDef(NamedTuple):

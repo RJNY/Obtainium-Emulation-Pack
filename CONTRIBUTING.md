@@ -133,6 +133,12 @@ just validate                       # check for structural errors
 just build                          # test, validate, normalize, and generate all output files
 ```
 
+### User-Agent policy
+
+**Do not spoof a browser User-Agent.** Identify honestly. The project default is already set for HTML sources, so you do not need to add a `requestHeader` at all. Validation may fail if a browser User-Agent is present.
+
+If a site genuinely requires something different, set `requestHeader` on that one app and explain why in your pull request.
+
 ## CI
 
 ### Pull request / push checks
