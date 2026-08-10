@@ -165,11 +165,17 @@
     },
     {
       "id": "dev.eden.eden_emulator",
-      "url": "https://git.eden-emu.dev/eden-emu/eden",
+      "url": "https://stable.eden-emu.dev/latest/release.json",
       "author": "eden-emu",
       "name": "Eden",
-      "preferredApkIndex": 3,
+      "preferredApkIndex": 0,
       "additionalSettings": {
+        "customLinkFilterRegex": "Eden-Android-.*-standard\\.apk$",
+        "matchLinksOutsideATags": true,
+        "versionExtractWholePage": true,
+        "versionExtractionRegEx": "\"tag_name\"\\s*:\\s*\"(?:v)?([^\"]+)\"",
+        "matchGroupToUse": "$1",
+        "versionDetection": false,
         "appName": "Eden",
         "about": "Nintendo Switch emulator"
       },
@@ -177,7 +183,7 @@
         "Emulator"
       ],
       "allowIdChange": true,
-      "overrideSource": "Codeberg",
+      "overrideSource": "HTML",
       "meta": {
         "nameOverride": "Eden",
         "urlOverride": "https://eden-emu.dev"
@@ -185,11 +191,17 @@
     },
     {
       "id": "dev.eden.eden_nightly",
-      "url": "https://git.eden-emu.dev/eden-ci/nightly",
+      "url": "https://nightly.eden-emu.dev/latest/release.json",
       "author": "eden-emu",
       "name": "Eden (Nightly)",
-      "preferredApkIndex": 3,
+      "preferredApkIndex": 0,
       "additionalSettings": {
+        "customLinkFilterRegex": "Eden-Android-.*-standard\\.apk$",
+        "matchLinksOutsideATags": true,
+        "versionExtractWholePage": true,
+        "versionExtractionRegEx": "\"tag_name\"\\s*:\\s*\"(?:v)?([^\"]+)\"",
+        "matchGroupToUse": "$1",
+        "versionDetection": false,
         "appName": "Eden (Nightly)",
         "about": "Nintendo Switch emulator (nightly builds)"
       },
@@ -197,7 +209,7 @@
         "Emulator"
       ],
       "allowIdChange": true,
-      "overrideSource": "Codeberg",
+      "overrideSource": "HTML",
       "meta": {
         "nameOverride": "Eden (Nightly)",
         "urlOverride": "https://eden-emu.dev",

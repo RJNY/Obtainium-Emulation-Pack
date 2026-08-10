@@ -62,6 +62,23 @@ def _fetch_json(
     return json.loads(body), resp_headers
 
 
+URL_IN_TEXT_RE = re.compile(
+    r"(?:(?:http|https|ftp)://)"
+    r"(?:\S+(?::\S*)?@)?"
+    r"(?:"
+    r"(?:(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])"
+    r"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}"
+    r"(?:\.(?:[0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|"
+    r"(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)"
+    r"(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*"
+    r"(?:\.(?:[a-z\u00a1-\uffff]{2,}))"
+    r")|localhost)"
+    r"(?::\d{2,5})?"
+    r"(?:(/|\?|#)[^\s]*)?",
+    re.IGNORECASE,
+)
+
+
 class LinkExtractor(HTMLParser):
     def __init__(self, base_url: str):
         super().__init__()
@@ -75,10 +92,53 @@ class LinkExtractor(HTMLParser):
                     self.links.append(urljoin(self.base_url, value))
 
 
-def _extract_links(html_body: str, base_url: str) -> list[str]:
+def _collect_json_strings(obj: Any) -> list[str]:
+    if isinstance(obj, str):
+        return [obj]
+    if isinstance(obj, list):
+        strings: list[str] = []
+        for item in obj:
+            strings.extend(_collect_json_strings(item))
+        return strings
+    if isinstance(obj, dict):
+        strings = []
+        for value in obj.values():
+            strings.extend(_collect_json_strings(value))
+        return strings
+    return []
+
+
+def _extract_urls_from_text(text: str, base_url: str) -> list[str]:
+    return [urljoin(base_url, match.group(0)) for match in URL_IN_TEXT_RE.finditer(text)]
+
+
+def _extract_links_outside_tags(body: str, base_url: str) -> list[str]:
+    try:
+        json_strings = _collect_json_strings(json.loads(body))
+        links = _extract_urls_from_text("\n".join(json_strings), base_url)
+        if links:
+            return links
+        absolutized = "\n".join(urljoin(base_url, s) for s in json_strings)
+        links = _extract_urls_from_text(absolutized, base_url)
+        if links:
+            return links
+    except json.JSONDecodeError:
+        pass
+    return _extract_urls_from_text(body, base_url)
+
+
+def _extract_links(
+    html_body: str,
+    base_url: str,
+    match_links_outside_a_tags: bool = False,
+) -> list[str]:
     parser = LinkExtractor(base_url)
     parser.feed(html_body)
-    return parser.links
+    if parser.links and not match_links_outside_a_tags:
+        return parser.links
+    if parser.links and match_links_outside_a_tags:
+        return _extract_urls_from_text(html_body, base_url)
+    return _extract_links_outside_tags(html_body, base_url)
 
 
 def _filter_links_by_regex(links: list[str], regex: str) -> list[str]:
@@ -417,7 +477,11 @@ def _follow_intermediate_links(
         except Exception as e:
             return current_url, f"Failed to fetch intermediate URL ({current_url}): {e}"
 
-        links = _extract_links(body, final_url)
+        links = _extract_links(
+            body,
+            final_url,
+            match_links_outside_a_tags=step.get("matchLinksOutsideATags", False),
+        )
         step_regex = step.get("customLinkFilterRegex", "")
         if step_regex:
             links = _filter_links_by_regex(links, step_regex)
@@ -458,10 +522,20 @@ def test_html(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
         result.error = f"Failed to fetch final URL ({current_url}): {e}"
         return result
 
-    links = _extract_links(body, final_url)
+    links = _extract_links(
+        body,
+        final_url,
+        match_links_outside_a_tags=settings.get("matchLinksOutsideATags", False),
+    )
     custom_regex = settings.get("customLinkFilterRegex", "")
     apk_links = _filter_links_by_regex(links, custom_regex) if custom_regex else _filter_links_by_extension(links)
     apk_links = _apply_apk_filter(apk_links, settings)
+    apk_links = _sort_links(
+        apk_links,
+        skip_sort=settings.get("skipSort", False),
+        reverse_sort=settings.get("reverseSort", False),
+        sort_by_last_segment=settings.get("sortByLastLinkSegment", False),
+    )
 
     track_only = settings.get("trackOnly", False)
     if not apk_links and not track_only:
@@ -482,7 +556,7 @@ def test_html(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
         if extract_whole_page:
             search_text = body
         elif apk_links:
-            search_text = apk_links[-1]  # Obtainium uses last link
+            search_text = apk_links[-1]
         else:
             search_text = ""
 
