@@ -1357,7 +1357,10 @@
   ],
   "settings": {
     "categories": "{\"Emulator\":4292386421,\"Streaming\":4292056539,\"Utilities\":4292449237,\"Track Only\":4293103815,\"Frontend\":4291470692,\"PC Emulation\":4285381755}",
-    "groupByCategory": true,
-    "onlyCheckInstalledOrTrackOnlyApps": true
+    "groupBy": "category",
+    "onlyCheckInstalledOrTrackOnlyApps": true,
+    "buryNonInstalled": true,
+    "updateInterval": 1440,
+    "updateIntervalSliderVal": 8.0
   }
 }
