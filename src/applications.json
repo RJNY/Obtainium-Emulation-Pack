@@ -1367,6 +1367,19 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "emu.x360mobile.com",
+      "url": "https://github.com/Ashnar2602/X360-Mobile---OFFICIAL",
+      "author": "Ashnar2602",
+      "name": "X360 Mobile",
+      "preferredApkIndex": 1,
+      "additionalSettings": {},
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
