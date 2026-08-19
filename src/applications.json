@@ -827,15 +827,15 @@
     },
     {
       "id": "me.magnum.melondualds",
-      "url": "https://github.com/SapphireRhodonite/melonDS-android",
+      "url": "https://github.com/SapphireRhodonite/WatermelonDS",
       "author": "SapphireRhodonite",
-      "name": "MelonDualDS",
+      "name": "WatermelonDS",
       "preferredApkIndex": 0,
       "additionalSettings": {
         "versionExtractionRegEx": "v?(.+)",
         "matchGroupToUse": "$1",
         "versionDetection": false,
-        "appName": "MelonDualDS",
+        "appName": "WatermelonDS",
         "about": "Nintendo DS emulator"
       },
       "categories": [
@@ -844,7 +844,7 @@
       "allowIdChange": true,
       "overrideSource": "GitHub",
       "meta": {
-        "nameOverride": "MelonDualDS"
+        "nameOverride": "WatermelonDS"
       }
     },
     {
