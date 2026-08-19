@@ -8,7 +8,8 @@ A curated collection of Android emulators and gaming utilities for [Obtainium](h
 [![GitHub Release](https://img.shields.io/github/v/release/RJNY/Obtainium-Emulation-Pack?label=latest%20release)](https://github.com/RJNY/Obtainium-Emulation-Pack/releases/latest)
 [![Tests](https://img.shields.io/github/actions/workflow/status/RJNY/Obtainium-Emulation-Pack/scheduled-test.yml?label=daily%20tests)](https://github.com/RJNY/Obtainium-Emulation-Pack/actions/workflows/scheduled-test.yml)
 
-<sub>The Obtainium maintainer also hosts a broader collection of crowdsourced app configs at <a href="https://apps.obtainium.imranr.dev">apps.obtainium.imranr.dev</a></sub>
+<sub>The Obtainium maintainer also hosts a broader collection of crowdsourced app configs at <a href="https://apps.obtainium.imranr.dev">apps.obtainium.imranr.dev</a>.
+<br>For native Android ports, decompilations, and recompilations of classic games, see <a href="https://codeberg.org/BBoi34/Obtainium-Recomp-Decomp">Obtainium-Recomp-Decomp</a>.</sub>
 
 </div>
 
