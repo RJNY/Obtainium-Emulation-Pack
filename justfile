@@ -10,6 +10,11 @@ default:
 add-app:
     @python scripts/add-app.py
 
+# Resolve Android package ID from a repo/release URL
+[group('CLI Tools')]
+package-id *args:
+    @python scripts/package_id.py {{ args }}
+
 # Validate, normalize, and generate all output files
 [group('Release')]
 build: validate normalize generate

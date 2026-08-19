@@ -6,6 +6,7 @@ import re
 import sys
 from pathlib import Path
 
+from package_id import format_detection_message, resolve_package_id
 from utils import detect_source_from_url, load_dotenv
 
 CATEGORIES = [
@@ -198,7 +199,15 @@ def main() -> int:
     author = prompt("Author", author)
     name = prompt("App name", name)
 
-    app_id = prompt("Android package ID (e.g., com.example.app)")
+    load_dotenv()
+    print("\nLooking up Android package ID...")
+    detection = resolve_package_id(url, source)
+    print(f"  {format_detection_message(detection)}")
+    if detection.package_id is None and detection.errors:
+        for err in detection.errors[1:3]:
+            print(f"  note: {err}")
+
+    app_id = prompt("Android package ID (e.g., com.example.app)", detection.package_id or "")
     if not app_id:
         print("Package ID is required.")
         return 1

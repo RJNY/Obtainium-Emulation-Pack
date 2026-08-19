@@ -61,11 +61,12 @@ This will:
 
 - Prompt you for the GitHub URL
 - Auto-detect the source, author, and app name
-- Ask for the Android package ID and category
+- Auto-detect the Android package ID when possible (repo `applicationId` / `namespace`, then latest release APK manifest)
+- Ask you to confirm or edit the package ID, then pick a category
 - Generate proper Obtainium settings
 - Add the app to `applications.json`
 
-> **Tip:** To find the package ID, open the app in Obtainium - the package ID is displayed directly below the source URL (e.g., `com.example.android`).
+> **Tip:** `just add-app` tries to resolve the package ID for you. You can also run `python scripts/package_id.py <repo-url>` to print it alone. If detection fails, open the app in Obtainium - the package ID is displayed directly below the source URL (e.g., `com.example.android`).
 
 After running, execute `just build` to regenerate all files.
 
