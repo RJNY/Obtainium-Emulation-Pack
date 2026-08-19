@@ -1,0 +1,27 @@
+README.md
+  s_fbf6b68ab4820d::t_4737befa88d3b8 73
+obtainium-emulation-pack-dual-screen-latest.json
+  s_fbf6b68ab4820d::t_667e379ef853a1 1
+obtainium-emulation-pack-latest.json
+  s_fbf6b68ab4820d::t_b0b46f206eacbf 1
+pages/table.md
+  s_fbf6b68ab4820d::t_1f441153fb7e06 39
+src/applications.json
+  s_fbf6b68ab4820d::t_6f067fcd0dc55f 830,832,838,847
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "53e03128f16ccf11775730fc815f6041b53d34a8",
+  "prompts": {},
+  "sessions": {
+    "s_fbf6b68ab4820d": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fe52ce5acffeB0yQTvwjMPqQXJ",
+        "model": "grok-4.5"
+      },
+      "human_author": "Richard Macias <6036337+RJNY@users.noreply.github.com>"
+    }
+  }
+}
