@@ -1353,6 +1353,19 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.armsx3",
+      "url": "https://github.com/ARMSX2/ARMSX3",
+      "author": "ARMSX2",
+      "name": "ARMSX3",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
