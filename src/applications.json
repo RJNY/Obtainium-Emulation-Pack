@@ -1053,6 +1053,7 @@
       "name": "iiSU",
       "preferredApkIndex": 0,
       "additionalSettings": {
+        "useVersionCodeAsOSVersion": true,
         "appName": "iiSU",
         "about": "Game launcher frontend"
       },
