@@ -1,0 +1,23 @@
+src/applications.json
+  s_fbf6b68ab4820d::t_6f067fcd0dc55f 830,832,838,847
+README.md
+  s_fbf6b68ab4820d::t_4737befa88d3b8 74
+pages/table.md
+  s_fbf6b68ab4820d::t_1f441153fb7e06 40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "d4dd9e39b79247ab13a1720644a6e396cabf272d",
+  "prompts": {},
+  "sessions": {
+    "s_fbf6b68ab4820d": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fe52ce5acffeB0yQTvwjMPqQXJ",
+        "model": "grok-4.5"
+      },
+      "human_author": "Richard Macias <6036337+RJNY@users.noreply.github.com>"
+    }
+  }
+}
