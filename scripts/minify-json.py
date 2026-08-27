@@ -8,7 +8,7 @@ from utils import get_additional_settings, should_include_app, stringify_additio
 
 
 def minify_json(input_file: str, output_file: str, variant: str = "standard") -> None:
-    with open(input_file, "r", encoding="utf-8") as f:
+    with open(input_file, encoding="utf-8") as f:
         data: dict[str, Any] = json.load(f)
 
     if "apps" in data:
@@ -27,15 +27,11 @@ def minify_json(input_file: str, output_file: str, variant: str = "standard") ->
         json.dump(data, f, separators=(",", ":"), ensure_ascii=False)
 
     variant_label = f" ({variant})" if variant != "standard" else ""
-    print(
-        f"Minified JSON{variant_label} saved to {output_file} ({len(data.get('apps', []))} apps included)"
-    )
+    print(f"Minified JSON{variant_label} saved to {output_file} ({len(data.get('apps', []))} apps included)")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Minify and filter Obtainium JSON based on variant"
-    )
+    parser = argparse.ArgumentParser(description="Minify and filter Obtainium JSON based on variant")
     parser.add_argument("input", help="Input JSON file")
     parser.add_argument("output", help="Output JSON file")
     parser.add_argument(

@@ -30,6 +30,7 @@ select = [
 ignore = [
     "E501",  # line length handled by formatter
     "SIM108", # ternary operator suggestions (readability tradeoff)
+    "UP031", # percentage format is bad for ruff, but I think original author does not care
 ]
 
 [tool.ruff.lint.isort]

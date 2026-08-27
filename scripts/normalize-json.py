@@ -57,7 +57,7 @@ def normalize(input_path: str) -> int:
         print(f"Error: {path} not found.")
         return 1
 
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         data = json.load(f)
 
     apps = data.get("apps", [])

@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from package_id import format_detection_message, resolve_package_id
+
 from utils import detect_source_from_url, load_dotenv
 
 CATEGORIES = [
@@ -53,8 +54,6 @@ def select_menu(title: str, choices: list[str], default: int = 0) -> str:
         return _select_menu_fallback(title, choices, default)
 
     try:
-        import curses
-
         return _select_menu_curses(title, choices, default)
     except Exception:
         return _select_menu_fallback(title, choices, default)
@@ -232,7 +231,7 @@ def main() -> int:
         "App name override - leave blank to skip (sets display name in both Obtainium & README): "
     ).strip()
     if app_name_override:
-        print(f"  Will set additionalSettings.appName and meta.nameOverride")
+        print("  Will set additionalSettings.appName and meta.nameOverride")
 
     url_override = input("Homepage URL override - leave blank to skip: ").strip()
 
@@ -265,7 +264,7 @@ def main() -> int:
         print(f"Error: {apps_file} not found. Run from repo root.")
         return 1
 
-    with open(apps_file, "r", encoding="utf-8") as f:
+    with open(apps_file, encoding="utf-8") as f:
         data = json.load(f)
 
     existing_ids = {app["id"] for app in data.get("apps", [])}
