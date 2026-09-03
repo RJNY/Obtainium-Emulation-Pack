@@ -1393,6 +1393,21 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.zneko.launcher",
+      "url": "https://github.com/zneko-org/zneko-launcher",
+      "author": "zneko-org",
+      "name": "ZNeko Launcher",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "about": "Game launcher frontend"
+      },
+      "categories": [
+        "Frontend"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
