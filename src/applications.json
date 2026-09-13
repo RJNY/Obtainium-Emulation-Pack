@@ -1393,6 +1393,21 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.twinlore.app",
+      "url": "https://github.com/alpha-minus/game-twin",
+      "author": "alpha-minus",
+      "name": "Game Twin",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "about": "Game-aware companion for guides, maps, and checklists"
+      },
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
