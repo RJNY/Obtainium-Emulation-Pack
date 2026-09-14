@@ -23,7 +23,6 @@ def _visible_len(s: str) -> int:
 
 
 class StyledHelpFormatter(argparse.HelpFormatter):
-
     def __init__(self, prog: str, **kwargs) -> None:
         kwargs.setdefault("max_help_position", 36)
         super().__init__(prog, **kwargs)
@@ -70,8 +69,7 @@ class StyledHelpFormatter(argparse.HelpFormatter):
         return result
 
     def _format_action(self, action):
-        help_position = min(self._action_max_length + 2,
-                            self._max_help_position)
+        help_position = min(self._action_max_length + 2, self._max_help_position)
         help_width = max(self._width - help_position, 11)
         action_width = help_position - self._current_indent - 2
         action_header = self._format_action_invocation(action)
@@ -81,17 +79,17 @@ class StyledHelpFormatter(argparse.HelpFormatter):
 
         indent_first = 0
         if not action.help:
-            tup = self._current_indent, '', action_header
-            action_header = '%*s%s\n' % tup
+            tup = self._current_indent, "", action_header
+            action_header = "%*s%s\n" % tup
         elif visible <= action_width:
             # Pad based on visible width so columns align despite ANSI codes
             ansi_pad = len(action_header) - visible
-            tup = self._current_indent, '', action_width + ansi_pad, action_header
-            action_header = '%*s%-*s  ' % tup
+            tup = self._current_indent, "", action_width + ansi_pad, action_header
+            action_header = "%*s%-*s  " % tup
             indent_first = 0
         else:
-            tup = self._current_indent, '', action_header
-            action_header = '%*s%s\n' % tup
+            tup = self._current_indent, "", action_header
+            action_header = "%*s%s\n" % tup
             indent_first = help_position
 
         parts = [action_header]
@@ -102,11 +100,11 @@ class StyledHelpFormatter(argparse.HelpFormatter):
                 if self._color:
                     help_text = f"{DIM}{help_text}{RESET}"
                 help_lines = self._split_lines(help_text, help_width)
-                parts.append('%*s%s\n' % (indent_first, '', help_lines[0]))
+                parts.append("%*s%s\n" % (indent_first, "", help_lines[0]))
                 for line in help_lines[1:]:
-                    parts.append('%*s%s\n' % (help_position, '', line))
-        elif not action_header.endswith('\n'):
-            parts.append('\n')
+                    parts.append("%*s%s\n" % (help_position, "", line))
+        elif not action_header.endswith("\n"):
+            parts.append("\n")
 
         for subaction in self._iter_indented_subactions(action):
             parts.append(self._format_action(subaction))

@@ -54,18 +54,12 @@ def _check_request_header_shape(settings: dict[str, Any], app_name: str) -> list
 
     raw = settings["requestHeader"]
     if not isinstance(raw, list):
-        return [
-            f"{app_name}: 'requestHeader' must be a list of objects, "
-            f"got {type(raw).__name__}"
-        ]
+        return [f"{app_name}: 'requestHeader' must be a list of objects, got {type(raw).__name__}"]
 
     errors = []
     for i, entry in enumerate(raw):
         if not isinstance(entry, dict) or not isinstance(entry.get("requestHeader"), str):
-            errors.append(
-                f'{app_name}: requestHeader[{i}] must be an object like '
-                f'{{"requestHeader": "Key: Value"}}'
-            )
+            errors.append(f'{app_name}: requestHeader[{i}] must be an object like {{"requestHeader": "Key: Value"}}')
     return errors
 
 
@@ -96,10 +90,7 @@ def _check_browser_user_agent(settings: dict[str, Any], app_name: str) -> list[s
     marker = _find_spoofed_user_agent(settings)
     if not marker:
         return []
-    return [
-        f"{app_name}: requestHeader User-Agent spoofs a browser "
-        f"(contains {marker!r}); use {USER_AGENT!r} instead"
-    ]
+    return [f"{app_name}: requestHeader User-Agent spoofs a browser (contains {marker!r}); use {USER_AGENT!r} instead"]
 
 
 def _check_schema_default_user_agent() -> list[str]:
@@ -120,11 +111,7 @@ def _valid_keys_for_source(source: str | None) -> set[str]:
 
 
 def _validate_required_fields(app: dict, app_name: str) -> list[str]:
-    return [
-        f"{app_name}: missing required field '{f}'"
-        for f in REQUIRED_FIELDS
-        if f not in app
-    ]
+    return [f"{app_name}: missing required field '{f}'" for f in REQUIRED_FIELDS if f not in app]
 
 
 def _validate_url(app: dict, app_name: str) -> list[str]:
@@ -145,28 +132,20 @@ def _validate_url(app: dict, app_name: str) -> list[str]:
     return errors
 
 
-def _validate_override_source(
-    app: dict, app_name: str
-) -> tuple[list[str], list[str]]:
+def _validate_override_source(app: dict, app_name: str) -> tuple[list[str], list[str]]:
     errors, warnings = [], []
     source = app.get("overrideSource")
     url = app.get("url", "")
 
     if source is not None and source not in VALID_SOURCES:
-        errors.append(
-            f"{app_name}: unknown overrideSource '{source}' "
-            f"(valid: {', '.join(sorted(VALID_SOURCES))})"
-        )
+        errors.append(f"{app_name}: unknown overrideSource '{source}' (valid: {', '.join(sorted(VALID_SOURCES))})")
     elif source is None:
         warnings.append(f"{app_name}: missing overrideSource (auto-detection may be fragile)")
 
     if url and source:
         detected = detect_source_from_url(url)
         if detected and detected != source and source != "HTML" and detected != "HTML":
-            warnings.append(
-                f"{app_name}: URL host suggests '{detected}' but "
-                f"overrideSource is '{source}'"
-            )
+            warnings.append(f"{app_name}: URL host suggests '{detected}' but overrideSource is '{source}'")
 
     return errors, warnings
 
@@ -174,9 +153,7 @@ def _validate_override_source(
 def _validate_apk_index(app: dict, app_name: str) -> list[str]:
     index = app.get("preferredApkIndex")
     if index is not None and (not isinstance(index, int) or index < 0):
-        return [
-            f"{app_name}: preferredApkIndex must be a non-negative integer, got {index!r}"
-        ]
+        return [f"{app_name}: preferredApkIndex must be a non-negative integer, got {index!r}"]
     return []
 
 
@@ -202,9 +179,7 @@ def _validate_categories(app: dict, app_name: str) -> list[str]:
     return []
 
 
-def _validate_additional_settings(
-    app: dict, app_name: str
-) -> tuple[list[str], list[str]]:
+def _validate_additional_settings(app: dict, app_name: str) -> tuple[list[str], list[str]]:
     errors, warnings = [], []
     raw = app.get("additionalSettings")
     if raw is None:
@@ -239,9 +214,7 @@ def _validate_additional_settings(
 
     for key, replacement in DEPRECATED_SETTINGS_KEYS.items():
         if key in settings:
-            warnings.append(
-                f"{app_name}: deprecated key '{key}', use '{replacement}' instead"
-            )
+            warnings.append(f"{app_name}: deprecated key '{key}', use '{replacement}' instead")
 
     url = app.get("url", "")
     effective_source = app.get("overrideSource") or detect_source_from_url(url)
@@ -249,10 +222,7 @@ def _validate_additional_settings(
         valid_keys = _valid_keys_for_source(effective_source)
         for key in settings:
             if key not in valid_keys:
-                belongs_to = [
-                    s for s, keys in SOURCE_SPECIFIC_KEYS.items()
-                    if key in keys and s != effective_source
-                ]
+                belongs_to = [s for s, keys in SOURCE_SPECIFIC_KEYS.items() if key in keys and s != effective_source]
                 if belongs_to:
                     warnings.append(
                         f"{app_name}: additionalSettings key '{key}' "
@@ -298,10 +268,7 @@ def check_duplicate_ids(apps: list[dict[str, Any]], variant: str) -> list[str]:
             continue
 
         if app_id in ids_seen:
-            errors.append(
-                f"Duplicate ID '{app_id}' in {variant} variant: "
-                f"'{ids_seen[app_id]}' and '{app_name}'"
-            )
+            errors.append(f"Duplicate ID '{app_id}' in {variant} variant: '{ids_seen[app_id]}' and '{app_name}'")
         else:
             ids_seen[app_id] = app_name
 
@@ -317,7 +284,7 @@ def validate_json(input_file: str) -> int:
         return 1
 
     try:
-        with open(input_file, "r", encoding="utf-8") as f:
+        with open(input_file, encoding="utf-8") as f:
             data = json.load(f)
     except json.JSONDecodeError as e:
         print(f"Invalid JSON: {e}")

@@ -32,7 +32,7 @@ def load_dotenv() -> None:
 def detect_source_from_url(url: str) -> str | None:
     """Match a URL's host against SOURCE_HOST_MAP, including subdomains."""
     try:
-        host = urlparse(url).netloc.lower().lstrip("www.")
+        host = urlparse(url).netloc.lower().removeprefix("www.")
     except Exception:
         return None
     for domain, source in SOURCE_HOST_MAP.items():

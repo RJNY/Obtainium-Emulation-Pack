@@ -38,23 +38,36 @@ def _ensure_label_exists() -> None:
     result = _run_gh(["label", "list", "--search", ISSUE_LABEL, "--json", "name"])
     labels = _parse_gh_json(result) or []
     if not any(label["name"] == ISSUE_LABEL for label in labels):
-        _run_gh([
-            "label", "create", ISSUE_LABEL,
-            "--description", "Automatically created when a scheduled app test fails",
-            "--color", "d93f0b",
-        ])
+        _run_gh(
+            [
+                "label",
+                "create",
+                ISSUE_LABEL,
+                "--description",
+                "Automatically created when a scheduled app test fails",
+                "--color",
+                "d93f0b",
+            ]
+        )
 
 
 def _find_open_issue(app_name: str) -> int | None:
     """Search for an open issue matching this app. Returns issue number or None."""
     search_title = f"{TITLE_PREFIX} {app_name}"
-    result = _run_gh([
-        "issue", "list",
-        "--label", ISSUE_LABEL,
-        "--state", "open",
-        "--search", f"{search_title} in:title",
-        "--json", "number,title",
-    ])
+    result = _run_gh(
+        [
+            "issue",
+            "list",
+            "--label",
+            ISSUE_LABEL,
+            "--state",
+            "open",
+            "--search",
+            f"{search_title} in:title",
+            "--json",
+            "number,title",
+        ]
+    )
     issues = _parse_gh_json(result)
     if issues is None:
         return None
@@ -82,20 +95,23 @@ def _create_issue(app: dict[str, Any], run_url: str) -> None:
         body += "\n"
     body += f"[Workflow run]({run_url})\n"
 
-    _run_gh([
-        "issue", "create",
-        "--title", title,
-        "--body", body,
-        "--label", ISSUE_LABEL,
-    ])
+    _run_gh(
+        [
+            "issue",
+            "create",
+            "--title",
+            title,
+            "--body",
+            body,
+            "--label",
+            ISSUE_LABEL,
+        ]
+    )
     print(f"  Created issue: {title}")
 
 
 def _close_issue(issue_number: int, app_name: str, run_url: str) -> None:
-    comment = (
-        f"**{app_name}** is passing again in the latest scheduled test run.\n\n"
-        f"[Workflow run]({run_url})"
-    )
+    comment = f"**{app_name}** is passing again in the latest scheduled test run.\n\n[Workflow run]({run_url})"
     _run_gh(["issue", "close", str(issue_number), "--comment", comment])
     print(f"  Closed issue #{issue_number}: {app_name} recovered")
 
@@ -122,7 +138,7 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        with open(args.results_file, "r", encoding="utf-8") as f:
+        with open(args.results_file, encoding="utf-8") as f:
             data = json.load(f)
     except (json.JSONDecodeError, FileNotFoundError) as e:
         print(f"Error loading results file: {e}")

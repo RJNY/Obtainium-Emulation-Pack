@@ -33,16 +33,12 @@ AXML_RES_XML = 0x0003
 AXML_STRING_POOL = 0x0001
 AXML_START_ELEMENT = 0x0102
 AXML_TYPE_STRING = 0x03
-PACKAGE_NAME_RE = re.compile(
-    r"^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)+$"
-)
+PACKAGE_NAME_RE = re.compile(r"^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)+$")
 
 APPLICATION_ID_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     (
         "applicationId",
-        re.compile(
-            r"""applicationId\s*(?:=\s*["']([^"']+)["']|\s+["']([^"']+)["'])"""
-        ),
+        re.compile(r"""applicationId\s*(?:=\s*["']([^"']+)["']|\s+["']([^"']+)["'])"""),
     ),
     (
         "namespace",
@@ -53,6 +49,7 @@ APPLICATION_ID_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
         re.compile(r"""package\s*=\s*["']([a-zA-Z][a-zA-Z0-9_.]+)["']"""),
     ),
 ]
+
 
 @dataclass(frozen=True)
 class PackageIdHit:
@@ -157,23 +154,16 @@ def extract_package_ids_from_text(text: str) -> list[tuple[str, str]]:
 def _path_is_source_candidate(path: str) -> bool:
     lower = path.lower().replace("\\", "/")
     if not (
-        lower.endswith("build.gradle")
-        or lower.endswith("build.gradle.kts")
-        or lower.endswith("androidmanifest.xml")
+        lower.endswith("build.gradle") or lower.endswith("build.gradle.kts") or lower.endswith("androidmanifest.xml")
     ):
         return False
     parts = lower.split("/")
     parents = parts[:-1]
-    if any(
-        p in {"example", "examples", "sample", "samples", "test", "tests", "androidtest"}
-        for p in parents
-    ):
+    if any(p in {"example", "examples", "sample", "samples", "test", "tests", "androidtest"} for p in parents):
         return False
     if "/build/" in f"/{lower}/" or "/.gradle/" in f"/{lower}/":
         return False
-    if "generated" in parents or "intermediates" in parents:
-        return False
-    return True
+    return not ("generated" in parents or "intermediates" in parents)
 
 
 def _rank_source_path(path: str) -> tuple[int, int, str]:
@@ -204,11 +194,7 @@ def _select_package_from_kinds(hits: list[tuple[str, str, str]]) -> str | None:
     if len(by_id) == 1:
         return next(iter(by_id))
 
-    app_ids = {
-        pid
-        for pid, kinds in by_id.items()
-        if any(k == "applicationId" for k, _ in kinds)
-    }
+    app_ids = {pid for pid, kinds in by_id.items() if any(k == "applicationId" for k, _ in kinds)}
     if len(app_ids) == 1:
         return next(iter(app_ids))
     return None
@@ -249,17 +235,13 @@ def try_from_source_tree(url: str, source: str | None) -> PackageIdResult:
             continue
         for kind, package_id in extract_package_ids_from_text(text):
             typed_hits.append((package_id, kind, path))
-            result_hits.append(
-                PackageIdHit(package_id, "source", f"{kind} in {path}")
-            )
+            result_hits.append(PackageIdHit(package_id, "source", f"{kind} in {path}"))
 
     chosen = _select_package_from_kinds(typed_hits)
     if chosen is None and result_hits:
         unique = {h.package_id for h in result_hits}
         if len(unique) > 1:
-            errors.append(
-                "ambiguous package IDs in source: " + ", ".join(sorted(unique))
-            )
+            errors.append("ambiguous package IDs in source: " + ", ".join(sorted(unique)))
             return PackageIdResult(None, tuple(result_hits), tuple(errors))
     return PackageIdResult(chosen, tuple(result_hits), tuple(errors))
 
@@ -277,9 +259,7 @@ def _github_source_paths(owner: str, repo: str) -> tuple[list[str], str, str]:
     )
     if tree.get("truncated"):
         raise ValueError("GitHub tree response truncated")
-    paths = [
-        item["path"] for item in tree.get("tree", []) if item.get("type") == "blob"
-    ]
+    paths = [item["path"] for item in tree.get("tree", []) if item.get("type") == "blob"]
     raw_base = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}"
     return paths, branch, raw_base
 
@@ -287,15 +267,11 @@ def _github_source_paths(owner: str, repo: str) -> tuple[list[str], str, str]:
 def _gitea_source_paths(host: str, owner: str, repo: str) -> tuple[list[str], str, str]:
     meta = _http_json(f"https://{host}/api/v1/repos/{owner}/{repo}")
     branch = meta.get("default_branch") or "main"
-    branch_info = _http_json(
-        f"https://{host}/api/v1/repos/{owner}/{repo}/branches/{branch}"
-    )
+    branch_info = _http_json(f"https://{host}/api/v1/repos/{owner}/{repo}/branches/{branch}")
     sha = branch_info.get("commit", {}).get("id")
     if not sha:
         raise ValueError(f"no commit sha for branch {branch}")
-    tree = _http_json(
-        f"https://{host}/api/v1/repos/{owner}/{repo}/git/trees/{sha}?recursive=true"
-    )
+    tree = _http_json(f"https://{host}/api/v1/repos/{owner}/{repo}/git/trees/{sha}?recursive=true")
     paths = [item["path"] for item in tree.get("tree", []) if item.get("type") == "blob"]
     raw_base = f"https://{host}/{owner}/{repo}/raw/branch/{branch}"
     return paths, branch, raw_base
@@ -329,16 +305,12 @@ def parse_axml_package_id(data: bytes) -> str:
 def _parse_string_pool(data: bytes, pos: int, header_size: int, chunk_size: int) -> list[str]:
     if header_size < 28:
         raise ValueError("string pool header too small")
-    string_count, _style_count, flags, strings_start, _styles_start = struct.unpack_from(
-        "<IIIII", data, pos + 8
-    )
+    string_count, _style_count, flags, strings_start, _styles_start = struct.unpack_from("<IIIII", data, pos + 8)
     utf8 = bool(flags & (1 << 8))
     offsets_pos = pos + header_size
     if offsets_pos + string_count * 4 > pos + chunk_size:
         raise ValueError("string pool offsets overrun")
-    offsets = [
-        struct.unpack_from("<I", data, offsets_pos + i * 4)[0] for i in range(string_count)
-    ]
+    offsets = [struct.unpack_from("<I", data, offsets_pos + i * 4)[0] for i in range(string_count)]
     str_base = pos + strings_start
     strings: list[str] = []
     for offset in offsets:
@@ -405,9 +377,7 @@ def extract_android_manifest_from_apk_url(url: str) -> bytes:
     if size is None:
         body, _ = _http_request(url, timeout=TREE_FETCH_TIMEOUT)
         if len(body) > MAX_APK_FULL_DOWNLOAD:
-            raise ValueError(
-                f"APK too large for full download ({len(body)} bytes); need Range support"
-            )
+            raise ValueError(f"APK too large for full download ({len(body)} bytes); need Range support")
         return extract_android_manifest_from_apk(body)
 
     tail_start = max(0, size - ZIP_TAIL_SIZE)
@@ -558,9 +528,7 @@ def _latest_github_apk(owner: str, repo: str) -> tuple[str, str] | None:
 
 
 def _latest_gitea_apk(host: str, owner: str, repo: str) -> tuple[str, str] | None:
-    releases = _http_json(
-        f"https://{host}/api/v1/repos/{owner}/{repo}/releases?limit=20"
-    )
+    releases = _http_json(f"https://{host}/api/v1/repos/{owner}/{repo}/releases?limit=20")
     if not isinstance(releases, list):
         raise ValueError("unexpected Gitea releases payload")
     for release in releases:
@@ -570,11 +538,7 @@ def _latest_gitea_apk(host: str, owner: str, repo: str) -> tuple[str, str] | Non
         normalized = []
         for asset in assets:
             name = asset.get("name") or ""
-            dl = (
-                asset.get("browser_download_url")
-                or asset.get("browser_download")
-                or ""
-            )
+            dl = asset.get("browser_download_url") or asset.get("browser_download") or ""
             normalized.append({"name": name, "browser_download_url": dl})
         picked = _pick_apk_asset(normalized)
         if picked:
@@ -630,14 +594,14 @@ def format_detection_message(result: PackageIdResult) -> str:
 def _self_test() -> int:
     failures = 0
 
-    gradle = '''
+    gradle = """
         android {
             namespace = "io.github.gopher64.gopher64"
             defaultConfig {
                 applicationId = "io.github.gopher64.gopher64"
             }
         }
-    '''
+    """
     extracted = extract_package_ids_from_text(gradle)
     kinds = {k for k, _ in extracted}
     ids = {i for _, i in extracted}
