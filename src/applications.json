@@ -1406,6 +1406,21 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.ruby.wavelauncher",
+      "url": "https://github.com/WaveLauncher/WaveLauncher",
+      "author": "Ruby",
+      "name": "Wave Launcher",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "about": "XMB-style frontend for games, media and trophies"
+      },
+      "categories": [
+        "Frontend"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
