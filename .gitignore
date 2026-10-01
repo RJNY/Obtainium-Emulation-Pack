@@ -4,3 +4,6 @@ tmp/
 out/
 assets/
 __pycache__
+
+# UV
+.python-version
