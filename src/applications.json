@@ -1419,6 +1419,19 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.droiddeck.launcher",
+      "url": "https://github.com/Droid-Deck/DroidDeck",
+      "author": "Droid-Deck",
+      "name": "Droiddeck",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "PC Emulation"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
