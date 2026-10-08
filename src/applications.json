@@ -1432,6 +1432,19 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.pokedaisy.app",
+      "url": "https://github.com/lidor30/pokedaisy",
+      "author": "lidor30",
+      "name": "PokeDaisy",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
