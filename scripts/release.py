@@ -31,7 +31,14 @@ from typing import Any
 
 from constants import GITHUB_NOREPLY_SUFFIX
 from help_formatter import StyledHelpFormatter
-from utils import get_additional_settings, get_application_url, get_display_name, load_dotenv, make_obtainium_link, should_include_app
+from utils import (
+    get_additional_settings,
+    get_application_url,
+    get_display_name,
+    load_dotenv,
+    make_obtainium_link,
+    should_include_app,
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 STANDARD_JSON = REPO_ROOT / "obtainium-emulation-pack-latest.json"
@@ -123,7 +130,7 @@ def prompt_version(latest: str | None) -> str:
     print(f"  [1] patch  - {suggestions['patch']}")
     print(f"  [2] minor  - {suggestions['minor']}")
     print(f"  [3] major  - {suggestions['major']}")
-    print(f"  [4] custom")
+    print("  [4] custom")
     print()
 
     while True:
@@ -165,7 +172,7 @@ def load_apps_from_ref(ref: str) -> dict[str, dict[str, Any]]:
 
 
 def load_apps_from_file() -> dict[str, dict[str, Any]]:
-    with open(APPLICATIONS_JSON, "r", encoding="utf-8") as f:
+    with open(APPLICATIONS_JSON, encoding="utf-8") as f:
         data = json.load(f)
     return {_app_key(app): app for app in data.get("apps", [])}
 
@@ -356,9 +363,7 @@ def generate_release_notes(
 def edit_release_notes(notes: str) -> str:
     editor = os.environ.get("EDITOR", "vim")
 
-    with tempfile.NamedTemporaryFile(
-        suffix="-release-notes.md", mode="w", delete=False, prefix="obtainium-"
-    ) as f:
+    with tempfile.NamedTemporaryFile(suffix="-release-notes.md", mode="w", delete=False, prefix="obtainium-") as f:
         f.write(notes)
         tmp_path = f.name
 
@@ -366,7 +371,7 @@ def edit_release_notes(notes: str) -> str:
     print("Edit the notes, save, and close to continue.\n")
     subprocess.run([editor, tmp_path], check=True)
 
-    with open(tmp_path, "r") as f:
+    with open(tmp_path) as f:
         edited = f.read().strip()
     Path(tmp_path).unlink(missing_ok=True)
     return edited
@@ -422,7 +427,7 @@ def cleanup(files: list[Path]) -> None:
 
 def get_app_count(json_path: Path) -> int:
     try:
-        with open(json_path, "r") as f:
+        with open(json_path) as f:
             data = json.load(f)
         return len(data.get("apps", []))
     except Exception:
@@ -435,23 +440,28 @@ def main() -> None:
         formatter_class=StyledHelpFormatter,
     )
     parser.add_argument(
-        "--version", "-v",
+        "--version",
+        "-v",
         help="Release version (e.g. v7.5.0). Prompts if not provided.",
     )
     parser.add_argument(
-        "--notes", "-n",
+        "--notes",
+        "-n",
         help="Release notes markdown string. Skips generation and editor.",
     )
     parser.add_argument(
-        "--notes-file", "-f",
+        "--notes-file",
+        "-f",
         help="Path to a file containing release notes. Skips generation and editor.",
     )
     parser.add_argument(
-        "--since", "-s",
+        "--since",
+        "-s",
         help="Override base tag for diff (e.g. v7.5.0). Defaults to latest tag.",
     )
     parser.add_argument(
-        "--dry-run", "--dryrun",
+        "--dry-run",
+        "--dryrun",
         action="store_true",
         help="Show what would happen without making changes.",
     )

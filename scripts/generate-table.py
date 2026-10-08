@@ -23,35 +23,23 @@ def generate_category_tables(apps: list[dict[str, Any]]) -> str:
 
     for category in sorted(categorized.keys()):
         markdown_sections.append(f"### {category}\n")
-        markdown_sections.append(
-            "| App | Add to Obtainium | Standard | Dual-Screen |"
-        )
-        markdown_sections.append(
-            "|-----|------------------|:--------:|:-----------:|"
-        )
+        markdown_sections.append("| App | Add to Obtainium | Standard | Dual-Screen |")
+        markdown_sections.append("|-----|------------------|:--------:|:-----------:|")
 
-        apps_in_category = sorted(
-            categorized[category], key=lambda app: get_display_name(app).lower()
-        )
+        apps_in_category = sorted(categorized[category], key=lambda app: get_display_name(app).lower())
 
         for app in apps_in_category:
             meta = app.get("meta", {})
             if meta.get("excludeFromTable", False):
                 continue
 
-            display_name = (
-                f'<a href="{get_application_url(app)}">{get_display_name(app)}</a>'
-            )
+            display_name = f'<a href="{get_application_url(app)}">{get_display_name(app)}</a>'
             obtainium_link = make_obtainium_link(app)
             badge_md = f'<a href="{obtainium_link}">Add to Obtainium!</a>'
             include_standard = "✅" if should_include_app(app, "standard") else "-"
-            include_dual_screen = (
-                "✅" if should_include_app(app, "dual-screen") else "-"
-            )
+            include_dual_screen = "✅" if should_include_app(app, "dual-screen") else "-"
 
-            markdown_sections.append(
-                f"| {display_name} | {badge_md} | {include_standard} | {include_dual_screen} |"
-            )
+            markdown_sections.append(f"| {display_name} | {badge_md} | {include_standard} | {include_dual_screen} |")
 
         markdown_sections.append("")  # blank line between sections
 
@@ -59,7 +47,7 @@ def generate_category_tables(apps: list[dict[str, Any]]) -> str:
 
 
 def main(input_file: str, output_file: str) -> None:
-    with open(input_file, "r", encoding="utf-8") as f:
+    with open(input_file, encoding="utf-8") as f:
         data = json.load(f)
 
     apps = data.get("apps", [])

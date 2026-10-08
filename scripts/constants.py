@@ -111,64 +111,58 @@ class SettingDef(NamedTuple):
 
 
 SETTINGS_SCHEMA: dict[str, SettingDef] = {
-    "includePrereleases":           SettingDef(False,  _GITHUB_LIKE),
-    "fallbackToOlderReleases":      SettingDef(True,   frozenset({"GitHub", "Codeberg", "GitLab", "SourceHut", "APKPure", "APKMirror"})),
-    "filterReleaseTitlesByRegEx":   SettingDef("",     frozenset({"GitHub", "Codeberg", "APKMirror"}), is_regex=True),
-    "filterReleaseNotesByRegEx":    SettingDef("",     _GITHUB_LIKE, is_regex=True),
-    "verifyLatestTag":              SettingDef(False,  _GITHUB_LIKE),
-    "sortMethodChoice":             SettingDef("date", _GITHUB_LIKE),
+    "includePrereleases": SettingDef(False, _GITHUB_LIKE),
+    "fallbackToOlderReleases": SettingDef(
+        True, frozenset({"GitHub", "Codeberg", "GitLab", "SourceHut", "APKPure", "APKMirror"})
+    ),
+    "filterReleaseTitlesByRegEx": SettingDef("", frozenset({"GitHub", "Codeberg", "APKMirror"}), is_regex=True),
+    "filterReleaseNotesByRegEx": SettingDef("", _GITHUB_LIKE, is_regex=True),
+    "verifyLatestTag": SettingDef(False, _GITHUB_LIKE),
+    "sortMethodChoice": SettingDef("date", _GITHUB_LIKE),
     "useLatestAssetDateAsReleaseDate": SettingDef(False, _GITHUB_LIKE),
-    "releaseTitleAsVersion":        SettingDef(False,  _GITHUB_LIKE),
-    "github-creds":                 SettingDef("",     frozenset({"GitHub"})),
-    "GHReqPrefix":                  SettingDef("",     frozenset({"GitHub"})),
-
-    "gitlab-creds":                 SettingDef("",     frozenset({"GitLab"})),
-
-    "filterVersionsByRegEx":        SettingDef("",     frozenset({"FDroid", "IzzyOnDroid"}), is_regex=True),
+    "releaseTitleAsVersion": SettingDef(False, _GITHUB_LIKE),
+    "github-creds": SettingDef("", frozenset({"GitHub"})),
+    "GHReqPrefix": SettingDef("", frozenset({"GitHub"})),
+    "gitlab-creds": SettingDef("", frozenset({"GitLab"})),
+    "filterVersionsByRegEx": SettingDef("", frozenset({"FDroid", "IzzyOnDroid"}), is_regex=True),
     "trySelectingSuggestedVersionCode": SettingDef(True, frozenset({"FDroid", "IzzyOnDroid", "FDroidRepo"})),
-    "autoSelectHighestVersionCode": SettingDef(False,  frozenset({"FDroid", "IzzyOnDroid"})),
-
-    "appIdOrName":                  SettingDef("",     frozenset({"FDroidRepo"})),
-    "pickHighestVersionCode":       SettingDef(False,  frozenset({"FDroidRepo"})),
-
-    "stayOneVersionBehind":         SettingDef(False,  frozenset({"APKPure"})),
-    "useFirstApkOfVersion":         SettingDef(True,   frozenset({"APKPure", "Farsroid"})),
-
-    "intermediateLink":             SettingDef([],     frozenset({"HTML"})),
-    "customLinkFilterRegex":        SettingDef("",     frozenset({"HTML"}), is_regex=True),
-    "filterByLinkText":             SettingDef(False,  frozenset({"HTML"})),
-    "matchLinksOutsideATags":       SettingDef(False,  frozenset({"HTML"})),
-    "skipSort":                     SettingDef(False,  frozenset({"HTML"})),
-    "reverseSort":                  SettingDef(False,  frozenset({"HTML"})),
-    "sortByLastLinkSegment":        SettingDef(False,  frozenset({"HTML"})),
-    "versionExtractWholePage":      SettingDef(False,  frozenset({"HTML"})),
-    "requestHeader":                SettingDef(_DEFAULT_USER_AGENT_HEADER, frozenset({"HTML", "DirectAPKLink"})),
+    "autoSelectHighestVersionCode": SettingDef(False, frozenset({"FDroid", "IzzyOnDroid"})),
+    "appIdOrName": SettingDef("", frozenset({"FDroidRepo"})),
+    "pickHighestVersionCode": SettingDef(False, frozenset({"FDroidRepo"})),
+    "stayOneVersionBehind": SettingDef(False, frozenset({"APKPure"})),
+    "useFirstApkOfVersion": SettingDef(True, frozenset({"APKPure", "Farsroid"})),
+    "intermediateLink": SettingDef([], frozenset({"HTML"})),
+    "customLinkFilterRegex": SettingDef("", frozenset({"HTML"}), is_regex=True),
+    "filterByLinkText": SettingDef(False, frozenset({"HTML"})),
+    "matchLinksOutsideATags": SettingDef(False, frozenset({"HTML"})),
+    "skipSort": SettingDef(False, frozenset({"HTML"})),
+    "reverseSort": SettingDef(False, frozenset({"HTML"})),
+    "sortByLastLinkSegment": SettingDef(False, frozenset({"HTML"})),
+    "versionExtractWholePage": SettingDef(False, frozenset({"HTML"})),
+    "requestHeader": SettingDef(_DEFAULT_USER_AGENT_HEADER, frozenset({"HTML", "DirectAPKLink"})),
     "defaultPseudoVersioningMethod": SettingDef("partialAPKHash", frozenset({"HTML", "DirectAPKLink"})),
-
-    "trackOnly":                    SettingDef(False,  ALL_SOURCES),
-    "versionExtractionRegEx":       SettingDef("",     ALL_SOURCES, is_regex=True),
-    "matchGroupToUse":              SettingDef("",     ALL_SOURCES),
-    "versionDetection":             SettingDef(True,   ALL_SOURCES),
-    "releaseDateAsVersion":         SettingDef(False,  ALL_SOURCES),
-    "useVersionCodeAsOSVersion":    SettingDef(False,  ALL_SOURCES),
-    "apkFilterRegEx":               SettingDef("",     ALL_SOURCES, is_regex=True),
-    "invertAPKFilter":              SettingDef(False,  ALL_SOURCES),
-    "autoApkFilterByArch":          SettingDef(True,   ALL_SOURCES),
-    "appName":                      SettingDef("",     ALL_SOURCES),
-    "appAuthor":                    SettingDef("",     ALL_SOURCES),
-    "shizukuPretendToBeGooglePlay": SettingDef(False,  ALL_SOURCES),
-    "allowInsecure":                SettingDef(False,  ALL_SOURCES),
-    "exemptFromBackgroundUpdates":  SettingDef(False,  ALL_SOURCES),
-    "skipUpdateNotifications":      SettingDef(False,  ALL_SOURCES),
-    "about":                        SettingDef("",     ALL_SOURCES),
-    "refreshBeforeDownload":        SettingDef(False,  ALL_SOURCES),
-    "includeZips":                  SettingDef(False,  ALL_SOURCES),
-    "zippedApkFilterRegEx":         SettingDef("",     ALL_SOURCES, is_regex=True),
+    "trackOnly": SettingDef(False, ALL_SOURCES),
+    "versionExtractionRegEx": SettingDef("", ALL_SOURCES, is_regex=True),
+    "matchGroupToUse": SettingDef("", ALL_SOURCES),
+    "versionDetection": SettingDef(True, ALL_SOURCES),
+    "releaseDateAsVersion": SettingDef(False, ALL_SOURCES),
+    "useVersionCodeAsOSVersion": SettingDef(False, ALL_SOURCES),
+    "apkFilterRegEx": SettingDef("", ALL_SOURCES, is_regex=True),
+    "invertAPKFilter": SettingDef(False, ALL_SOURCES),
+    "autoApkFilterByArch": SettingDef(True, ALL_SOURCES),
+    "appName": SettingDef("", ALL_SOURCES),
+    "appAuthor": SettingDef("", ALL_SOURCES),
+    "shizukuPretendToBeGooglePlay": SettingDef(False, ALL_SOURCES),
+    "allowInsecure": SettingDef(False, ALL_SOURCES),
+    "exemptFromBackgroundUpdates": SettingDef(False, ALL_SOURCES),
+    "skipUpdateNotifications": SettingDef(False, ALL_SOURCES),
+    "about": SettingDef("", ALL_SOURCES),
+    "refreshBeforeDownload": SettingDef(False, ALL_SOURCES),
+    "includeZips": SettingDef(False, ALL_SOURCES),
+    "zippedApkFilterRegEx": SettingDef("", ALL_SOURCES, is_regex=True),
 }
 
-COMMON_SETTINGS_KEYS: set[str] = {
-    key for key, s in SETTINGS_SCHEMA.items() if s.sources == ALL_SOURCES
-}
+COMMON_SETTINGS_KEYS: set[str] = {key for key, s in SETTINGS_SCHEMA.items() if s.sources == ALL_SOURCES}
 
 SOURCE_SPECIFIC_KEYS: dict[str, set[str]] = {}
 for _source in VALID_SOURCES:
@@ -176,6 +170,4 @@ for _source in VALID_SOURCES:
     if _keys:
         SOURCE_SPECIFIC_KEYS[_source] = _keys
 
-REGEX_SETTINGS_KEYS: set[str] = {
-    key for key, s in SETTINGS_SCHEMA.items() if s.is_regex
-}
+REGEX_SETTINGS_KEYS: set[str] = {key for key, s in SETTINGS_SCHEMA.items() if s.is_regex}

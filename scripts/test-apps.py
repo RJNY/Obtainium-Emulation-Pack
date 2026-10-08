@@ -345,9 +345,7 @@ def _collect_apks_from_assets(assets: list[dict], settings: dict[str, Any]) -> l
     for asset in assets:
         name = asset.get("name", "").lower()
         dl_url = asset.get("browser_download_url", "")
-        if name.endswith(APK_EXTENSIONS):
-            urls.append(dl_url)
-        elif name.endswith(".zip") and settings.get("includeZips", False):
+        if name.endswith(APK_EXTENSIONS) or (name.endswith(".zip") and settings.get("includeZips", False)):
             urls.append(dl_url)
     return urls
 
@@ -434,9 +432,7 @@ def test_github(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     title_regex = re.compile(title_str) if title_str else None
     notes_regex = re.compile(notes_str) if notes_str else None
 
-    target, apk_urls = _find_release_with_apks(
-        releases, settings, title_filter=title_regex, notes_filter=notes_regex
-    )
+    target, apk_urls = _find_release_with_apks(releases, settings, title_filter=title_regex, notes_filter=notes_regex)
 
     if not target:
         prerelease_state = "on" if settings.get("includePrereleases", False) else "off"
@@ -541,8 +537,7 @@ def _follow_intermediate_links(
 
         if not links:
             return current_url, (
-                f"Intermediate link step {i} found no matching links "
-                f"(url={current_url}, regex={step_regex!r})"
+                f"Intermediate link step {i} found no matching links (url={current_url}, regex={step_regex!r})"
             )
 
         current_url = links[-1]  # Obtainium takes the last link after sorting
@@ -557,7 +552,9 @@ def test_html(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
     req_headers = _parse_request_headers(settings)
     intermediate_links = settings.get("intermediateLink", [])
 
-    current_url, error = _follow_intermediate_links(app["url"], intermediate_links, req_headers, allow_insecure=insecure)
+    current_url, error = _follow_intermediate_links(
+        app["url"], intermediate_links, req_headers, allow_insecure=insecure
+    )
     if error:
         result.error = error
         return result
@@ -589,10 +586,7 @@ def test_html(app: dict[str, Any], settings: dict[str, Any]) -> TestResult:
             customLinkFilterRegex=custom_regex,
             apkFilterRegEx=settings.get("apkFilterRegEx", ""),
         )
-        result.error = (
-            f"No APK links found on page ({current_url}{context}, "
-            f"{len(links)} total links on page)"
-        )
+        result.error = f"No APK links found on page ({current_url}{context}, {len(links)} total links on page)"
         return result
 
     version = None
@@ -710,7 +704,8 @@ def main() -> int:
         help="Filter by app name (case-insensitive substring match)",
     )
     parser.add_argument(
-        "-f", "--file",
+        "-f",
+        "--file",
         default="src/applications.json",
         help="Path to applications.json (default: src/applications.json)",
     )
@@ -730,7 +725,8 @@ def main() -> int:
         help="Show numbered APK list with preferredApkIndex marker",
     )
     parser.add_argument(
-        "-j", "--jobs",
+        "-j",
+        "--jobs",
         type=int,
         default=8,
         help="Number of parallel workers (default: 8, use 1 for serial)",
@@ -751,7 +747,7 @@ def main() -> int:
     json_output = args.json
 
     try:
-        with open(json_file, "r", encoding="utf-8") as f:
+        with open(json_file, encoding="utf-8") as f:
             data = json.load(f)
     except (json.JSONDecodeError, FileNotFoundError) as e:
         if json_output:
@@ -834,7 +830,7 @@ def main() -> int:
         print(f"Time: {wall_ms / 1000:.1f}s wall, {sum_time / 1000:.1f}s cumulative")
 
         if failed > 0:
-            print(f"\nFailed apps:")
+            print("\nFailed apps:")
             for r in results:
                 if not r.passed:
                     print(f"  - {r.app_name}: {r.error}")
