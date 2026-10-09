@@ -1432,6 +1432,22 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.example.thorspeedrunsplits",
+      "url": "https://github.com/JonJon2005/Thor-SpeedrunSplits",
+      "author": "JonJon2005",
+      "name": "Thor Speedrun Splits",
+      "preferredApkIndex": 0,
+      "additionalSettings": {},
+      "categories": [
+        "Utilities"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "includeInStandard": false
+      }
     }
   ],
   "settings": {
