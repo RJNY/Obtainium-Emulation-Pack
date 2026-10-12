@@ -60,4 +60,4 @@ adb-push:
 
 # Generate output files
 generate *args:
-    @{{ if args == "help" { "just _generate-help" } else if args == "-h" { "just _generate-help" } else if args == "--help" { "just _generate-help" } else if args == "table" { "just _generate-table" } else if args == "readme" { "just _generate-readme" } else if args == "json" { "just _generate-json" } else { "just _generate-all" } }}
+    @{{ if args == "help" { "just _generate-help" } else if args == "-h" { "just _generate-help" } else if args == "--help" { "just _generate-help" } else if args == "table" { "just _generate-table" } else if args == "readme" { "just _generate-readme" } else if args == "json" { "just _generate-json" } else if args == "" { "just _generate-all" } else { "echo 'Unknown generate subcommand: " + args + ". Run just generate help.' && exit 1" } }}

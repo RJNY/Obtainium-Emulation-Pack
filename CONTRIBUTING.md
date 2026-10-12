@@ -34,7 +34,7 @@ scripts/
   add-app.py                     # Interactive CLI to add a new app
   generate-table.py              # Generates the README table
   generate-readme.py             # Stitches markdown files into README
-  minify-json.py                 # Creates release JSON files
+  minify-json.py                 # Creates the release JSON
   normalize-json.py              # Normalize key order and backfill defaults
   process-test-results.py        # Processes scheduled test results, manages GitHub issues
   release.py                     # Automated release workflow (tag, push, gh release)
