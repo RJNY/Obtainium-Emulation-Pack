@@ -1,0 +1,25 @@
+README.md
+  s_b77679be6c782f::t_3feea972f77235 29,40-77,81-91,95-104,108-112,116-121,125-145
+obtainium-emulation-pack-latest.json
+  s_b77679be6c782f::t_334f1f8ca45f80 1
+pages/table.md
+  s_b77679be6c782f::t_63bce92fd4c781 7-44,48-58,62-71,75-79,83-88,92-112
+src/applications.json
+  s_b77679be6c782f::t_7b9281fa3b606a 45-46,54-55,860,866,1001,1017,1035,1121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e48b812d20197ff1b68f2b2200c20c0eb3b94582",
+  "prompts": {},
+  "sessions": {
+    "s_b77679be6c782f": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_ecf9f1f11ffeI638JDAYAx2Dm1",
+        "model": "unknown"
+      },
+      "human_author": "Richard Macias <6036337+RJNY@users.noreply.github.com>"
+    }
+  }
+}
