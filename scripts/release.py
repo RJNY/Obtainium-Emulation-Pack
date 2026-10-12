@@ -8,7 +8,7 @@ Workflow:
   2. Detect changed apps since last tag
   3. Generate release notes with summary + app update table
   4. Open in $EDITOR for final edits
-  5. Copy minified JSONs to versioned filenames
+  5. Copy the minified JSON to a versioned filename
   6. Create git tag, push, and create GitHub release
 
 Usage:
@@ -34,8 +34,7 @@ from help_formatter import StyledHelpFormatter
 from utils import get_additional_settings, get_application_url, get_display_name, load_dotenv, make_obtainium_link, should_include_app
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-STANDARD_JSON = REPO_ROOT / "obtainium-emulation-pack-latest.json"
-DUAL_SCREEN_JSON = REPO_ROOT / "obtainium-emulation-pack-dual-screen-latest.json"
+PACK_JSON = REPO_ROOT / "obtainium-emulation-pack-latest.json"
 APPLICATIONS_JSON = REPO_ROOT / "src" / "applications.json"
 
 RELEASES_URL = "https://github.com/RJNY/Obtainium-Emulation-Pack/releases/tag"
@@ -147,7 +146,7 @@ def prompt_version(latest: str | None) -> str:
 
 
 def _app_key(app: dict[str, Any]) -> str:
-    """Compound key to distinguish apps that share an Android package ID (e.g. variant forks)."""
+    """Compound key to distinguish apps that share an Android package ID."""
     return f"{app['id']}::{app['url']}"
 
 
@@ -208,13 +207,11 @@ def make_app_table_row(app: dict[str, Any], change: str) -> str:
     app_link = f"[{name}]({get_application_url(app)})"
     if change == "Removed":
         install = "-"
-        std = "-"
-        ds = "-"
+        in_pack = "-"
     else:
         install = f"[Add to Obtainium!][{ref_key}]"
-        std = "✅" if should_include_app(app, "standard") else "-"
-        ds = "✅" if should_include_app(app, "dual-screen") else "-"
-    return f"| {app_link} | {install} | {change} | {std} | {ds} |"
+        in_pack = "✅" if should_include_app(app) else "-"
+    return f"| {app_link} | {install} | {change} | {in_pack} |"
 
 
 def make_app_reference_link(app: dict[str, Any]) -> str:
@@ -224,8 +221,8 @@ def make_app_reference_link(app: dict[str, Any]) -> str:
 
 
 CHANGES_TABLE_HEADER = (
-    "| App | Add to Obtainium | Change | Standard | Dual-Screen |\n"
-    "|-----|------------------|--------|:--------:|:-----------:|"
+    "| App | Add to Obtainium | Change | In pack |\n"
+    "|-----|------------------|--------|:-------:|"
 )
 
 
@@ -380,14 +377,9 @@ def check_working_tree_clean() -> bool:
 def create_versioned_copies(version: str) -> list[Path]:
     copies: list[Path] = []
 
-    standard_versioned = REPO_ROOT / f"obtainium-emulation-pack-{version}.json"
-    dual_versioned = REPO_ROOT / f"obtainium-emulation-pack-dual-screen-{version}.json"
-
-    shutil.copy2(STANDARD_JSON, standard_versioned)
-    shutil.copy2(DUAL_SCREEN_JSON, dual_versioned)
-
-    copies.append(standard_versioned)
-    copies.append(dual_versioned)
+    versioned = REPO_ROOT / f"obtainium-emulation-pack-{version}.json"
+    shutil.copy2(PACK_JSON, versioned)
+    copies.append(versioned)
     return copies
 
 
@@ -524,23 +516,19 @@ def main() -> None:
         print()
         print("  Assets:")
         print(f"    - obtainium-emulation-pack-{version}.json")
-        print(f"    - obtainium-emulation-pack-dual-screen-{version}.json")
         print()
         return
 
-    for f in (STANDARD_JSON, DUAL_SCREEN_JSON):
-        if not f.exists():
-            print(f"Error: Expected artifact not found: {f}")
-            print("Did you run `just build` first?")
-            sys.exit(1)
+    if not PACK_JSON.exists():
+        print(f"Error: Expected artifact not found: {PACK_JSON}")
+        print("Did you run `just build` first?")
+        sys.exit(1)
 
-    std_count = get_app_count(STANDARD_JSON)
-    ds_count = get_app_count(DUAL_SCREEN_JSON)
+    app_count = get_app_count(PACK_JSON)
 
     print()
-    print(f"Version:        {version}")
-    print(f"Standard apps:  {std_count}")
-    print(f"Dual-screen:    {ds_count}")
+    print(f"Version:  {version}")
+    print(f"Apps:     {app_count}")
     if notes:
         preview = notes.split("\n")[0]
         print(f"Notes preview:  {preview[:80]}{'...' if len(preview) > 80 else ''}")

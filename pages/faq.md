@@ -13,17 +13,6 @@ Same as the initial install. Re-import the latest JSON and it will update existi
 </details>
 
 <details>
-<summary><strong>What are the two JSON variants?</strong></summary>
-<br>
-Some emulators have dual-screen forks (Cemu, MelonDS) that share the same Android package ID as the standard version. Since Obtainium can't have two apps with the same ID, the pack ships two variants:
-<br><br>
-
-- **Standard** - for AYN Odin, Retroid Pocket, and most Android devices
-- **Dual-Screen** - for AYN Thor, Anbernic RG DS, and other dual-screen devices, with dual-screen forks swapped in plus dual-screen utilities
-
-</details>
-
-<details>
 <summary><strong>Why do some applications say TRACK ONLY?</strong></summary>
 <br>
 As the name implies, these application versions are only tracked, not pulled.

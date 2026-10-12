@@ -15,7 +15,6 @@ from constants import (
     SOURCE_SPECIFIC_KEYS,
     USER_AGENT,
     VALID_SOURCES,
-    VARIANTS,
 )
 from utils import detect_source_from_url, get_additional_settings, should_include_app
 
@@ -26,8 +25,6 @@ VALID_META_KEYS = {
     "excludeFromTable",
     "nameOverride",
     "urlOverride",
-    "includeInStandard",
-    "includeInDualScreen",
 }
 
 META_TYPO_MAP = {
@@ -284,12 +281,12 @@ def validate_app(app: dict[str, Any], index: int) -> tuple[list[str], list[str]]
     return errors, warnings
 
 
-def check_duplicate_ids(apps: list[dict[str, Any]], variant: str) -> list[str]:
+def check_duplicate_ids(apps: list[dict[str, Any]]) -> list[str]:
     errors = []
     ids_seen: dict[str, str] = {}
 
     for app in apps:
-        if not should_include_app(app, variant):
+        if not should_include_app(app):
             continue
 
         app_id = app.get("id", "")
@@ -299,8 +296,7 @@ def check_duplicate_ids(apps: list[dict[str, Any]], variant: str) -> list[str]:
 
         if app_id in ids_seen:
             errors.append(
-                f"Duplicate ID '{app_id}' in {variant} variant: "
-                f"'{ids_seen[app_id]}' and '{app_name}'"
+                f"Duplicate ID '{app_id}': '{ids_seen[app_id]}' and '{app_name}'"
             )
         else:
             ids_seen[app_id] = app_name
@@ -338,8 +334,7 @@ def validate_json(input_file: str) -> int:
         all_errors.extend(errors)
         all_warnings.extend(warnings)
 
-    for variant in VARIANTS:
-        all_errors.extend(check_duplicate_ids(apps, variant))
+    all_errors.extend(check_duplicate_ids(apps))
 
     if all_warnings:
         print(f"Warnings ({len(all_warnings)}):\n")

@@ -9,8 +9,6 @@ TABLE_FILE = "pages/table.md"
 REDIRECT_URL = "https://apps.obtainium.page/redirect"
 OBTAINIUM_SCHEME = "obtainium://app/"
 
-VARIANTS = ("standard", "dual-screen")
-
 GITHUB_NOREPLY_SUFFIX = "@users.noreply.github.com"
 
 # Valid overrideSource values (runtime type names from Obtainium)

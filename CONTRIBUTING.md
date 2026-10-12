@@ -43,8 +43,7 @@ pages/
   table.md                       # Generated - app tables (do not edit)
   faq.md                         # FAQ section
   footer.md                      # Short section linking here (stitched into README)
-obtainium-emulation-pack-latest.json           # Standard release
-obtainium-emulation-pack-dual-screen-latest.json # Dual-screen release
+obtainium-emulation-pack-latest.json           # Release JSON
 ```
 
 ## Adding a New Application
@@ -148,7 +147,7 @@ Pull requests and pushes to `main` are checked by GitHub Actions (`ci.yml`, sing
 
 1. **Validate** - structural checks, regex syntax, source types
 2. **Test** - verifies all app configs resolve to real APKs
-3. **Generate** - normalizes, generates README, builds release JSONs
+3. **Generate** - normalizes, generates README, builds the release JSON
 4. **Diff check** - fails if generated files are out of date
 
 All steps must pass before merging.
@@ -163,7 +162,6 @@ Before committing, run `just build`, then verify:
 
 - [ ] `just test` passes (all app configs resolve to downloadable APKs)
 - [ ] `obtainium-emulation-pack-latest.json` has been updated
-- [ ] `obtainium-emulation-pack-dual-screen-latest.json` has been updated
 - [ ] `README.md` has been updated
 - [ ] The README table shows a friendly application name (use `nameOverride` if not)
 - [ ] The README table links to the correct homepage (use `urlOverride` if not)
@@ -182,11 +180,10 @@ Run `just` to see all available commands. Recipes with `*args` accept `-h` for h
 | `just test AppName`           | Live-test a single app by name (partial match)              |
 | `just test --verbose --apks`   | Live-test all apps with full APK URL details                |
 | `just test-cron`              | Dry-run the scheduled test workflow (no issues created)     |
-| `just generate`               | Generate all output files (README, release JSONs)           |
+| `just generate`               | Generate all output files (README, release JSON)            |
 | `just generate table`         | Generate the README table only                              |
 | `just generate readme`        | Generate README (includes table)                            |
-| `just generate standard`      | Generate standard release JSON only                         |
-| `just generate dual-screen`   | Generate dual-screen release JSON only                      |
+| `just generate json`          | Generate the release JSON only                              |
 | `just build`                  | Test, validate, normalize, and generate all output files    |
 | `just release`                | Tag, push, and create a GitHub release                      |
 
@@ -196,16 +193,14 @@ These fields in the `meta` object control how apps are processed:
 
 | Field                 | Type   | Default | Description                                                                     |
 | --------------------- | ------ | ------- | ------------------------------------------------------------------------------- |
-| `excludeFromExport`   | bool   | `false` | Table-only: keep the README row and install link, omit from both release JSONs. |
+| `excludeFromExport`   | bool   | `false` | Table-only: keep the README row and install link, omit from the release JSON.   |
 | `excludeFromTable`    | bool   | `false` | Omit from the README table.                                                     |
-| `includeInStandard`   | bool   | `true`  | Include in the standard release JSON.                                           |
-| `includeInDualScreen` | bool   | `true`  | Include in the dual-screen release JSON.                                        |
 | `nameOverride`        | string | `null`  | Override the display name in the README table.                                  |
 | `urlOverride`         | string | `null`  | Override the homepage link in the README table.                                 |
 
 ### Table-only entries
 
-`excludeFromExport: true` keeps an app in the README table with a working **Add to Obtainium!** link, but leaves it out of both release JSONs.
+`excludeFromExport: true` keeps an app in the README table with a working **Add to Obtainium!** link, but leaves it out of the release JSON.
 
 Importing a release JSON installs everything in it, so this is the right setting whenever an app is worth listing but shouldn't land on every device:
 
@@ -230,55 +225,15 @@ Apps are organized into categories that appear as sections in the README table:
 
 An app can belong to multiple categories.
 
-## Dual-Screen vs Standard
-
-The pack supports two variants:
-
-- **Standard** (`obtainium-emulation-pack-latest.json`): For regular Android devices
-- **Dual-Screen** (`obtainium-emulation-pack-dual-screen-latest.json`): For dual-screen devices (AYN Thor, Anbernic RG DS, etc.)
-
-Some apps have dual-screen-specific forks (e.g., Cemu, MelonDS). Use the `includeInStandard` and `includeInDualScreen` flags to control which variant(s) include each app.
-
-These flags exist to keep each package ID unique per file, not to target devices. A device-specific app that doesn't collide with anything (OdinTools, for example) still ships in both variants.
-
-**Why this matters:** Apps with the same Android package ID (`id` field) will conflict in Obtainium. If two apps share an ID (like standard Cemu and dual-screen Cemu), they **must not** both appear in the same JSON file.
-
-Example: Standard Cemu excluded from dual-screen, dual-screen fork excluded from standard:
-
-```json
-// Standard Cemu - exclude from dual-screen JSON
-{
-  "id": "info.cemu.cemu",
-  "name": "Cemu",
-  "url": "https://github.com/SSimco/Cemu",
-  "categories": ["Emulator"],
-  "meta": { "includeInDualScreen": false }
-}
-
-// Dual-screen Cemu fork - exclude from standard JSON
-{
-  "id": "info.cemu.cemu",
-  "name": "Cemu",
-  "url": "https://github.com/SapphireRhodonite/Cemu",
-  "categories": ["Emulator"],
-  "meta": { "includeInStandard": false }
-}
-```
-
-## Choosing the Right Category and Variant
+## Choosing Where an App Ships
 
 Use this decision tree:
 
 1. **Should this app install on every device that imports the pack?**
 
-   - No: Set `excludeFromExport: true` (table-only, see above) and stop here. The variant flags don't apply, since the app isn't in either release JSON.
+   - No: Set `excludeFromExport: true` (table-only, see above) and stop here.
    - Yes: Continue to step 2
 
-2. **Is this a dual-screen fork of an app already in the pack?** (e.g., Cemu, MelonDS)
-
-   - Yes: Use `includeInStandard` / `includeInDualScreen` so each package ID appears in exactly one variant
-   - No: Continue to step 3
-
-3. **Does it otherwise share an ID with another app in the pack?** (e.g., forks, nightly builds)
-   - Yes: Split across variants with `includeInStandard`/`includeInDualScreen`, or set `excludeFromExport: true` on the one that shouldn't ship (usually the nightly)
-   - No: It goes in both variants. This is the default, and it's correct even for device-specific apps.
+2. **Does it share an Android package ID with another app already in the pack?** (forks, nightly builds)
+   - Yes: Set `excludeFromExport: true` on the one that shouldn't ship (usually the nightly). Obtainium cannot import two apps with the same ID.
+   - No: It goes in the pack. This is the default, and it's correct even for device-specific apps.

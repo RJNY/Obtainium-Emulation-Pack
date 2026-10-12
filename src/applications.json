@@ -42,7 +42,8 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "releaseTitleAsVersion": true,
-        "about": "Wii U emulator"
+        "appName": "Cemu (SSimco)",
+        "about": "Wii U emulator (upstream Android port)"
       },
       "categories": [
         "Emulator"
@@ -50,7 +51,8 @@
       "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
-        "includeInDualScreen": false
+        "excludeFromExport": true,
+        "nameOverride": "Cemu (SSimco)"
       }
     },
     {
@@ -855,18 +857,13 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "releaseTitleAsVersion": true,
-        "appName": "Cemu (Dual-Screen)",
-        "about": "Wii U emulator"
+        "about": "SapphireRhodonite's dual-screen fork of SSimco's Android port"
       },
       "categories": [
         "Emulator"
       ],
       "allowIdChange": false,
-      "overrideSource": "GitHub",
-      "meta": {
-        "includeInStandard": false,
-        "nameOverride": "Cemu (Dual-Screen)"
-      }
+      "overrideSource": "GitHub"
     },
     {
       "id": "io.wip.pico8",
@@ -1001,10 +998,7 @@
         "Utilities"
       ],
       "allowIdChange": false,
-      "overrideSource": "GitHub",
-      "meta": {
-        "includeInStandard": false
-      }
+      "overrideSource": "GitHub"
     },
     {
       "id": "com.esde.companion",
@@ -1020,10 +1014,7 @@
         "Utilities"
       ],
       "allowIdChange": false,
-      "overrideSource": "GitHub",
-      "meta": {
-        "includeInStandard": false
-      }
+      "overrideSource": "GitHub"
     },
     {
       "id": "jr.brian.home",
@@ -1041,10 +1032,7 @@
         "Utilities"
       ],
       "allowIdChange": false,
-      "overrideSource": "GitHub",
-      "meta": {
-        "includeInStandard": false
-      }
+      "overrideSource": "GitHub"
     },
     {
       "id": "com.iisulauncher",
@@ -1130,10 +1118,7 @@
         "Utilities"
       ],
       "allowIdChange": false,
-      "overrideSource": "GitHub",
-      "meta": {
-        "includeInStandard": false
-      }
+      "overrideSource": "GitHub"
     },
     {
       "id": "dev.cannoli.scorza",

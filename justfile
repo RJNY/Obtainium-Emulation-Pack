@@ -55,9 +55,9 @@ adb-screenshot:
 
 # Push a release JSON to the connected Android device's Downloads folder
 [group('ADB')]
-adb-push variant="json":
-    @{{ if variant == "json" { "adb push obtainium-emulation-pack-latest.json /sdcard/Download/obtainium-emulation-pack-latest.json" } else if variant == "ds" { "adb push obtainium-emulation-pack-dual-screen-latest.json /sdcard/Download/obtainium-emulation-pack-dual-screen-latest.json" } else { "echo 'Unknown variant: " + variant + ". Use json (default) or ds.'; exit 1" } }}
+adb-push:
+    @adb push obtainium-emulation-pack-latest.json /sdcard/Download/obtainium-emulation-pack-latest.json
 
 # Generate output files
 generate *args:
-    @{{ if args == "help" { "just _generate-help" } else if args == "-h" { "just _generate-help" } else if args == "--help" { "just _generate-help" } else if args == "table" { "just _generate-table" } else if args == "readme" { "just _generate-readme" } else if args == "standard" { "just _generate-standard" } else if args == "dual-screen" { "just _generate-dual-screen" } else { "just _generate-all" } }}
+    @{{ if args == "help" { "just _generate-help" } else if args == "-h" { "just _generate-help" } else if args == "--help" { "just _generate-help" } else if args == "table" { "just _generate-table" } else if args == "readme" { "just _generate-readme" } else if args == "json" { "just _generate-json" } else { "just _generate-all" } }}

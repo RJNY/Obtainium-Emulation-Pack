@@ -18,12 +18,7 @@ CATEGORIES = [
     "Track Only",
 ]
 
-VARIANT_OPTIONS = [
-    "Both",
-    "Standard only",
-    "Dual-screen only",
-    "README only",
-]
+
 
 
 def extract_github_info(url: str) -> tuple[str, str] | None:
@@ -123,7 +118,7 @@ def generate_app_entry(
     name: str,
     categories: list[str],
     source: str,
-    variant: str,
+    readme_only: bool = False,
     include_prereleases: bool = False,
     verify_latest_tag: bool = False,
     allow_id_change: bool = False,
@@ -153,11 +148,7 @@ def generate_app_entry(
     }
 
     meta = {}
-    if variant == "Standard only":
-        meta["includeInDualScreen"] = False
-    elif variant == "Dual-screen only":
-        meta["includeInStandard"] = False
-    elif variant == "README only":
+    if readme_only:
         meta["excludeFromExport"] = True
 
     if app_name_override:
@@ -215,8 +206,8 @@ def main() -> int:
     category = select_menu("Select category:", CATEGORIES)
     print(f"  Selected: {category}")
 
-    variant = select_menu("Include in which release(s):", VARIANT_OPTIONS)
-    print(f"  Selected: {variant}")
+    readme_only = not prompt_yes_no("Include in the pack?", True)
+    print(f"  Include in the pack: {'No' if readme_only else 'Yes'}")
 
     include_prereleases = prompt_yes_no("Include pre-releases?", False)
     print(f"  Include pre-releases: {'Yes' if include_prereleases else 'No'}")
@@ -243,7 +234,7 @@ def main() -> int:
         name=name,
         categories=[category],
         source=source,
-        variant=variant,
+        readme_only=readme_only,
         include_prereleases=include_prereleases,
         verify_latest_tag=verify_latest_tag,
         allow_id_change=allow_id_change,

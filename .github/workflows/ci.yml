@@ -30,8 +30,7 @@ jobs:
           python scripts/normalize-json.py src/applications.json
           python scripts/generate-table.py src/applications.json ./pages/table.md
           python scripts/generate-readme.py ./pages/header.md ./pages/table.md ./pages/faq.md ./pages/footer.md
-          python scripts/minify-json.py src/applications.json obtainium-emulation-pack-latest.json --variant standard
-          python scripts/minify-json.py src/applications.json obtainium-emulation-pack-dual-screen-latest.json --variant dual-screen
+          python scripts/minify-json.py src/applications.json obtainium-emulation-pack-latest.json
 
       - name: Check generated files are up to date
         run: |

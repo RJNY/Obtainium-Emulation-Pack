@@ -26,9 +26,7 @@ Download the [latest release of Obtainium](https://github.com/ImranR98/Obtainium
 This is the easiest way to get started, especially on a new device.
 
 1. On your device, go to the [latest release](https://github.com/RJNY/Obtainium-Emulation-Pack/releases/latest).
-2. Download the JSON for your device:
-   - **Standard** (`obtainium-emulation-pack-vX.X.X.json`) - most devices
-   - **Dual-Screen** (`obtainium-emulation-pack-dual-screen-vX.X.X.json`) - dual-screen devices (AYN Thor, Anbernic RG DS, etc.)
+2. Download `obtainium-emulation-pack-vX.X.X.json`.
 3. In Obtainium, go to **Import/Export** > **Obtainium Import** and select the file.
 
 Obtainium will now track and update all included apps.

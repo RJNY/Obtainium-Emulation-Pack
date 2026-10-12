@@ -41,15 +41,8 @@ def detect_source_from_url(url: str) -> str | None:
     return None
 
 
-def should_include_app(app: dict[str, Any], variant: str) -> bool:
-    meta = app.get("meta", {})
-    if meta.get("excludeFromExport", False):
-        return False
-    if variant == "standard":
-        return meta.get("includeInStandard", True)
-    elif variant == "dual-screen":
-        return meta.get("includeInDualScreen", True)
-    return True
+def should_include_app(app: dict[str, Any]) -> bool:
+    return not app.get("meta", {}).get("excludeFromExport", False)
 
 
 def get_display_name(app: dict[str, Any]) -> str:
