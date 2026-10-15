@@ -42,7 +42,7 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "releaseTitleAsVersion": true,
-        "appName": "Cemu (SSimco)",
+        "appName": "Cemu",
         "about": "Wii U emulator (upstream Android port)"
       },
       "categories": [
@@ -51,8 +51,7 @@
       "allowIdChange": false,
       "overrideSource": "GitHub",
       "meta": {
-        "excludeFromExport": true,
-        "nameOverride": "Cemu (SSimco)"
+        "excludeFromExport": true
       }
     },
     {
@@ -853,7 +852,7 @@
       "id": "info.cemu.cemu",
       "url": "https://github.com/sapphirerhodonite/cemu",
       "author": "SapphireRhodonite",
-      "name": "Cemu",
+      "name": "Cemu (DS)",
       "preferredApkIndex": 0,
       "additionalSettings": {
         "releaseTitleAsVersion": true,
@@ -863,7 +862,8 @@
         "Emulator"
       ],
       "allowIdChange": false,
-      "overrideSource": "GitHub"
+      "overrideSource": "GitHub",
+      "nameOverride": "Cemu (DS)"
     },
     {
       "id": "io.wip.pico8",
