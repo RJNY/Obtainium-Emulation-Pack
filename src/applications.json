@@ -7,7 +7,7 @@
       "name": "aPS3e",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "about": "PS3 emulator for Android"
+        "about": "PlayStation 3 emulator"
       },
       "categories": [
         "Emulator"
@@ -89,7 +89,7 @@
         "matchGroupToUse": "$1",
         "versionDetection": false,
         "appName": "Dolphin Emulator (Dev build)",
-        "about": "GameCube and Wii emulator"
+        "about": "GameCube and Wii emulator (dev builds)"
       },
       "categories": [
         "Emulator"
@@ -319,7 +319,7 @@
         "matchGroupToUse": "$1$3.$2$4$6$5",
         "versionDetection": false,
         "appName": "PPSSPP",
-        "about": "PPSSPP is an open source, fast and portable PSP emulator"
+        "about": "PlayStation Portable emulator"
       },
       "categories": [
         "Emulator"
@@ -357,7 +357,7 @@
         "appName": "RetroArch AArch64",
         "exemptFromBackgroundUpdates": true,
         "skipUpdateNotifications": true,
-        "about": "Released less frequently. Better stability. "
+        "about": "Multi-system emulator (stable builds)"
       },
       "categories": [
         "Emulator"
@@ -383,7 +383,7 @@
         "versionDetection": false,
         "apkFilterRegEx": "\\d{4}-\\d{2}-\\d{2}-RetroArch_aarch64.apk",
         "appName": "RetroArch AArch64 (Nightly)",
-        "about": "Nightly releases. cutting edge features but may contain bugs"
+        "about": "Multi-system emulator (nightly builds)"
       },
       "categories": [
         "Emulator"
@@ -424,7 +424,7 @@
         "versionExtractionRegEx": "scummvm-(\\d+(?:\\.\\d+)+)-android",
         "matchGroupToUse": "$1",
         "versionDetection": false,
-        "about": "A program which allows you to run certain classic graphical adventure and role-playing games, provided you already have their data files."
+        "about": "Classic adventure and RPG interpreter"
       },
       "categories": [
         "Emulator"
@@ -467,7 +467,7 @@
         "matchGroupToUse": "$1",
         "versionDetection": false,
         "appName": "GameHub Lite (pre-release)",
-        "about": "Windows game launcher for Android"
+        "about": "Windows game launcher for Android (pre-release builds)"
       },
       "categories": [
         "PC Emulation"
@@ -555,7 +555,7 @@
         "matchGroupToUse": "$1",
         "versionDetection": false,
         "appName": "NetherSX2-Classic",
-        "about": "PlayStation 2 emulator"
+        "about": "PlayStation 2 emulator (AetherSX2 classic patch)"
       },
       "categories": [
         "Emulator"
@@ -578,7 +578,7 @@
         "matchGroupToUse": "$1",
         "versionDetection": false,
         "appName": "NetherSX2-Patch",
-        "about": "PlayStation 2 emulator"
+        "about": "PlayStation 2 emulator (AetherSX2 patch)"
       },
       "categories": [
         "Emulator"
@@ -647,7 +647,7 @@
       "name": "ES-DE Android Apps",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "about": "ES-DE system integration for Android"
+        "about": "Android app importer for ES-DE"
       },
       "categories": [
         "Utilities"
@@ -663,7 +663,8 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "trackOnly": true,
-        "appName": "Adreno Tools Drivers"
+        "appName": "Adreno Tools Drivers",
+        "about": "Adreno GPU driver packages"
       },
       "categories": [
         "Track Only"
@@ -679,7 +680,8 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "trackOnly": true,
-        "appName": "Mr. Purple Turnip Drivers"
+        "appName": "Mr. Purple Turnip Drivers",
+        "about": "Custom Turnip GPU drivers"
       },
       "categories": [
         "Track Only"
@@ -696,7 +698,8 @@
       "additionalSettings": {
         "trackOnly": true,
         "autoApkFilterByArch": false,
-        "appName": "ES-DE Custom Systems"
+        "appName": "ES-DE Custom Systems",
+        "about": "Custom system definitions for ES-DE"
       },
       "categories": [
         "Track Only"
@@ -712,7 +715,8 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "trackOnly": true,
-        "appName": "Obtainium Emulation Pack"
+        "appName": "Obtainium Emulation Pack",
+        "about": "Curated emulator and handheld app configs"
       },
       "categories": [
         "Track Only"
@@ -762,7 +766,7 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "apkFilterRegEx": "\\.apk$",
-        "about": "Run PortMaster games on Android."
+        "about": "PortMaster game runner for Android"
       },
       "categories": [
         "PC Emulation"
@@ -783,7 +787,8 @@
         "versionExtractionRegEx": "v[\\d.]+_v([\\d.]+)",
         "matchGroupToUse": "$1",
         "versionDetection": false,
-        "apkFilterRegEx": "PXPlay_Android.*\\.apk"
+        "apkFilterRegEx": "PXPlay_Android.*\\.apk",
+        "about": "PlayStation Remote Play client"
       },
       "categories": [
         "Streaming"
@@ -801,7 +806,9 @@
       "author": "FeralAI",
       "name": "O2P Tweaks",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "AYN Odin 2 Portal system tweaks"
+      },
       "categories": [
         "Utilities"
       ],
@@ -837,7 +844,7 @@
         "matchGroupToUse": "$1",
         "versionDetection": false,
         "appName": "WatermelonDS",
-        "about": "Nintendo DS emulator"
+        "about": "Nintendo DS emulator (melonDS fork)"
       },
       "categories": [
         "Emulator"
@@ -856,7 +863,7 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "releaseTitleAsVersion": true,
-        "about": "SapphireRhodonite's dual-screen fork of SSimco's Android port"
+        "about": "Wii U emulator (dual-screen fork)"
       },
       "categories": [
         "Emulator"
@@ -891,7 +898,7 @@
         "versionExtractionRegEx": "(b)eta-(.*)",
         "matchGroupToUse": "$1$2",
         "versionDetection": false,
-        "about": "Game launcher frontend"
+        "about": "Emulation frontend for handhelds"
       },
       "categories": [
         "Frontend"
@@ -992,7 +999,7 @@
       "name": "Mjolnir",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "about": "LG V60 dual-screen utility"
+        "about": "Home button router for dual-screen devices"
       },
       "categories": [
         "Utilities"
@@ -1008,7 +1015,7 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "apkFilterRegEx": "ES-DE-Companion-v[\\d.]+\\.apk$",
-        "about": "ES-DE frontend companion app"
+        "about": "ES-DE dual-screen companion"
       },
       "categories": [
         "Utilities"
@@ -1026,7 +1033,7 @@
         "includePrereleases": true,
         "verifyLatestTag": true,
         "apkFilterRegEx": "jarngreipr-[\\d.]+\\.apk$",
-        "about": "LG V60 dual-screen utility"
+        "about": "Dual-screen Android launcher"
       },
       "categories": [
         "Utilities"
@@ -1043,7 +1050,7 @@
       "additionalSettings": {
         "useVersionCodeAsOSVersion": true,
         "appName": "iiSU",
-        "about": "Game launcher frontend"
+        "about": "Visuals-first emulation frontend"
       },
       "categories": [
         "Frontend"
@@ -1081,7 +1088,8 @@
       "name": "Xemu Android",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "appName": "X1 BOX"
+        "appName": "X1 BOX",
+        "about": "Original Xbox emulator"
       },
       "categories": [
         "Emulator"
@@ -1098,7 +1106,9 @@
       "author": "rfandango",
       "name": "Hakux",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Original Xbox emulator (Adreno fork)"
+      },
       "categories": [
         "Emulator"
       ],
@@ -1112,7 +1122,8 @@
       "name": "Emulnk",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "includePrereleases": true
+        "includePrereleases": true,
+        "about": "Live game dashboard for a second screen"
       },
       "categories": [
         "Utilities"
@@ -1127,7 +1138,8 @@
       "name": "Cannoli",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "includePrereleases": true
+        "includePrereleases": true,
+        "about": "Retro frontend with built-in cores"
       },
       "categories": [
         "Frontend"
@@ -1141,7 +1153,9 @@
       "author": "AurelioB",
       "name": "Cluster Tune",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "CPU and GPU frequency tuner for handhelds"
+      },
       "categories": [
         "Utilities"
       ],
@@ -1155,7 +1169,8 @@
       "name": "Console Launcher",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "includePrereleases": true
+        "includePrereleases": true,
+        "about": "Console-style launcher and frontend"
       },
       "categories": [
         "Frontend"
@@ -1171,7 +1186,8 @@
       "preferredApkIndex": 0,
       "additionalSettings": {
         "includePrereleases": true,
-        "verifyLatestTag": true
+        "verifyLatestTag": true,
+        "about": "Multi-platform emulation frontend"
       },
       "categories": [
         "Frontend"
@@ -1188,7 +1204,9 @@
       "author": "retrohrai",
       "name": "RetroHrai",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Retro game launcher"
+      },
       "categories": [
         "Frontend"
       ],
@@ -1201,7 +1219,9 @@
       "author": "nckstwrt",
       "name": "NetherSX2-Turnip",
       "preferredApkIndex": 1,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "PlayStation 2 emulator (Turnip driver build)"
+      },
       "categories": [
         "Emulator"
       ],
@@ -1214,7 +1234,9 @@
       "author": "misantronic",
       "name": "RAOfflineProxy",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Offline RetroAchievements proxy"
+      },
       "categories": [
         "Utilities"
       ],
@@ -1244,7 +1266,8 @@
       "name": "Citron Neo",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "appName": "Citron Neo"
+        "appName": "Citron Neo",
+        "about": "Nintendo Switch emulator"
       },
       "categories": [
         "Emulator"
@@ -1261,7 +1284,9 @@
       "author": "ItsRetroPup",
       "name": "Mimir",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "On-device ROM library organizer"
+      },
       "categories": [
         "Utilities"
       ],
@@ -1275,7 +1300,8 @@
       "name": "Swiff",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "verifyLatestTag": true
+        "verifyLatestTag": true,
+        "about": "Flash game player for Android"
       },
       "categories": [
         "Emulator"
@@ -1290,7 +1316,7 @@
       "name": "ThorTune",
       "preferredApkIndex": 0,
       "additionalSettings": {
-        "about": "AYN Thor system tweaks: JamesDSP system-wide audio DSP and display saturation, with a lower-screen companion panel"
+        "about": "AYN Thor handheld system tweaks"
       },
       "categories": [
         "Utilities"
@@ -1307,7 +1333,9 @@
       "author": "keiretrogaming",
       "name": "Pulse",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Performance tuner with frame-rate targeting"
+      },
       "categories": [
         "Utilities"
       ],
@@ -1320,7 +1348,9 @@
       "author": "rfandango",
       "name": "Xendroid",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Xbox 360 emulator"
+      },
       "categories": [
         "Emulator"
       ],
@@ -1333,7 +1363,9 @@
       "author": "ARMSX2",
       "name": "ARMSX1",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "PlayStation 1 emulator"
+      },
       "categories": [
         "Emulator"
       ],
@@ -1346,7 +1378,9 @@
       "author": "ARMSX2",
       "name": "ARMSX3",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "PlayStation 3 emulator (RPCS3 port)"
+      },
       "categories": [
         "Emulator"
       ],
@@ -1359,7 +1393,9 @@
       "author": "Ashnar2602",
       "name": "X360 Mobile",
       "preferredApkIndex": 1,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Xbox 360 emulator (experimental)"
+      },
       "categories": [
         "Emulator"
       ],
@@ -1372,7 +1408,9 @@
       "author": "gopher64",
       "name": "Gopher64",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Nintendo 64 emulator"
+      },
       "categories": [
         "Emulator"
       ],
@@ -1385,7 +1423,9 @@
       "author": "pippopapera",
       "name": "Nova Display Calibration",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Display calibration for Retroid Pocket Nova"
+      },
       "categories": [
         "Utilities"
       ],
@@ -1398,7 +1438,9 @@
       "author": "Baggio94",
       "name": "Sleepmanager",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Sleep and wake manager for handhelds"
+      },
       "categories": [
         "Utilities"
       ],
@@ -1411,7 +1453,9 @@
       "author": "Droid-Deck",
       "name": "Droiddeck",
       "preferredApkIndex": 0,
-      "additionalSettings": {},
+      "additionalSettings": {
+        "about": "Steam client with Proton for Android"
+      },
       "categories": [
         "PC Emulation"
       ],
