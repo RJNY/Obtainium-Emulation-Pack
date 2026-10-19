@@ -1,0 +1,21 @@
+README.md
+  s_daac61b178c7ca::t_6745136ddc69d7 42-77,83-91,97-104,110-112,118-121,127-145
+pages/table.md
+  s_daac61b178c7ca::t_16265027e0b7e3 9-44,50-58,64-71,77-79,85-88,94-112
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "9fb092f60938ded103632b9336f38adac611479f",
+  "prompts": {},
+  "sessions": {
+    "s_daac61b178c7ca": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_eaba21de4ffe1VvnBA2fBi6lFS",
+        "model": "unknown"
+      },
+      "human_author": "Richard Macias <6036337+RJNY@users.noreply.github.com>"
+    }
+  }
+}
