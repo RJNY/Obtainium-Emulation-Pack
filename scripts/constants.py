@@ -6,7 +6,7 @@ SRC_FILE = "src/applications.json"
 PAGES_DIR = "pages"
 TABLE_FILE = "pages/table.md"
 
-REDIRECT_URL = "https://apps.obtainium.page/redirect"
+REDIRECT_URL = "https://apps.obtainium.imranr.dev/redirect"
 OBTAINIUM_SCHEME = "obtainium://app/"
 
 GITHUB_NOREPLY_SUFFIX = "@users.noreply.github.com"
