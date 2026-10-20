@@ -1260,6 +1260,28 @@
       "overrideSource": "GitHub"
     },
     {
+      "id": "com.armsx2.nightly",
+      "url": "https://github.com/ARMSX2/ARMSX2",
+      "author": "ARMSX2",
+      "name": "ARMSX2 Nightly",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "includePrereleases": true,
+        "fallbackToOlderReleases": false,
+        "apkFilterRegEx": "Android-arm64\\.apk$",
+        "appName": "ARMSX2 Nightly",
+        "about": "PlayStation 2 emulator (nightly builds)"
+      },
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "excludeFromExport": true
+      }
+    },
+    {
       "id": "org.citron.citron_emu",
       "url": "https://github.com/citron-neo/emulator",
       "author": "citron-neo",
