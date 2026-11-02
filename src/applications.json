@@ -1483,6 +1483,24 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.plumemu",
+      "url": "https://github.com/joiha-steven/plumemu",
+      "author": "joiha-steven",
+      "name": "Plumemu",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "about": "Light launcher for retro handhelds"
+      },
+      "categories": [
+        "Frontend"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub",
+      "meta": {
+        "urlOverride": "https://plumemu.stevensdesk.com"
+      }
     }
   ],
   "settings": {
