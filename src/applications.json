@@ -1483,6 +1483,22 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "org.tvp.kirikiri2_yuri_debloated_10309",
+      "url": "https://github.com/enaix/Kirikiroid2-debloated",
+      "author": "enaix",
+      "name": "Kirikiroid2-debloated",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "apkFilterRegEx": "yuri.*\\.apk$",
+        "about": "KiriKiri visual novel engine player (debloated Yuri build)"
+      },
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
