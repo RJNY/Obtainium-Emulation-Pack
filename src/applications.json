@@ -1483,6 +1483,21 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "dev.armbat",
+      "url": "https://github.com/dima-xd/armbat",
+      "author": "dima-xd",
+      "name": "Armbat",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "about": "Runs 32-bit ARMv7 Android apps on 64-bit-only devices without a 32-bit ABI. No root; A32 native code is translated to ARM64 by a JIT on Dynarmic."
+      },
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
