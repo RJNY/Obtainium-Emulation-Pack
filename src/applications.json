@@ -1440,6 +1440,21 @@
       "overrideSource": "GitHub"
     },
     {
+      "id": "com.tengen.dreamboy",
+      "url": "https://github.com/tengencode/DreamBoy",
+      "author": "tengencode",
+      "name": "DreamBoy",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "about": "Game Boy, Game Boy Color and Game Boy Advance emulator"
+      },
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
+    },
+    {
       "id": "local.nova.diagnostic",
       "url": "https://github.com/pippopapera/nova-display-calibration",
       "author": "pippopapera",
