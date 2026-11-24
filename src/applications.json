@@ -1483,6 +1483,21 @@
       ],
       "allowIdChange": false,
       "overrideSource": "GitHub"
+    },
+    {
+      "id": "com.pokedaisy.app",
+      "url": "https://github.com/lidor30/pokedaisy",
+      "author": "lidor30",
+      "name": "PokeDaisy",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "about": "Game Boy, GBA and DS Pokemon games and ROM hacks with a live companion"
+      },
+      "categories": [
+        "Emulator"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
     }
   ],
   "settings": {
