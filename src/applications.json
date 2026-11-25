@@ -624,6 +624,21 @@
       "overrideSource": "GitHub"
     },
     {
+      "id": "com.limelight.qiin",
+      "url": "https://github.com/qiin2333/moonlight-vplus",
+      "author": "qiin2333",
+      "name": "Moonlight V+",
+      "preferredApkIndex": 0,
+      "additionalSettings": {
+        "about": "Game streaming client (Moonlight fork)"
+      },
+      "categories": [
+        "Streaming"
+      ],
+      "allowIdChange": false,
+      "overrideSource": "GitHub"
+    },
+    {
       "id": "com.github.catfriend1.syncthingfork",
       "url": "https://github.com/researchxxl/syncthing-android",
       "author": "researchxxl",
